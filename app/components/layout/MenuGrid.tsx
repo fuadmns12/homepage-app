@@ -15,22 +15,26 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   {
-    id: '1',
+    id: '4',
     badge: (
       <svg viewBox="0 0 64 64" aria-hidden="true" className="menu-badge-icon">
-        <g fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="16" y="10" width="32" height="44" rx="4" />
-          <circle cx="32" cy="48" r="1.8" />
-          <path d="M24 18h16" />
-        </g>
-        <rect x="20" y="18" width="24" height="22" rx="2" fill="currentColor" opacity="0.12" />
+        <rect x="12" y="14" width="40" height="36" rx="5" fill="currentColor" opacity="0.08" />
+        <rect x="16" y="18" width="32" height="22" rx="3" fill="none" stroke="currentColor" strokeWidth="2.4" />
+        <circle cx="24" cy="26" r="3" fill="#ff00d4" opacity="0.9" />
+        <path d="M18 38l8-8 6 6 6-5 10 7" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: 'Pengantar',
-    section: 'introduction'
+    title: 'Galeri',
+    section: 'gallery'
   },
   {
     id: '2',
+    badge: <span aria-hidden="true">&#9654;</span>,
+    title: 'Start',
+    section: 'contact'
+  },
+  {
+    id: '3',
     badge: (
       <svg viewBox="0 0 64 64" aria-hidden="true" className="menu-badge-icon">
         <rect x="12" y="12" width="40" height="40" rx="6" fill="currentColor" opacity="0.08" />
@@ -46,20 +50,22 @@ const menuItems: MenuItem[] = [
     section: 'services'
   },
   {
-    id: '3',
+    id: '1',
     badge: (
       <svg viewBox="0 0 64 64" aria-hidden="true" className="menu-badge-icon">
-        <rect x="12" y="14" width="40" height="36" rx="5" fill="currentColor" opacity="0.08" />
-        <rect x="16" y="18" width="32" height="22" rx="3" fill="none" stroke="currentColor" strokeWidth="2.4" />
-        <circle cx="24" cy="26" r="3" fill="#ff00d4" opacity="0.9" />
-        <path d="M18 38l8-8 6 6 6-5 10 7" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+        <g fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="16" y="10" width="32" height="44" rx="4" />
+          <circle cx="32" cy="48" r="1.8" />
+          <path d="M24 18h16" />
+        </g>
+        <rect x="20" y="18" width="24" height="22" rx="2" fill="currentColor" opacity="0.12" />
       </svg>
     ),
-    title: 'Galeri',
-    section: 'gallery'
+    title: 'Pengantar',
+    section: 'introduction'
   },
   {
-    id: '4',
+    id: '5',
     badge: (
       <svg viewBox="0 0 64 64" aria-hidden="true" className="menu-badge-icon">
         <path
@@ -81,7 +87,7 @@ const menuItems: MenuItem[] = [
     section: 'testimonials'
   },
   {
-    id: '5',
+    id: '6',
     badge: (
       <Image
         src="/learning_english_geuwat_rb_3d.png"
@@ -93,12 +99,10 @@ const menuItems: MenuItem[] = [
     ),
     title: 'Tentang',
     section: 'about'
-  },
-  { id: '6', badge: '▶', title: 'Start', section: 'contact' }
+  }
 ]
 
 export default function MenuGrid({ showSection, isTransitioning }: MenuGridProps) {
-
   const handleMenuClick = (section: string) => {
     if (!isTransitioning) {
       showSection(section)
@@ -113,7 +117,7 @@ export default function MenuGrid({ showSection, isTransitioning }: MenuGridProps
           className="menu-item initial-load"
           data-section={item.section}
           onClick={() => handleMenuClick(item.section)}
-          style={{ 
+          style={{
             cursor: 'pointer',
             zIndex: 50,
             position: 'relative'

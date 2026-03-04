@@ -1,12 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import LoadingScreen from './components/ui/LoadingScreen'
 import AmbientBg from './components/ui/AmbientBg'
 import GridOverlay from './components/ui/GridOverlay'
 import NotificationPrompt from './components/ui/NotificationPrompt'
 import Header from './components/layout/Header'
 import MenuGrid from './components/layout/MenuGrid'
+import ConversionLanding from './components/sections/ConversionLanding'
 import Introduction from './components/sections/Introduction'
 import Services from './components/sections/Services'
 import Gallery from './components/sections/Gallery'
@@ -15,35 +16,72 @@ import About from './components/sections/About'
 import Contact from './components/sections/Contact'
 
 export default function Home() {
-  const storageKey = 'homepage_active_section'
   const [activeSection, setActiveSection] = useState('')
+  const [showFeatureHub, setShowFeatureHub] = useState(false)
+  const [sectionSource, setSectionSource] = useState<'feature-hub' | 'conversion'>('conversion')
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const showSectionTimerRef = useRef<number | null>(null)
+  const backToMenuTimerRef = useRef<number | null>(null)
+
+  const clearTransitionTimers = () => {
+    if (showSectionTimerRef.current !== null) {
+      window.clearTimeout(showSectionTimerRef.current)
+      showSectionTimerRef.current = null
+    }
+    if (backToMenuTimerRef.current !== null) {
+      window.clearTimeout(backToMenuTimerRef.current)
+      backToMenuTimerRef.current = null
+    }
+  }
 
   useEffect(() => {
-    if (activeSection) {
-      window.localStorage.setItem(storageKey, activeSection)
-    } else {
-      window.localStorage.removeItem(storageKey)
+    return () => {
+      if (showSectionTimerRef.current !== null) {
+        window.clearTimeout(showSectionTimerRef.current)
+        showSectionTimerRef.current = null
+      }
+      if (backToMenuTimerRef.current !== null) {
+        window.clearTimeout(backToMenuTimerRef.current)
+        backToMenuTimerRef.current = null
+      }
     }
-  }, [activeSection])
+  }, [])
   
-  const showSection = (sectionId: string) => {
+  const showSection = (sectionId: string, source: 'feature-hub' | 'conversion' = 'feature-hub') => {
     if (isTransitioning) return
     
+    clearTransitionTimers()
     setIsTransitioning(true)
     
-    setTimeout(() => {
+    showSectionTimerRef.current = window.setTimeout(() => {
+      showSectionTimerRef.current = null
+      setSectionSource(source)
       setActiveSection(sectionId)
       setIsTransitioning(false)
     }, 550)
   }
+
+  const openFeatureHub = () => {
+    setShowFeatureHub(true)
+  }
+
+  const backToConversion = () => {
+    clearTransitionTimers()
+    setIsTransitioning(false)
+    setShowFeatureHub(false)
+    setActiveSection('')
+    setSectionSource('conversion')
+  }
   
   const backToMenu = () => {
     if (isTransitioning) return
+    clearTransitionTimers()
     setIsTransitioning(true)
     
-    setTimeout(() => {
+    backToMenuTimerRef.current = window.setTimeout(() => {
+      backToMenuTimerRef.current = null
       setActiveSection('')
+      setShowFeatureHub(sectionSource === 'feature-hub')
       setIsTransitioning(false)
     }, 200)
   }
@@ -56,13 +94,36 @@ export default function Home() {
       <NotificationPrompt />
       
       <div className="container">
-        {/* Header */}
-        <div id="mainHeader" style={{ display: activeSection ? 'none' : 'block' }}>
-          <Header />
-        </div>
+        {/* Feature Hub Header */}
+        {!activeSection && showFeatureHub && (
+          <div id="mainHeader">
+            <Header />
+          </div>
+        )}
 
-        {/* Menu Grid - Show when no section is active */}
-        {!activeSection && <MenuGrid showSection={showSection} isTransitioning={isTransitioning} />}
+        {/* Conversion Landing - default first view */}
+        {!activeSection && !showFeatureHub && (
+          <ConversionLanding onOpenFeatureHub={openFeatureHub} />
+        )}
+
+        {/* Feature Hub (secondary flow) */}
+        {!activeSection && showFeatureHub && (
+          <>
+            <div className="feature-hub-toolbar">
+              <button
+                type="button"
+                className="conversion-secondary-link feature-hub-back-btn"
+                onClick={backToConversion}
+              >
+                Kembali ke Penawaran
+              </button>
+            </div>
+            <MenuGrid
+              showSection={(sectionId) => showSection(sectionId, 'feature-hub')}
+              isTransitioning={isTransitioning}
+            />
+          </>
+        )}
 
         {/* Content Sections */}
         <div id="contentArea">

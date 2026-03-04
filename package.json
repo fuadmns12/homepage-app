@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "jest --passWithNoTests",
+    "test:ci": "jest --runInBand --passWithNoTests --detectOpenHandles --forceExit",
     "test:watch": "jest --watch --passWithNoTests",
     "e2e": "playwright test --project=chromium",
     "e2e:ui": "playwright test --ui --project=chromium",

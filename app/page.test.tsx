@@ -6,7 +6,19 @@ import Home from './page'
 jest.mock('./components/ui/LoadingScreen', () => () => <div data-testid="loading-screen" />)
 jest.mock('./components/ui/AmbientBg', () => () => <div data-testid="ambient-bg" />)
 jest.mock('./components/ui/GridOverlay', () => () => <div data-testid="grid-overlay" />)
+jest.mock('./components/ui/NotificationPrompt', () => () => <div data-testid="notification-prompt" />)
 jest.mock('./components/layout/Header', () => () => <div data-testid="header">Header</div>)
+
+jest.mock('./components/sections/ConversionLanding', () => {
+  return function MockConversionLanding(props: { onOpenFeatureHub: () => void }) {
+    return (
+      <div data-testid="conversion-landing">
+        <a href="/register">Register Now</a>
+        <button onClick={props.onOpenFeatureHub}>Open Feature Hub</button>
+      </div>
+    )
+  }
+})
 
 jest.mock('./components/layout/MenuGrid', () => {
   return function MockMenuGrid(props: { showSection: (sectionId: string) => void }) {
@@ -34,7 +46,7 @@ jest.mock('./components/sections/About', () => {
   }
 })
 
-describe('Home page navigation', () => {
+describe('Home page conversion-first navigation', () => {
   beforeEach(() => {
     jest.useFakeTimers()
     window.localStorage.clear()
@@ -45,11 +57,22 @@ describe('Home page navigation', () => {
     jest.useRealTimers()
   })
 
-  it('shows menu by default and opens about section after click', () => {
+  it('shows conversion landing by default', () => {
     render(<Home />)
+
+    expect(screen.getByTestId('conversion-landing')).toBeInTheDocument()
+    expect(screen.queryByTestId('menu-grid')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('header')).not.toBeInTheDocument()
+  })
+
+  it('opens feature hub, then opens section and returns to feature hub', () => {
+    render(<Home />)
+
+    fireEvent.click(screen.getByText('Open Feature Hub'))
 
     expect(screen.getByTestId('menu-grid')).toBeInTheDocument()
     expect(screen.getByTestId('header')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Kembali ke Penawaran' })).toBeInTheDocument()
 
     fireEvent.click(screen.getByText('Open About'))
     act(() => {
@@ -58,15 +81,6 @@ describe('Home page navigation', () => {
 
     expect(screen.queryByTestId('menu-grid')).not.toBeInTheDocument()
     expect(screen.getByTestId('about-section')).toHaveTextContent('active')
-  })
-
-  it('returns to menu after back action from section', () => {
-    render(<Home />)
-
-    fireEvent.click(screen.getByText('Open About'))
-    act(() => {
-      jest.advanceTimersByTime(550)
-    })
 
     fireEvent.click(screen.getByText('Back To Menu'))
     act(() => {
@@ -75,14 +89,45 @@ describe('Home page navigation', () => {
 
     expect(screen.getByTestId('menu-grid')).toBeInTheDocument()
     expect(screen.getByTestId('header')).toBeInTheDocument()
+    expect(screen.queryByTestId('conversion-landing')).not.toBeInTheDocument()
   })
 
-  it('starts from menu even when localStorage has previous section', () => {
+  it('returns to conversion landing when user clicks back to offer from feature hub', () => {
+    render(<Home />)
+
+    fireEvent.click(screen.getByText('Open Feature Hub'))
+    expect(screen.getByTestId('menu-grid')).toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Kembali ke Penawaran' }))
+
+    expect(screen.getByTestId('conversion-landing')).toBeInTheDocument()
+    expect(screen.queryByTestId('menu-grid')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('header')).not.toBeInTheDocument()
+  })
+
+  it('starts from conversion landing even when localStorage has previous section', () => {
     window.localStorage.setItem('homepage_active_section', 'about')
 
     render(<Home />)
 
-    expect(screen.getByTestId('menu-grid')).toBeInTheDocument()
+    expect(screen.getByTestId('conversion-landing')).toBeInTheDocument()
     expect(screen.getByTestId('about-section')).toHaveTextContent('inactive')
+  })
+
+  it('cleans transition timers on unmount without console errors', () => {
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
+
+    const { unmount } = render(<Home />)
+    fireEvent.click(screen.getByText('Open Feature Hub'))
+    fireEvent.click(screen.getByText('Open About'))
+
+    unmount()
+
+    act(() => {
+      jest.advanceTimersByTime(1000)
+    })
+
+    expect(errorSpy).not.toHaveBeenCalled()
+    errorSpy.mockRestore()
   })
 })

@@ -8,13 +8,35 @@ interface ServicesProps {
 export default function Services({ backToMenu, isActive }: ServicesProps) {
   const [activeTab, setActiveTab] = React.useState<'modul' | 'desain' | 'konsultasi' | 'dukungan'>('modul')
   const [showPronunciationTopics, setShowPronunciationTopics] = React.useState(false)
+  const subjectModules = [
+    {
+      label: 'Pronunciation',
+      shortDesc: 'Latihan pengucapan dari dasar bunyi sampai pola bicara yang lebih natural.',
+      locked: false,
+    },
+    {
+      label: 'Vocabulary',
+      shortDesc: 'Perkaya kosakata harian per topik dengan contoh yang langsung bisa dipakai.',
+      locked: false,
+    },
+    {
+      label: 'Grammar',
+      shortDesc: 'Pahami tata bahasa inti langkah demi langkah agar kalimat lebih tepat.',
+      locked: false,
+    },
+    {
+      label: 'Speaking',
+      shortDesc: 'Bangun kelancaran bicara lewat target dialog dan latihan bertahap.',
+      locked: false,
+    },
+  ] as const
   const pronunciationTopics = [
-    { title: 'Alphabet', shortDesc: 'The Foundation', locked: false },
-    { title: 'Phonetic Symbols', shortDesc: 'IPA Mastery', locked: false },
-    { title: 'Stressing', shortDesc: 'Rhythm & Beat', locked: true },
-    { title: 'Final Sound', shortDesc: 'Ending Precision', locked: true },
-    { title: 'American /t/', shortDesc: 'Flap & Glottal', locked: true },
-    { title: 'Connected Speech', shortDesc: 'Flow & Link', locked: true },
+    { title: 'Alphabet', shortDesc: 'Belajar bunyi dasar huruf A-Z dengan jelas.', locked: false },
+    { title: 'Phonetic Symbols', shortDesc: 'Kenali simbol IPA agar baca bunyi lebih akurat.', locked: false },
+    { title: 'Stressing', shortDesc: 'Latihan penekanan suku kata agar ucapan natural.', locked: false },
+    { title: 'Final Sound', shortDesc: 'Fokus bunyi akhir kata supaya tidak tertelan.', locked: false },
+    { title: 'American /t/', shortDesc: 'Bedakan flap, clear T, dan glottal T dalam kalimat.', locked: false },
+    { title: 'Connected Speech', shortDesc: 'Pelajari linking antar kata saat bicara cepat.', locked: true },
   ]
 
   React.useEffect(() => {
@@ -69,12 +91,7 @@ export default function Services({ backToMenu, isActive }: ServicesProps) {
         {activeTab === 'modul' && (
           <div className="tab-pane active">
             <div className="services-subject-grid">
-              {[
-                { label: 'Pronunciation', locked: false },
-                { label: 'Vocabulary', locked: true },
-                { label: 'Grammar', locked: true },
-                { label: 'Speaking', locked: true },
-              ].map(({ label, locked }) => (
+              {subjectModules.map(({ label, shortDesc, locked }) => (
                 <div
                   key={label}
                   className={`services-subject-card${locked ? ' locked' : ''}`}
@@ -93,13 +110,13 @@ export default function Services({ backToMenu, isActive }: ServicesProps) {
                     : {})}
                 >
                   <h4>{label}</h4>
-                  <p>Modul digital terarah untuk meningkatkan {label.toLowerCase()}.</p>
+                  <p>{shortDesc}</p>
                   {label === 'Pronunciation' && (
                     <div className="services-topic-toggle">
                       {showPronunciationTopics ? 'Sembunyikan topik' : 'Lihat topik'}
                     </div>
                   )}
-                  {locked && <span className="services-locked">Locked</span>}
+                  {locked && <span className="services-locked">soon</span>}
                   {label === 'Pronunciation' && (
                     <div className={`services-topic-dropdown${showPronunciationTopics ? ' show' : ''}`}>
                       <ul className="services-topic-list">

@@ -15,7 +15,7 @@ const syne = Syne({
 })
 
 export const metadata = {
-  title: 'GEUWAT - Digital English Learning',
+  title: 'GEUWAT - Webiste Belajar Bahasa Inggris',
   description: 'Transforming visionary ideas into powerful digital realities through cutting-edge technology and creative excellence.',
   icons: {
     icon: '/favicon.ico',

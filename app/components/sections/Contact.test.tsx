@@ -9,8 +9,11 @@ describe('Contact section', () => {
     expect(screen.getByText('Kontak')).toBeInTheDocument()
     expect(screen.getByText('Hubungi tim GEUWAT')).toBeInTheDocument()
     expect(screen.getByText('Harga Langganan')).toBeInTheDocument()
-    expect(screen.getByText('Rp30.000')).toBeInTheDocument()
-    expect(screen.getByText('/ bulan')).toBeInTheDocument()
+    expect(screen.getByText('30K')).toBeInTheDocument()
+    expect(screen.getByText('/ BULAN')).toBeInTheDocument()
+    expect(screen.getByText('Special Offer')).toBeInTheDocument()
+    expect(screen.getByText('100K')).toBeInTheDocument()
+    expect(screen.getByText('/ 6 BULAN')).toBeInTheDocument()
   })
 
   it('renders register, login, and contact links', () => {

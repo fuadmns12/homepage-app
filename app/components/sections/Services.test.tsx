@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import Services from './Services'
 
 describe('Services section', () => {
-  it('renders modul tab by default with locked badges', () => {
+  it('renders modul tab by default with unlocked subject cards', () => {
     render(<Services backToMenu={jest.fn()} isActive={true} />)
 
     expect(screen.getByText('Fitur Kami')).toBeInTheDocument()
@@ -11,10 +11,11 @@ describe('Services section', () => {
     expect(screen.getByText('Vocabulary')).toBeInTheDocument()
     expect(screen.getByText('Grammar')).toBeInTheDocument()
     expect(screen.getByText('Speaking')).toBeInTheDocument()
-    expect(screen.getAllByText('Locked')).toHaveLength(3)
+    expect(screen.queryByText('Locked')).not.toBeInTheDocument()
+    expect(screen.queryByText('Soon')).not.toBeInTheDocument()
   })
 
-  it('toggles pronunciation topic dropdown label when pronunciation is clicked', () => {
+  it('toggles pronunciation topic dropdown and keeps connected speech as soon', () => {
     render(<Services backToMenu={jest.fn()} isActive={true} />)
 
     const pronunciationCard = screen.getByRole('button', { name: /Pronunciation/i })
@@ -22,6 +23,10 @@ describe('Services section', () => {
 
     fireEvent.click(pronunciationCard)
     expect(screen.getByText('Sembunyikan topik')).toBeInTheDocument()
+    expect(screen.getByText('Connected Speech').closest('li')).toHaveClass('locked')
+    expect(screen.getByText('Stressing').closest('li')).not.toHaveClass('locked')
+    expect(screen.getByText('Final Sound').closest('li')).not.toHaveClass('locked')
+    expect(screen.getByText('American /t/').closest('li')).not.toHaveClass('locked')
   })
 
   it('opens desain tab and renders both youtube videos', () => {

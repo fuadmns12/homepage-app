@@ -21,7 +21,26 @@ export default function Contact({ backToMenu }: ContactProps) {
               Harga Langganan
             </p>
             <p style={{fontSize: '22px', fontWeight: 600, color: '#ffffff', textAlign: 'center', marginTop: '6px'}}>
-              Rp30.000 <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ bulan</span>
+              30K <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ BULAN</span>
+            </p>
+          </div>
+          <div className="glass-card" style={{padding: '16px 20px'}}>
+            <p
+              style={{
+                fontSize: '11px',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                color: 'rgba(255,255,255,0.55)',
+                textAlign: 'center'
+              }}
+            >
+              Special Offer
+            </p>
+            <p style={{fontSize: '20px', fontWeight: 700, color: '#ffffff', textAlign: 'center', marginTop: '6px'}}>
+              <span style={{color: '#ffb347', textShadow: '0 0 8px rgba(255, 140, 0, 0.75), 0 0 16px rgba(255, 140, 0, 0.45)'}}>
+                100K
+              </span>{' '}
+              <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ 6 BULAN</span>
             </p>
           </div>
           <div className="glass-card">
@@ -61,7 +80,6 @@ export default function Contact({ backToMenu }: ContactProps) {
     </>
   )
 }
-
 
 
 
