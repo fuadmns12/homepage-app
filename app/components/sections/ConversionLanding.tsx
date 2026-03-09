@@ -10,8 +10,7 @@ const TRUST_CHIPS = [
   'SPEAKING',
   'GRAMMAR',
   'PRONUNCIATION',
-  'PROGRESS TRACKER',
-  'MAU JAJAN?\u{1F92B}'
+  'PROGRESS TRACKER'
 ]
 
 export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandingProps) {
@@ -34,17 +33,17 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
         </p>
 
         <div className="conversion-pricing-wrap">
-          <div className="conversion-price-main">
-            <p className="conversion-price-label">Special Offer</p>
-            <p className="conversion-price-value">
-              <span className="conversion-price-highlight">149.000</span>{' '}
-              <span className="conversion-price-duration">/ PEMBAYARAN SEKALI</span>
-            </p>
-          </div>
-          <p className="conversion-price-anchor">
-            Akses seumur hidup dengan pembayaran sekali.
+          <p className="conversion-price-main conversion-price-line">
+            <span className="conversion-price-label">Upgrade Diri</span>
+            <span className="conversion-price-separator" aria-hidden="true">
+              ·
+            </span>
+            <span className="conversion-price-highlight">Rp149.000</span>
+            <span className="conversion-price-separator" aria-hidden="true">
+              ·
+            </span>
+            <span className="conversion-price-duration">Akses penuh, sekali investasi.</span>
           </p>
-          <p className="conversion-price-note">Harga launching untuk member batch awal.</p>
         </div>
 
         <div className="conversion-cta-row">

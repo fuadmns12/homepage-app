@@ -21,7 +21,7 @@ export default function Contact({ backToMenu }: ContactProps) {
               Harga Program
             </p>
             <p style={{fontSize: '22px', fontWeight: 600, color: '#ffffff', textAlign: 'center', marginTop: '6px'}}>
-              149.000 <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ PEMBAYARAN SEKALI</span>
+              Rp149.000 <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ Sekali Bayar</span>
             </p>
           </div>
           <div className="glass-card" style={{padding: '16px 20px'}}>
@@ -34,13 +34,13 @@ export default function Contact({ backToMenu }: ContactProps) {
                 textAlign: 'center'
               }}
             >
-              Special Offer
+              Investasi Pengembangan Diri
             </p>
             <p style={{fontSize: '20px', fontWeight: 700, color: '#ffffff', textAlign: 'center', marginTop: '6px'}}>
               <span style={{color: '#ffb347', textShadow: '0 0 8px rgba(255, 140, 0, 0.75), 0 0 16px rgba(255, 140, 0, 0.45)'}}>
-                149.000
+                Rp149.000
               </span>{' '}
-              <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ PEMBAYARAN SEKALI</span>
+              <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ Sekali Bayar</span>
             </p>
           </div>
           <div className="glass-card">
@@ -80,4 +80,3 @@ export default function Contact({ backToMenu }: ContactProps) {
     </>
   )
 }
-

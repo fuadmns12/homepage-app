@@ -665,10 +665,20 @@ body {
 	text-align: center;
 }
 
+.conversion-price-main.conversion-price-line {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	line-height: 1.5;
+}
+
 .conversion-price-label {
-	font-size: 11px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
+	font-size: 12px;
+	text-transform: none;
+	letter-spacing: 0.4px;
+	font-weight: 600;
 	color: rgba(255, 255, 255, 0.68);
 }
 
@@ -687,6 +697,12 @@ body {
 .conversion-price-duration {
 	font-size: 15px;
 	color: rgba(255, 255, 255, 0.82);
+}
+
+.conversion-price-separator {
+	font-size: 18px;
+	line-height: 1;
+	color: rgba(255, 255, 255, 0.55);
 }
 
 .conversion-price-anchor {
@@ -2419,6 +2435,10 @@ body {
 
 	.conversion-price-duration {
 		font-size: 13px;
+	}
+
+	.conversion-price-separator {
+		font-size: 14px;
 	}
 
 	.conversion-trust-chips li {
