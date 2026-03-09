@@ -115,6 +115,18 @@ export default function RegisterPage() {
     }
   }
 
+  const handleTermsAcknowledge = () => {
+    setFormData(prev => ({
+      ...prev,
+      agreeTerms: true
+    }))
+    setErrors(prev => ({
+      ...prev,
+      agreeTerms: undefined
+    }))
+    setShowTermsModal(false)
+  }
+
   if (submitSuccess) {
     return (
       <>
@@ -356,7 +368,11 @@ export default function RegisterPage() {
       </div>
 
       {/* Terms and Privacy Modal */}
-      <TermsModal isOpen={showTermsModal} onClose={() => setShowTermsModal(false)} />
+      <TermsModal
+        isOpen={showTermsModal}
+        onClose={() => setShowTermsModal(false)}
+        onAcknowledge={handleTermsAcknowledge}
+      />
     </>
   )
 }

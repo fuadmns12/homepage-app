@@ -11,32 +11,32 @@ export default function Services({ backToMenu, isActive }: ServicesProps) {
   const subjectModules = [
     {
       label: 'Pronunciation',
-      shortDesc: 'Latihan pengucapan dari dasar bunyi sampai pola bicara yang lebih natural.',
+      shortDesc: 'Tujuan belajarnya adalah melatih pengucapan agar lebih jelas, natural, dan mudah dipahami.',
       locked: false,
     },
     {
       label: 'Vocabulary',
-      shortDesc: 'Perkaya kosakata harian per topik dengan contoh yang langsung bisa dipakai.',
+      shortDesc: 'Tujuan belajarnya adalah menambah kosakata aktif yang langsung bisa kamu pakai dalam komunikasi harian.',
       locked: false,
     },
     {
       label: 'Grammar',
-      shortDesc: 'Pahami tata bahasa inti langkah demi langkah agar kalimat lebih tepat.',
+      shortDesc: 'Tujuan belajarnya adalah menyusun kalimat yang lebih tepat, rapi, dan sesuai konteks.',
       locked: false,
     },
     {
       label: 'Speaking',
-      shortDesc: 'Bangun kelancaran bicara lewat target dialog dan latihan bertahap.',
+      shortDesc: 'Tujuan belajarnya adalah meningkatkan kelancaran bicara lewat latihan dialog bertahap.',
       locked: false,
     },
   ] as const
   const pronunciationTopics = [
-    { title: 'Alphabet', shortDesc: 'Belajar bunyi dasar huruf A-Z dengan jelas.', locked: false },
-    { title: 'Phonetic Symbols', shortDesc: 'Kenali simbol IPA agar baca bunyi lebih akurat.', locked: false },
-    { title: 'Stressing', shortDesc: 'Latihan penekanan suku kata agar ucapan natural.', locked: false },
-    { title: 'Final Sound', shortDesc: 'Fokus bunyi akhir kata supaya tidak tertelan.', locked: false },
-    { title: 'American /t/', shortDesc: 'Bedakan flap, clear T, dan glottal T dalam kalimat.', locked: false },
-    { title: 'Connected Speech', shortDesc: 'Pelajari linking antar kata saat bicara cepat.', locked: true },
+    { title: 'Alphabet', shortDesc: 'Tujuan belajarnya adalah menguasai bunyi huruf A-Z dengan pelafalan yang konsisten.', locked: false },
+    { title: 'Phonetic Symbols', shortDesc: 'Tujuan belajarnya adalah membaca simbol IPA untuk meniru bunyi kata dengan lebih akurat.', locked: false },
+    { title: 'Stressing', shortDesc: 'Tujuan belajarnya adalah menempatkan tekanan suku kata agar ritme bicara terdengar natural.', locked: false },
+    { title: 'Final Sound', shortDesc: 'Tujuan belajarnya adalah melafalkan bunyi akhir kata dengan jelas agar makna tidak berubah.', locked: false },
+    { title: 'American /t/', shortDesc: 'Tujuan belajarnya adalah membedakan pola bunyi /t/ Amerika sesuai posisi kata dalam kalimat.', locked: false },
+    { title: 'Connected Speech', shortDesc: 'Tujuan belajarnya adalah memahami sambungan bunyi antarkata saat berbicara cepat.', locked: true },
   ]
 
   React.useEffect(() => {

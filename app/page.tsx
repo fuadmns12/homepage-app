@@ -109,6 +109,10 @@ export default function Home() {
         {/* Feature Hub (secondary flow) */}
         {!activeSection && showFeatureHub && (
           <>
+            <MenuGrid
+              showSection={(sectionId) => showSection(sectionId, 'feature-hub')}
+              isTransitioning={isTransitioning}
+            />
             <div className="feature-hub-toolbar">
               <button
                 type="button"
@@ -118,10 +122,6 @@ export default function Home() {
                 Kembali ke Penawaran
               </button>
             </div>
-            <MenuGrid
-              showSection={(sectionId) => showSection(sectionId, 'feature-hub')}
-              isTransitioning={isTransitioning}
-            />
           </>
         )}
 

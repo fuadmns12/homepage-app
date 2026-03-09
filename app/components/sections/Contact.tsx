@@ -18,10 +18,10 @@ export default function Contact({ backToMenu }: ContactProps) {
           <p>Gabung dan mulai belajar bersama GEUWAT</p>
           <div className="glass-card" style={{padding: '18px 20px'}}>
             <p style={{fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: 'rgba(255,255,255,0.55)', textAlign: 'center'}}>
-              Harga Langganan
+              Harga Program
             </p>
             <p style={{fontSize: '22px', fontWeight: 600, color: '#ffffff', textAlign: 'center', marginTop: '6px'}}>
-              30K <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ BULAN</span>
+              149.000 <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ PEMBAYARAN SEKALI</span>
             </p>
           </div>
           <div className="glass-card" style={{padding: '16px 20px'}}>
@@ -38,9 +38,9 @@ export default function Contact({ backToMenu }: ContactProps) {
             </p>
             <p style={{fontSize: '20px', fontWeight: 700, color: '#ffffff', textAlign: 'center', marginTop: '6px'}}>
               <span style={{color: '#ffb347', textShadow: '0 0 8px rgba(255, 140, 0, 0.75), 0 0 16px rgba(255, 140, 0, 0.45)'}}>
-                100K
+                149.000
               </span>{' '}
-              <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ 6 BULAN</span>
+              <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ PEMBAYARAN SEKALI</span>
             </p>
           </div>
           <div className="glass-card">
@@ -80,6 +80,4 @@ export default function Contact({ backToMenu }: ContactProps) {
     </>
   )
 }
-
-
 

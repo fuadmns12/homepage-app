@@ -7,7 +7,7 @@ const PROOF_CARDS = [
   {
     title: 'Progress dan Pendampingan',
     description:
-      'Kamu bisa pantau perkembangan dari dashboard, dibantu tutorial in-app, dan bot tourguide saat butuh arahan cepat.'
+      'Kamu bisa pantau perkembangan dari dashboard, dibantu tutorial di app, dan saat butuh arahan cepat dengan robot GEUWAT'
   }
 ]
 
@@ -31,7 +31,7 @@ export default function HomeTrustProof() {
     <div className="home-trust-stack">
       <section className="glass-card home-proof-block" aria-label="Fitur yang sudah bisa tersedia">
         <div className="home-proof-head">
-          <h2 className="home-proof-title">Fitur yang Sudah Bisa Tersedia</h2>
+          <h2 className="home-proof-title">Fitur yang Tersedia</h2>
         </div>
 
         <div className="home-proof-grid">

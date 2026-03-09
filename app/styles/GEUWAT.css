@@ -760,7 +760,7 @@ body {
 .feature-hub-toolbar {
 	width: 100%;
 	max-width: 980px;
-	margin: 4px auto 14px;
+	margin: 14px auto 4px;
 	display: flex;
 	justify-content: flex-end;
 }

@@ -4,9 +4,10 @@ import { useEffect } from 'react'
 interface TermsModalProps {
   isOpen: boolean
   onClose: () => void
+  onAcknowledge: () => void
 }
 
-export default function TermsModal({ isOpen, onClose }: TermsModalProps) {
+export default function TermsModal({ isOpen, onClose, onAcknowledge }: TermsModalProps) {
   useEffect(() => {
     if (isOpen) {
       // Prevent body scroll when modal is open
@@ -163,6 +164,12 @@ export default function TermsModal({ isOpen, onClose }: TermsModalProps) {
             <p className="text-sm mb-3">
               Pengguna bertanggung jawab atas penggunaan layanan dan hasil yang diperoleh. GEUWAT tidak bertanggung jawab atas kerugian langsung maupun tidak langsung yang timbul dari penggunaan platform.
             </p>
+            <p className="text-sm mb-3">
+              Materi, contoh kalimat, dan ilustrasi pembelajaran telah disusun sebaik mungkin, namun tetap dimungkinkan terjadi kekeliruan atau ketidaksesuaian konteks. Jika menemukan hal tersebut, pengguna dianjurkan melaporkan kepada tim GEUWAT agar dapat segera ditinjau dan diperbarui.
+            </p>
+            <p className="text-sm mb-3">
+              Kualitas audio (termasuk TTS, playback, dan perekaman suara) dapat berbeda pada tiap perangkat, sistem operasi, browser, mikrofon, speaker, serta kondisi koneksi internet. Untuk hasil terbaik, gunakan perangkat dan browser versi terbaru dengan akses audio yang stabil.
+            </p>
             <p className="text-sm">
               GEUWAT tidak bertanggung jawab atas gangguan layanan sementara yang disebabkan oleh pemeliharaan sistem, pembaruan, atau faktor teknis lainnya.
             </p>
@@ -171,7 +178,7 @@ export default function TermsModal({ isOpen, onClose }: TermsModalProps) {
         
         <div className="mt-3 sm:mt-4 flex justify-end flex-shrink-0">
           <button
-            onClick={onClose}
+            onClick={onAcknowledge}
             className="px-3 sm:px-5 py-2 font-medium rounded-lg transition-colors text-xs sm:text-sm"
             style={{
               background: 'var(--primary)',

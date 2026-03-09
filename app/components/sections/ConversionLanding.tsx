@@ -5,11 +5,11 @@ interface ConversionLandingProps {
 }
 
 const TRUST_CHIPS = [
-  'JALUR BELAJAR INTI',
-  'TOPIK VOCABULARY',
-  'SPEAKING GOALS',
-  'TOPIK GRAMMAR RESOURCE',
-  'MODUL PRONUNCIATION',
+  'JALUR BELAJAR',
+  'VOCABULARY',
+  'SPEAKING',
+  'GRAMMAR',
+  'PRONUNCIATION',
   'PROGRESS TRACKER',
   'MAU JAJAN?\u{1F92B}'
 ]
@@ -37,12 +37,12 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
           <div className="conversion-price-main">
             <p className="conversion-price-label">Special Offer</p>
             <p className="conversion-price-value">
-              <span className="conversion-price-highlight">100K</span>{' '}
-              <span className="conversion-price-duration">/ 6 BULAN</span>
+              <span className="conversion-price-highlight">149.000</span>{' '}
+              <span className="conversion-price-duration">/ PEMBAYARAN SEKALI</span>
             </p>
           </div>
           <p className="conversion-price-anchor">
-            Harga normal: <strong>30K / BULAN</strong>
+            Akses seumur hidup dengan pembayaran sekali.
           </p>
           <p className="conversion-price-note">Harga launching untuk member batch awal.</p>
         </div>
