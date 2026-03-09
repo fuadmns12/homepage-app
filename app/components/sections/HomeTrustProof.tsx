@@ -45,7 +45,7 @@ export default function HomeTrustProof() {
 
         <div className="home-proof-cta">
           <a href="/register" className="intro-cta-primary conversion-primary-cta">
-            Register Now
+            Daftar Sekarang
           </a>
         </div>
       </section>
@@ -69,7 +69,7 @@ export default function HomeTrustProof() {
 
         <div className="home-proof-cta">
           <a href="/register" className="intro-cta-primary conversion-primary-cta">
-            Register Now
+            Daftar Sekarang
           </a>
         </div>
       </section>

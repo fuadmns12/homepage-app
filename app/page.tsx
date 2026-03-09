@@ -93,7 +93,7 @@ export default function Home() {
       <GridOverlay />
       <NotificationPrompt />
       
-      <div className="container">
+      <div className={`container ${isTransitioning ? 'container-transitioning' : ''}`}>
         {/* Feature Hub Header */}
         {!activeSection && showFeatureHub && (
           <div id="mainHeader">
@@ -157,6 +157,11 @@ export default function Home() {
             <Contact backToMenu={backToMenu} />
           </div>
         </div>
+
+        <div
+          aria-hidden="true"
+          className={`page-transition-overlay ${isTransitioning ? 'active' : ''}`}
+        />
       </div>
     </>
   )

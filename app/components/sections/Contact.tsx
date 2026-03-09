@@ -16,36 +16,16 @@ export default function Contact({ backToMenu }: ContactProps) {
         <div className="contact-form">
           <h3>Mulai Sekarang</h3>
           <p>Gabung dan mulai belajar bersama GEUWAT</p>
-          <div className="glass-card" style={{padding: '18px 20px'}}>
-            <p style={{fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: 'rgba(255,255,255,0.55)', textAlign: 'center'}}>
-              Harga Program
-            </p>
-            <p style={{fontSize: '22px', fontWeight: 600, color: '#ffffff', textAlign: 'center', marginTop: '6px'}}>
-              Rp149.000 <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ Sekali Bayar</span>
-            </p>
-          </div>
-          <div className="glass-card" style={{padding: '16px 20px'}}>
-            <p
-              style={{
-                fontSize: '11px',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                color: 'rgba(255,255,255,0.55)',
-                textAlign: 'center'
-              }}
-            >
-              Investasi Pengembangan Diri
-            </p>
-            <p style={{fontSize: '20px', fontWeight: 700, color: '#ffffff', textAlign: 'center', marginTop: '6px'}}>
-              <span style={{color: '#ffb347', textShadow: '0 0 8px rgba(255, 140, 0, 0.75), 0 0 16px rgba(255, 140, 0, 0.45)'}}>
-                Rp149.000
-              </span>{' '}
-              <span style={{fontSize: '13px', color: 'rgba(255,255,255,0.75)'}}>/ Sekali Bayar</span>
-            </p>
+          <div className="conversion-price-main conversion-price-stack">
+            <span className="conversion-price-label">Upgrade Diri</span>
+            <span className="conversion-price-value">
+              <span className="conversion-price-highlight">Rp149.000</span>
+            </span>
+            <span className="conversion-price-duration">Akses penuh, sekali investasi.</span>
           </div>
           <div className="glass-card">
             <a href="/register" className="intro-cta-primary" style={{display: 'block', textAlign: 'center', marginBottom: '15px'}}>
-              Register Now
+              Daftar Sekarang
             </a>
             <a href="https://learningenglishgeuwat.vercel.app" className="intro-cta-secondary" style={{display: 'block', textAlign: 'center'}}>
               Login to Account

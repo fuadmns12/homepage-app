@@ -33,14 +33,10 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
         </p>
 
         <div className="conversion-pricing-wrap">
-          <p className="conversion-price-main conversion-price-line">
+          <p className="conversion-price-main conversion-price-stack">
             <span className="conversion-price-label">Upgrade Diri</span>
-            <span className="conversion-price-separator" aria-hidden="true">
-              ·
-            </span>
-            <span className="conversion-price-highlight">Rp149.000</span>
-            <span className="conversion-price-separator" aria-hidden="true">
-              ·
+            <span className="conversion-price-value">
+              <span className="conversion-price-highlight">Rp149.000</span>
             </span>
             <span className="conversion-price-duration">Akses penuh, sekali investasi.</span>
           </p>
@@ -48,7 +44,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
 
         <div className="conversion-cta-row">
           <a href="/register" className="intro-cta-primary conversion-primary-cta">
-            Register Now
+            Daftar Sekarang
           </a>
         </div>
         <div className="conversion-secondary-row">

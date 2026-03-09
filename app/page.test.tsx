@@ -13,7 +13,7 @@ jest.mock('./components/sections/ConversionLanding', () => {
   return function MockConversionLanding(props: { onOpenFeatureHub: () => void }) {
     return (
       <div data-testid="conversion-landing">
-        <a href="/register">Register Now</a>
+        <a href="/register">Daftar Sekarang</a>
         <button onClick={props.onOpenFeatureHub}>Open Feature Hub</button>
       </div>
     )

@@ -8,16 +8,16 @@ describe('Contact section', () => {
 
     expect(screen.getByText('Kontak')).toBeInTheDocument()
     expect(screen.getByText('Hubungi tim GEUWAT')).toBeInTheDocument()
-    expect(screen.getByText('Harga Program')).toBeInTheDocument()
-    expect(screen.getAllByText('Rp149.000')).toHaveLength(2)
-    expect(screen.getAllByText('/ Sekali Bayar')).toHaveLength(2)
-    expect(screen.getByText('Investasi Pengembangan Diri')).toBeInTheDocument()
+    expect(screen.queryByText('Harga Program')).not.toBeInTheDocument()
+    expect(screen.getAllByText('Rp149.000')).toHaveLength(1)
+    expect(screen.getByText('Upgrade Diri')).toBeInTheDocument()
+    expect(screen.getByText('Akses penuh, sekali investasi.')).toBeInTheDocument()
   })
 
   it('renders register, login, and contact links', () => {
     render(<Contact backToMenu={jest.fn()} />)
 
-    expect(screen.getByRole('link', { name: 'Register Now' })).toHaveAttribute('href', '/register')
+    expect(screen.getByRole('link', { name: 'Daftar Sekarang' })).toHaveAttribute('href', '/register')
     expect(screen.getByRole('link', { name: 'Login to Account' })).toHaveAttribute(
       'href',
       'https://learningenglishgeuwat.vercel.app'
