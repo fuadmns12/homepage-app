@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import useWorkflowStepSound from './useWorkflowStepSound'
 
 interface AboutProps {
   backToMenu: () => void
@@ -12,13 +13,15 @@ export default function About({ backToMenu, isActive }: AboutProps) {
   const [slowActiveIndex, setSlowActiveIndex] = React.useState(-1)
   const [isRunning, setIsRunning] = React.useState(false)
   const timeoutsRef = React.useRef<number[]>([])
+  const { prepareStepSound, queueStepFilledSound, clearStepSounds } = useWorkflowStepSound()
 
-  const fastSteps = ['User', 'English', 'Gerbang 1', 'Gerbang 2', 'Gerbang 3']
-  const slowSteps = ['User', 'English', 'Gerbang 1', 'Gerbang 2', 'Gerbang 3']
+  const fastSteps = ['User', 'English', 'Level 1', 'Level 2', 'Level 3']
+  const slowSteps = ['User', 'English', 'Level 1', 'Level 2', 'Level 3']
 
   const clearTimers = () => {
     timeoutsRef.current.forEach((id) => window.clearTimeout(id))
     timeoutsRef.current = []
+    clearStepSounds()
   }
 
   const runProgress = (speed: 'fast' | 'slow') => {
@@ -32,6 +35,7 @@ export default function About({ backToMenu, isActive }: AboutProps) {
         } else {
           setSlowActiveIndex(index)
         }
+        queueStepFilledSound()
       }, index * delay)
       timeoutsRef.current.push(id)
     })
@@ -39,6 +43,7 @@ export default function About({ backToMenu, isActive }: AboutProps) {
 
   const handleStart = () => {
     clearTimers()
+    prepareStepSound()
     setFastActiveIndex(-1)
     setSlowActiveIndex(-1)
     setIsRunning(true)
@@ -82,7 +87,7 @@ export default function About({ backToMenu, isActive }: AboutProps) {
             <div className="workflow-header">
               <h3 className="workflow-title">GEUWAT Progress Simulation</h3>
               <button type="button" className="tab-btn active" onClick={handleStart}>
-                {isRunning ? 'Running...' : 'Start Progress'}
+                {isRunning ? 'Running...' : 'Mulai Simulasi'}
               </button>
             </div>
             <div className="workflow-status">

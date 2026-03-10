@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 interface ServicesProps {
   backToMenu: () => void
@@ -11,21 +12,29 @@ export default function Services({ backToMenu, isActive }: ServicesProps) {
   const subjectModules = [
     {
       label: 'Pronunciation',
+      imageSrc: '/images/pronunciation.webp',
+      imageAlt: 'Preview modul pronunciation',
       shortDesc: 'Tujuan belajarnya adalah melatih pengucapan agar lebih jelas, natural, dan mudah dipahami.',
       locked: false,
     },
     {
       label: 'Vocabulary',
+      imageSrc: '/images/vocabulary.webp',
+      imageAlt: 'Preview modul vocabulary',
       shortDesc: 'Tujuan belajarnya adalah menambah kosakata aktif yang langsung bisa kamu pakai dalam komunikasi harian.',
       locked: false,
     },
     {
       label: 'Grammar',
+      imageSrc: '/images/grammar.webp',
+      imageAlt: 'Preview modul grammar',
       shortDesc: 'Tujuan belajarnya adalah menyusun kalimat yang lebih tepat, rapi, dan sesuai konteks.',
       locked: false,
     },
     {
       label: 'Speaking',
+      imageSrc: '/images/speaking.webp',
+      imageAlt: 'Preview modul speaking',
       shortDesc: 'Tujuan belajarnya adalah meningkatkan kelancaran bicara lewat latihan dialog bertahap.',
       locked: false,
     },
@@ -91,7 +100,7 @@ export default function Services({ backToMenu, isActive }: ServicesProps) {
         {activeTab === 'modul' && (
           <div className="tab-pane active">
             <div className="services-subject-grid">
-              {subjectModules.map(({ label, shortDesc, locked }) => (
+              {subjectModules.map(({ label, imageSrc, imageAlt, shortDesc, locked }) => (
                 <div
                   key={label}
                   className={`services-subject-card${locked ? ' locked' : ''}`}
@@ -109,6 +118,14 @@ export default function Services({ backToMenu, isActive }: ServicesProps) {
                       }
                     : {})}
                 >
+                  <div className="services-module-image">
+                    <Image
+                      src={imageSrc}
+                      alt={imageAlt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    />
+                  </div>
                   <h4>{label}</h4>
                   <p>{shortDesc}</p>
                   {label === 'Pronunciation' && (

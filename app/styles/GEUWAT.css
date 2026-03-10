@@ -664,6 +664,8 @@ body {
 	display: grid;
 	gap: 6px;
 	max-width: 25ch;
+	margin: 0 auto;
+	text-align: center;
 }
 
 .conversion-hook-line {
@@ -686,6 +688,8 @@ body {
 	line-height: 1.6;
 	color: rgba(255, 255, 255, 0.72);
 	max-width: 62ch;
+	margin: 0 auto;
+	text-align: center;
 }
 
 .conversion-pricing-wrap {
@@ -814,6 +818,11 @@ body {
 }
 
 .conversion-trust-chips li {
+	padding: 0;
+}
+
+.conversion-trust-chip-btn {
+	width: 100%;
 	text-align: center;
 	border: 1px solid var(--glass-border);
 	background: rgba(0, 240, 255, 0.06);
@@ -822,6 +831,42 @@ body {
 	font-size: 12px;
 	font-weight: 500;
 	color: rgba(255, 255, 255, 0.88);
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+
+.conversion-trust-chip-btn:hover {
+	border-color: rgba(0, 240, 255, 0.35);
+	background: rgba(0, 240, 255, 0.1);
+}
+
+.conversion-trust-chip-btn.active {
+	border-color: rgba(0, 240, 255, 0.48);
+	background: rgba(0, 240, 255, 0.17);
+	box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.14), 0 10px 24px rgba(0, 0, 0, 0.18);
+	color: #ffffff;
+}
+
+.conversion-chip-preview {
+	margin-top: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.11);
+	border-radius: 14px;
+	padding: 10px;
+	background: rgba(255, 255, 255, 0.03);
+}
+
+.conversion-chip-preview-media {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 7;
+	border-radius: 10px;
+	overflow: hidden;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.conversion-chip-preview-media img {
+	object-fit: contain;
+	object-position: center;
 }
 
 .feature-hub-toolbar {
@@ -908,6 +953,19 @@ body {
 	margin-top: 14px;
 	display: flex;
 	justify-content: center;
+}
+
+.home-audience-simulation {
+	margin-top: 12px;
+}
+
+.home-audience-simulation .workflow-root {
+	border-radius: 16px;
+	padding: 14px;
+}
+
+.home-simulation-note {
+	text-align: center;
 }
 
 /* Glass Cards */
@@ -1427,6 +1485,22 @@ body {
 	transition: all 0.3s ease;
 	position: relative;
 	overflow: hidden;
+}
+
+.services-module-image {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 8;
+	border-radius: 12px;
+	overflow: hidden;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	margin-bottom: 12px;
+	background: rgba(0, 0, 0, 0.25);
+}
+
+.services-module-image img {
+	object-fit: contain;
+	object-position: center;
 }
 
 .services-subject-card h4 {
@@ -1988,28 +2062,38 @@ body {
 .workflow-step.active {
 	border-color: transparent;
 	color: var(--primary);
-	box-shadow: 0 0 18px rgba(56, 189, 248, 0.55);
+	box-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
+}
+
+@property --workflow-ring-progress {
+	syntax: '<number>';
+	inherits: false;
+	initial-value: 0;
 }
 
 .workflow-step.active::before {
 	content: '';
 	position: absolute;
-	inset: -3px;
+	inset: 0;
 	border-radius: 50%;
-	border: 4px solid rgba(0, 240, 255, 0.12);
-	border-top-color: rgba(0, 240, 255, 0.95);
-	border-right-color: rgba(0, 240, 255, 0.7);
-	animation: workflowSpin 0.85s linear infinite;
+	--workflow-ring-progress: 0;
+	background: conic-gradient(
+		rgba(0, 240, 255, 0.95) calc(var(--workflow-ring-progress) * 1turn),
+		rgba(71, 85, 105, 0.46) 0
+	);
+	-webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+	mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+	animation: workflowRingFill 0.42s ease-out forwards;
 	z-index: 1;
 }
 
 .workflow-step.active::after {
 	content: '';
 	position: absolute;
-	inset: 10%;
+	inset: 14%;
 	border-radius: 50%;
-	background: radial-gradient(circle, rgba(0, 240, 255, 0.15), transparent 60%);
-	animation: workflowPulse 1.4s ease-in-out infinite;
+	background: radial-gradient(circle, rgba(0, 240, 255, 0.18), rgba(0, 240, 255, 0.03) 62%, transparent 78%);
+	animation: workflowRingBreath 1.6s ease-in-out 0.42s infinite;
 	z-index: 1;
 }
 
@@ -2018,20 +2102,23 @@ body {
 	z-index: 2;
 }
 
-@keyframes workflowSpin {
+@keyframes workflowRingFill {
+	from {
+		--workflow-ring-progress: 0;
+	}
 	to {
-		transform: rotate(360deg);
+		--workflow-ring-progress: 1;
 	}
 }
 
-@keyframes workflowPulse {
+@keyframes workflowRingBreath {
 	0%, 100% {
-		opacity: 0.4;
-		transform: scale(0.95);
+		opacity: 0.5;
+		transform: scale(0.96);
 	}
 	50% {
 		opacity: 0.9;
-		transform: scale(1.05);
+		transform: scale(1.04);
 	}
 }
 
@@ -2492,9 +2579,14 @@ body {
 		font-size: 14px;
 	}
 
-	.conversion-trust-chips li {
+	.conversion-trust-chip-btn {
 		font-size: 11px;
 		padding: 9px 10px;
+	}
+
+	.conversion-chip-preview {
+		margin-top: 10px;
+		padding: 8px;
 	}
 
 	.home-proof-title {

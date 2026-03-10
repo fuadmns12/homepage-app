@@ -1,3 +1,5 @@
+﻿import { useState } from 'react'
+import Image from 'next/image'
 import HomeTrustProof from './HomeTrustProof'
 
 interface ConversionLandingProps {
@@ -5,15 +7,53 @@ interface ConversionLandingProps {
 }
 
 const TRUST_CHIPS = [
-  'JALUR BELAJAR',
-  'VOCABULARY',
-  'SPEAKING',
-  'GRAMMAR',
-  'PRONUNCIATION',
-  'PROGRESS TRACKER'
-]
+  {
+    label: 'VIEW',
+    imageSrc: '/images/view.webp',
+    imageAlt: 'Preview tampilan aplikasi GEUWAT'
+  },
+  {
+    label: 'JALUR BELAJAR',
+    imageSrc: '/images/jalur-belajar.webp',
+    imageAlt: 'Preview jalur belajar GEUWAT'
+  },
+  {
+    label: 'VOCABULARY',
+    imageSrc: '/images/vocabulary.webp',
+    imageAlt: 'Preview modul vocabulary GEUWAT'
+  },
+  {
+    label: 'SPEAKING',
+    imageSrc: '/images/speaking.webp',
+    imageAlt: 'Preview modul speaking GEUWAT'
+  },
+  {
+    label: 'GRAMMAR',
+    imageSrc: '/images/grammar.webp',
+    imageAlt: 'Preview modul grammar GEUWAT'
+  },
+  {
+    label: 'PRONUNCIATION',
+    imageSrc: '/images/pronunciation.webp',
+    imageAlt: 'Preview modul pronunciation GEUWAT'
+  },
+  {
+    label: 'GEUWAT',
+    imageSrc: '/images/bot.webp',
+    imageAlt: 'Preview robot GEUWAT'
+  },
+  {
+    label: 'PROGRESS TRACKER',
+    imageSrc: '/images/progress.webp',
+    imageAlt: 'Preview progress tracker GEUWAT'
+  }
+] as const
+type TrustChipLabel = (typeof TRUST_CHIPS)[number]['label']
 
 export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandingProps) {
+  const [selectedChipLabel, setSelectedChipLabel] = useState<TrustChipLabel>(TRUST_CHIPS[0].label)
+  const selectedChip = TRUST_CHIPS.find((chip) => chip.label === selectedChipLabel) ?? TRUST_CHIPS[0]
+
   return (
     <section className="conversion-landing" data-testid="conversion-landing">
       <div className="glass-card conversion-hero">
@@ -54,13 +94,35 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
         </div>
 
         <ul className="conversion-trust-chips" aria-label="Fakta fitur produk GEUWAT">
-          {TRUST_CHIPS.map((item) => (
-            <li key={item}>{item}</li>
+          {TRUST_CHIPS.map((chip) => (
+            <li key={chip.label}>
+              <button
+                type="button"
+                className={`conversion-trust-chip-btn${selectedChipLabel === chip.label ? ' active' : ''}`}
+                onClick={() => setSelectedChipLabel(chip.label)}
+                aria-pressed={selectedChipLabel === chip.label}
+              >
+                {chip.label}
+              </button>
+            </li>
           ))}
         </ul>
+
+        <div className="conversion-chip-preview" aria-live="polite">
+          <div className="conversion-chip-preview-media">
+            <Image
+              src={selectedChip.imageSrc}
+              alt={selectedChip.imageAlt}
+              fill
+              sizes="(max-width: 768px) 100vw, 720px"
+              priority={false}
+            />
+          </div>
+        </div>
       </div>
 
       <HomeTrustProof />
     </section>
   )
 }
+
