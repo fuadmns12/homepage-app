@@ -19,7 +19,7 @@ export default function Contact({ backToMenu }: ContactProps) {
           <div className="conversion-price-main conversion-price-stack">
             <span className="conversion-price-label">Upgrade Diri</span>
             <span className="conversion-price-value">
-              <span className="conversion-price-highlight">Rp149.000</span>
+              <span className="conversion-price-highlight">Rp159.000</span>
             </span>
             <span className="conversion-price-duration">Akses penuh, sekali investasi.</span>
           </div>
