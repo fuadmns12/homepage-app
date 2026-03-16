@@ -1,3 +1,5 @@
+import { trackCtaClick } from '@/lib/analytics'
+
 interface ContactProps {
   backToMenu: () => void
 }
@@ -24,10 +26,30 @@ export default function Contact({ backToMenu }: ContactProps) {
             <span className="conversion-price-duration">Akses penuh, sekali investasi.</span>
           </div>
           <div className="glass-card">
-            <a href="/register" className="intro-cta-primary" style={{display: 'block', textAlign: 'center', marginBottom: '15px'}}>
+            <a
+              href="/register"
+              className="intro-cta-primary"
+              style={{display: 'block', textAlign: 'center', marginBottom: '15px'}}
+              onClick={() =>
+                trackCtaClick('contact_register', {
+                  location: 'contact',
+                  target: '/register',
+                })
+              }
+            >
               Daftar Sekarang
             </a>
-            <a href="https://learningenglishgeuwat.vercel.app" className="intro-cta-secondary" style={{display: 'block', textAlign: 'center'}}>
+            <a
+              href="https://learningenglishgeuwat.vercel.app"
+              className="intro-cta-secondary"
+              style={{display: 'block', textAlign: 'center'}}
+              onClick={() =>
+                trackCtaClick('contact_login', {
+                  location: 'contact',
+                  target: 'https://learningenglishgeuwat.vercel.app',
+                })
+              }
+            >
               Login to Account
             </a>
           </div>
@@ -40,6 +62,12 @@ export default function Contact({ backToMenu }: ContactProps) {
               target="_blank"
               rel="noopener noreferrer"
               style={{color: 'var(--primary)', textDecoration: 'none'}}
+              onClick={() =>
+                trackCtaClick('contact_whatsapp', {
+                  location: 'contact',
+                  target: 'https://wa.me/6285846003119',
+                })
+              }
             >
               WhatsApp
             </a>
@@ -48,6 +76,12 @@ export default function Contact({ backToMenu }: ContactProps) {
               target="_blank"
               rel="noopener noreferrer"
               style={{color: 'var(--primary)', textDecoration: 'none'}}
+              onClick={() =>
+                trackCtaClick('contact_instagram', {
+                  location: 'contact',
+                  target: 'https://www.instagram.com/learningenglishgeuwat/',
+                })
+              }
             >
               Instagram
             </a>

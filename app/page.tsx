@@ -1,10 +1,12 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { trackSectionView } from '@/lib/analytics'
 import LoadingScreen from './components/ui/LoadingScreen'
 import AmbientBg from './components/ui/AmbientBg'
 import GridOverlay from './components/ui/GridOverlay'
 import NotificationPrompt from './components/ui/NotificationPrompt'
+import ScrollTracker from './components/ui/ScrollTracker'
 import Header from './components/layout/Header'
 import MenuGrid from './components/layout/MenuGrid'
 import ConversionLanding from './components/sections/ConversionLanding'
@@ -22,6 +24,7 @@ export default function Home() {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const showSectionTimerRef = useRef<number | null>(null)
   const backToMenuTimerRef = useRef<number | null>(null)
+  const lastSectionViewRef = useRef<string | null>(null)
 
   const clearTransitionTimers = () => {
     if (showSectionTimerRef.current !== null) {
@@ -46,6 +49,26 @@ export default function Home() {
       }
     }
   }, [])
+
+  useEffect(() => {
+    let viewKey = ''
+    let source = sectionSource
+
+    if (activeSection) {
+      viewKey = activeSection
+    } else if (showFeatureHub) {
+      viewKey = 'feature_hub'
+      source = 'feature-hub'
+    } else {
+      viewKey = 'conversion_landing'
+      source = 'conversion'
+    }
+
+    if (viewKey && lastSectionViewRef.current !== viewKey) {
+      trackSectionView(viewKey, { source })
+      lastSectionViewRef.current = viewKey
+    }
+  }, [activeSection, showFeatureHub, sectionSource])
   
   const showSection = (sectionId: string, source: 'feature-hub' | 'conversion' = 'feature-hub') => {
     if (isTransitioning) return
@@ -92,6 +115,7 @@ export default function Home() {
       <AmbientBg />
       <GridOverlay />
       <NotificationPrompt />
+      <ScrollTracker />
       
       <div className={`container ${isTransitioning ? 'container-transitioning' : ''}`}>
         {/* Feature Hub Header */}

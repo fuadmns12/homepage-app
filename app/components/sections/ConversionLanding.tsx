@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react'
 import Image from 'next/image'
 import HomeTrustProof from './HomeTrustProof'
+import { trackCtaClick } from '@/lib/analytics'
 
 interface ConversionLandingProps {
   onOpenFeatureHub: () => void
@@ -54,6 +55,11 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
   const [selectedChipLabel, setSelectedChipLabel] = useState<TrustChipLabel>(TRUST_CHIPS[0].label)
   const selectedChip = TRUST_CHIPS.find((chip) => chip.label === selectedChipLabel) ?? TRUST_CHIPS[0]
 
+  const handleOpenFeatureHub = () => {
+    trackCtaClick('hero_view_features', { location: 'conversion_landing' })
+    onOpenFeatureHub()
+  }
+
   return (
     <section className="conversion-landing" data-testid="conversion-landing">
       <div className="glass-card conversion-hero">
@@ -83,12 +89,21 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
         </div>
 
         <div className="conversion-cta-row">
-          <a href="/register" className="intro-cta-primary conversion-primary-cta">
+          <a
+            href="/register"
+            className="intro-cta-primary conversion-primary-cta"
+            onClick={() =>
+              trackCtaClick('hero_register', {
+                location: 'conversion_landing',
+                target: '/register',
+              })
+            }
+          >
             Daftar Sekarang
           </a>
         </div>
         <div className="conversion-secondary-row">
-          <button type="button" className="conversion-secondary-link" onClick={onOpenFeatureHub}>
+          <button type="button" className="conversion-secondary-link" onClick={handleOpenFeatureHub}>
             Lihat fitur selengkapnya
           </button>
         </div>

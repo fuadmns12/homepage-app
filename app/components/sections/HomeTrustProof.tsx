@@ -1,5 +1,6 @@
 import React from 'react'
 import useWorkflowStepSound from './useWorkflowStepSound'
+import { trackCtaClick, trackEvent } from '@/lib/analytics'
 
 const PROOF_CARDS = [
   {
@@ -66,6 +67,7 @@ export default function HomeTrustProof() {
   )
 
   const handleStart = React.useCallback(() => {
+    trackEvent('simulation_start', { location: 'audience_block' })
     clearTimers()
     prepareStepSound()
     setFastActiveIndex(-1)
@@ -105,7 +107,16 @@ export default function HomeTrustProof() {
         </div>
 
         <div className="home-proof-cta">
-          <a href="/register" className="intro-cta-primary conversion-primary-cta">
+          <a
+            href="/register"
+            className="intro-cta-primary conversion-primary-cta"
+            onClick={() =>
+              trackCtaClick('proof_register', {
+                location: 'proof_block',
+                target: '/register',
+              })
+            }
+          >
             Daftar Sekarang
           </a>
         </div>
@@ -170,7 +181,16 @@ export default function HomeTrustProof() {
         </p>
 
         <div className="home-proof-cta">
-          <a href="/register" className="intro-cta-primary conversion-primary-cta">
+          <a
+            href="/register"
+            className="intro-cta-primary conversion-primary-cta"
+            onClick={() =>
+              trackCtaClick('audience_register', {
+                location: 'audience_block',
+                target: '/register',
+              })
+            }
+          >
             Daftar Sekarang
           </a>
         </div>
