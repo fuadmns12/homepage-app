@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Outfit, Syne } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import './styles/GEUWAT.css'
 
@@ -14,6 +15,8 @@ const syne = Syne({
   variable: '--font-syne',
   weight: ['400', '500', '600', '700']
 })
+
+const GA_MEASUREMENT_ID = 'G-SPZJEWNXSR'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://learningenglishgeuwat-ten.vercel.app'),
@@ -60,6 +63,18 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${outfit.variable} ${syne.variable}`}>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         {children}
       </body>
     </html>
