@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Register GEUWAT - Website Belajar Bahasa Inggris',
   description:
-    'Daftar member GEUWAT untuk akses seumur hidup materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp159.000.',
+    'Daftar member GEUWAT untuk akses seumur hidup materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp169.000.',
   alternates: {
     canonical: '/register',
   },
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: 'https://learningenglishgeuwat-ten.vercel.app/register',
     title: 'Register GEUWAT - Website Belajar Bahasa Inggris',
     description:
-      'Daftar member GEUWAT untuk akses seumur hidup materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp159.000.',
+      'Daftar member GEUWAT untuk akses seumur hidup materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp169.000.',
     siteName: 'GEUWAT',
     images: [
       {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Register GEUWAT - Website Belajar Bahasa Inggris',
     description:
-      'Daftar member GEUWAT untuk akses seumur hidup materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp159.000.',
+      'Daftar member GEUWAT untuk akses seumur hidup materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp169.000.',
     images: ['/Fitur/LaptopView.png'],
   },
 }

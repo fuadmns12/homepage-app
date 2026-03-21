@@ -63,7 +63,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
   return (
     <section className="conversion-landing" data-testid="conversion-landing">
       <div className="glass-card conversion-hero">
-        <p className="conversion-badge">BARU RILIS | GEUWAT 2026</p>
+        <p className="conversion-badge">GEUWAT 2026</p>
 
         <h1 className="conversion-title conversion-hook-title">
           <span className="conversion-hook-line">Ketika Kamu Mulai dari Kosong,</span>
@@ -82,7 +82,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
           <p className="conversion-price-main conversion-price-stack">
             <span className="conversion-price-label">Upgrade Diri</span>
             <span className="conversion-price-value">
-              <span className="conversion-price-highlight">Rp159.000</span>
+              <span className="conversion-price-highlight">Rp169.000</span>
             </span>
             <span className="conversion-price-duration">Akses penuh, sekali investasi.</span>
           </p>
