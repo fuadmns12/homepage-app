@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     siteName: 'GEUWAT',
     images: [
       {
-        url: '/Fitur/LaptopView.png',
-        width: 1919,
-        height: 893,
+        url: '/images/view.webp',
+        width: 1634,
+        height: 524,
         alt: 'GEUWAT learning platform preview',
       },
     ],
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: 'GEUWAT - Website Belajar Bahasa Inggris',
     description:
       'Belajar English terarah dengan jalur Pronunciation, Vocabulary, Grammar, dan Speaking. Akses seumur hidup Rp169.000 dengan Pembayaran Sekali.',
-    images: ['/Fitur/LaptopView.png'],
+    images: ['/images/view.webp'],
   },
   icons: {
     icon: '/favicon.ico',

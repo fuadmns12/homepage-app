@@ -16,17 +16,10 @@ export default function Gallery({ backToMenu }: GalleryProps) {
 
       <div className="gallery-grid">
         <div className="gallery-item">
-          <Image src="/Fitur/LaptopView.png" alt="Tampilan Laptop" width={1200} height={675} />
+          <Image src="/images/view.webp" alt="Preview Tampilan" width={1634} height={524} />
           <div className="gallery-overlay">
-            <h4>Tampilan Laptop</h4>
-            <p>Desain responsif untuk layar desktop dan laptop</p>
-          </div>
-        </div>
-        <div className="gallery-item">
-          <Image src="/Fitur/HpView.png" alt="Tampilan HP" width={675} height={1200} />
-          <div className="gallery-overlay">
-            <h4>Tampilan HP</h4>
-            <p>Layout mobile yang ringan dan mudah dinavigasi</p>
+            <h4>Preview Tampilan</h4>
+            <p>Desain responsif untuk desktop dan HP</p>
           </div>
         </div>
       </div>

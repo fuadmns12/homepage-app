@@ -51,6 +51,117 @@ const TRUST_CHIPS = [
 ] as const
 type TrustChipLabel = (typeof TRUST_CHIPS)[number]['label']
 
+const FAQ_ITEMS = [
+  {
+    question: 'Apakah GEUWAT cocok untuk pemula?',
+    answer: (
+      <p>
+        Ya. GEUWAT disusun untuk kamu yang mulai dari nol, step-by-step, supaya tidak bingung urutan belajarnya.
+      </p>
+    ),
+  },
+  {
+    question: 'Sekali bayar atau langganan?',
+    answer: <p>Sekali bayar Rp169.000 untuk akses penuh (sekali investasi).</p>,
+  },
+  {
+    question: 'Materi apa saja yang tersedia?',
+    answer: (
+      <p>
+        Pronunciation, Vocabulary, Grammar, dan Speaking dengan alur belajar yang terstruktur agar progres lebih terarah.
+      </p>
+    ),
+  },
+  {
+    question: 'Bisa diakses di HP?',
+    answer: <p>Bisa. GEUWAT berbasis website, jadi bisa dibuka via browser di HP atau laptop (disarankan Chrome).</p>,
+  },
+  {
+    question: 'Bagaimana cara daftarnya?',
+    answer: (
+      <>
+        <p>Pilih jalur yang sesuai dengan posisi kamu sekarang.</p>
+
+        <div className="conversion-faq-steps">
+          <div className="conversion-faq-step-group">
+            <div className="conversion-faq-step-head">
+              <span className="conversion-faq-step-title">Mulai dari Instagram</span>
+            </div>
+            <div className="conversion-faq-step-images" aria-label="Langkah daftar dari Instagram">
+              <div className="conversion-faq-step-frame">
+                <Image
+                  src="/CaraDaftar/reg1.webp"
+                  alt="Langkah daftar dari Instagram 1"
+                  fill
+                  sizes="(max-width: 480px) 110px, 130px"
+                />
+              </div>
+              <div className="conversion-faq-step-arrow" aria-hidden="true" />
+              <div className="conversion-faq-step-frame">
+                <Image
+                  src="/CaraDaftar/reg2.webp"
+                  alt="Langkah daftar dari Instagram 2"
+                  fill
+                  sizes="(max-width: 480px) 110px, 130px"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="conversion-faq-step-group">
+            <div className="conversion-faq-step-head">
+              <span className="conversion-faq-step-title">Sudah di Website GEUWAT</span>
+            </div>
+            <div className="conversion-faq-step-images" aria-label="Langkah daftar dari website GEUWAT">
+              <div className="conversion-faq-step-frame">
+                <Image
+                  src="/CaraDaftar/reg3.webp"
+                  alt="Langkah daftar di website 1"
+                  fill
+                  sizes="(max-width: 480px) 110px, 130px"
+                />
+              </div>
+              <div className="conversion-faq-step-arrow" aria-hidden="true" />
+              <div className="conversion-faq-step-frame">
+                <Image
+                  src="/CaraDaftar/reg4.webp"
+                  alt="Langkah daftar di website 2"
+                  fill
+                  sizes="(max-width: 480px) 110px, 130px"
+                />
+              </div>
+              <div className="conversion-faq-step-arrow" aria-hidden="true" />
+              <div className="conversion-faq-step-frame">
+                <Image
+                  src="/CaraDaftar/reg5.webp"
+                  alt="Langkah daftar di website 3"
+                  fill
+                  sizes="(max-width: 480px) 110px, 130px"
+                />
+              </div>
+              <div className="conversion-faq-step-arrow" aria-hidden="true" />
+              <div className="conversion-faq-step-frame">
+                <Image
+                  src="/CaraDaftar/reg6.webp"
+                  alt="Langkah daftar di website 4"
+                  fill
+                  sizes="(max-width: 480px) 110px, 130px"
+                />
+              </div>
+              <div className="conversion-faq-step-arrow" aria-hidden="true" />
+              <div className="conversion-faq-step-frame conversion-faq-step-frame--action">
+                <div className="conversion-faq-step-action" aria-label="Langkah berikutnya: selesaikan pembayaran">
+                  <div className="conversion-faq-step-action-text">Selesaikan Pembayaran</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    ),
+  },
+] as const
+
 export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandingProps) {
   const [selectedChipLabel, setSelectedChipLabel] = useState<TrustChipLabel>(TRUST_CHIPS[0].label)
   const selectedChip = TRUST_CHIPS.find((chip) => chip.label === selectedChipLabel) ?? TRUST_CHIPS[0]
@@ -102,28 +213,38 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
             Daftar Sekarang
           </a>
         </div>
-        <div className="conversion-secondary-row">
-          <button type="button" className="conversion-secondary-link" onClick={handleOpenFeatureHub}>
-            Lihat fitur selengkapnya
-          </button>
+
+        <div className="conversion-faq" aria-label="FAQ GEUWAT">
+          <h2 className="conversion-faq-title">Pertanyaan Umum</h2>
+          <div className="conversion-faq-list">
+            {FAQ_ITEMS.map((item) => (
+              <details key={item.question} className="conversion-faq-item">
+                <summary className="conversion-faq-question">{item.question}</summary>
+                <div className="conversion-faq-answer">{item.answer}</div>
+              </details>
+            ))}
+          </div>
         </div>
 
-        <ul className="conversion-trust-chips" aria-label="Fakta fitur produk GEUWAT">
-          {TRUST_CHIPS.map((chip) => (
-            <li key={chip.label}>
-              <button
-                type="button"
-                className={`conversion-trust-chip-btn${selectedChipLabel === chip.label ? ' active' : ''}`}
-                onClick={() => setSelectedChipLabel(chip.label)}
-                aria-pressed={selectedChipLabel === chip.label}
-              >
-                {chip.label}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <div className="conversion-chip-preview conversion-feature-card" aria-live="polite">
+          <div className="conversion-feature-select-block">
+            <label className="conversion-feature-select-sr" htmlFor="conversion-feature-select">
+              Pilih preview
+            </label>
+            <select
+              id="conversion-feature-select"
+              className="conversion-feature-select"
+              value={selectedChipLabel}
+              onChange={(event) => setSelectedChipLabel(event.target.value as TrustChipLabel)}
+            >
+              {TRUST_CHIPS.map((chip) => (
+                <option key={chip.label} value={chip.label}>
+                  {chip.label}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div className="conversion-chip-preview" aria-live="polite">
           <div className="conversion-chip-preview-media">
             <Image
               src={selectedChip.imageSrc}
@@ -133,6 +254,12 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
               priority={false}
             />
           </div>
+        </div>
+
+        <div className="conversion-secondary-row">
+          <button type="button" className="conversion-secondary-link" onClick={handleOpenFeatureHub}>
+            Lihat fitur selengkapnya
+          </button>
         </div>
       </div>
 

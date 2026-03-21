@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     siteName: 'GEUWAT',
     images: [
       {
-        url: '/Fitur/LaptopView.png',
-        width: 1919,
-        height: 893,
+        url: '/images/view.webp',
+        width: 1634,
+        height: 524,
         alt: 'GEUWAT register page preview',
       },
     ],
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'Register GEUWAT - Website Belajar Bahasa Inggris',
     description:
       'Daftar member GEUWAT untuk akses seumur hidup materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp169.000.',
-    images: ['/Fitur/LaptopView.png'],
+    images: ['/images/view.webp'],
   },
 }
 

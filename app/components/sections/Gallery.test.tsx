@@ -3,18 +3,14 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import Gallery from './Gallery'
 
 describe('Gallery section', () => {
-  it('renders gallery header and both gallery items', () => {
+  it('renders gallery header and preview image', () => {
     render(<Gallery backToMenu={jest.fn()} />)
 
     expect(screen.getByText('Galeri Kami')).toBeInTheDocument()
     expect(screen.getByText('Menampilkan program dan pencapaian terbaik')).toBeInTheDocument()
-    expect(screen.getByAltText('Tampilan Laptop')).toHaveAttribute(
+    expect(screen.getByAltText('Preview Tampilan')).toHaveAttribute(
       'src',
-      expect.stringContaining('LaptopView.png')
-    )
-    expect(screen.getByAltText('Tampilan HP')).toHaveAttribute(
-      'src',
-      expect.stringContaining('HpView.png')
+      expect.stringContaining('view.webp')
     )
   })
 
