@@ -160,11 +160,112 @@ const FAQ_ITEMS = [
       </>
     ),
   },
+  {
+    question: 'Apa perbedaan antara User Trial dan User Berbayar?',
+    answer: (
+      <p>
+        User Trial diberikan akses sementara untuk mencoba fitur kami. Namun, posisi Anda di dalam Batch (kuota 150
+        orang) tidak aman hingga Anda melakukan pembayaran. User berbayar akan langsung mengambil slot User Trial jika
+        kuota hampir penuh.
+      </p>
+    ),
+  },
+  {
+    question: 'Bagaimana jika saya sedang Trial dan Batch tiba-tiba penuh?',
+    answer: (
+      <p>
+        Jika kuota 150 orang sudah terpenuhi oleh pengguna yang membayar, maka User Trial akan otomatis tersingkir dari
+        Batch tersebut. Anda harus menunggu pembukaan Batch selanjutnya di pintu login yang berbeda untuk mencoba
+        kembali atau langsung mendaftar sebagai User Berbayar.
+      </p>
+    ),
+  },
+  {
+    question: 'Kapan Batch selanjutnya dibuka?',
+    answer: (
+      <p>
+        Batch baru hanya akan dibuka setelah Batch sebelumnya benar-benar penuh (150 User Berbayar). Pastikan Anda segera
+        mengamankan akses belajar penuh agar posisi Anda tidak digantikan oleh orang lain.
+      </p>
+    ),
+  },
+  {
+    question: 'Kapan kompetisi bahasa Inggris dengan hadiah uang pembinaan dimulai?',
+    answer: (
+      <p>
+        Kompetisi hanya akan dipicu (triggered) setelah Batch Anda mencapai 150 User Berbayar. Selama masih ada User
+        Trial di dalam Batch tersebut, kompetisi belum akan dimulai. Ini adalah motivasi agar komunitas di Batch Anda
+        segera solid dan siap bertanding.
+      </p>
+    ),
+  },
+  {
+    question: 'Siapa yang berhak mengikuti lomba?',
+    answer: (
+      <p>
+        Hanya User Berbayar yang memiliki akses belajar penuh yang berhak mengikuti lomba dan memperebutkan hadiah uang
+        pembinaan. User Trial tidak diikutsertakan dalam kompetisi.
+      </p>
+    ),
+  },
+  {
+    question: 'Di mana saya bisa melihat update sisa kuota dan pembukaan Batch?',
+    answer: (
+      <p>
+        Informasi paling update mengenai sisa slot Batch 1-4, pengumuman pemenang lomba, dan pembukaan pendaftaran baru
+        selalu kami bagikan di Instagram:{' '}
+        <a
+          href="https://www.instagram.com/learningenglishgeuwat/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          @learningenglishgeuwat
+        </a>
+        . Pastikan Anda mengikuti akun tersebut agar tidak tertinggal informasi.
+      </p>
+    ),
+  },
+  {
+    question: 'Mengapa login dibagi menjadi 4 halaman berbeda?',
+    answer: (
+      <p>
+        Setiap halaman login mewakili Batch tertentu. Ini memudahkan kami mengelola 150 orang per kelompok agar
+        persaingan lomba lebih adil dan sistem aplikasi tetap ringan serta cepat.
+      </p>
+    ),
+  },
+  {
+    question: 'Bagaimana cara upgrade dari Trial ke akses penuh?',
+    answer: (
+      <p>
+        Anda bisa melakukan pembayaran melalui instruksi yang ada di dalam aplikasi atau hubungi Admin via{' '}
+        <a
+          href="https://wa.me/6282338792512?text=Halo%20Admin%20GEUWAT%2C%20saya%20ingin%20upgrade%20dari%20Trial%20ke%20akses%20penuh."
+          target="_blank"
+          rel="noreferrer"
+        >
+          WhatsApp
+        </a>
+        .
+      </p>
+    ),
+  },
+  {
+    question: 'Saya lupa login di Batch mana, apa yang harus saya lakukan?',
+    answer: (
+      <p>
+        Silakan hubungi Admin atau kirim DM ke Instagram @learningenglishgeuwat dengan melampirkan bukti pembayaran atau
+        nama akun Anda.
+      </p>
+    ),
+  },
 ] as const
 
 export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandingProps) {
   const [selectedChipLabel, setSelectedChipLabel] = useState<TrustChipLabel>(TRUST_CHIPS[0].label)
   const selectedChip = TRUST_CHIPS.find((chip) => chip.label === selectedChipLabel) ?? TRUST_CHIPS[0]
+  const [selectedFaqIndex, setSelectedFaqIndex] = useState(0)
+  const selectedFaq = FAQ_ITEMS[selectedFaqIndex] ?? FAQ_ITEMS[0]
 
   const handleOpenFeatureHub = () => {
     trackCtaClick('hero_view_features', { location: 'conversion_landing' })
@@ -217,12 +318,48 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
         <div className="conversion-faq" aria-label="FAQ GEUWAT">
           <h2 className="conversion-faq-title">Pertanyaan Umum</h2>
           <div className="conversion-faq-list">
-            {FAQ_ITEMS.map((item) => (
-              <details key={item.question} className="conversion-faq-item">
-                <summary className="conversion-faq-question">{item.question}</summary>
-                <div className="conversion-faq-answer">{item.answer}</div>
-              </details>
-            ))}
+            <div className="conversion-faq-select-block">
+              <label className="conversion-faq-select-sr" htmlFor="conversion-faq-select">
+                Pilih pertanyaan
+              </label>
+              <select
+                id="conversion-faq-select"
+                className="conversion-faq-select"
+                value={selectedFaqIndex}
+                onChange={(event) => setSelectedFaqIndex(Number(event.target.value))}
+              >
+                {FAQ_ITEMS.map((item, index) => (
+                  <option key={item.question} value={index}>
+                    {item.question}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="conversion-faq-flow" aria-hidden="true">
+              <svg className="conversion-faq-flow-icon" viewBox="0 0 24 36" focusable="false" aria-hidden="true">
+                <line
+                  x1="12"
+                  y1="2"
+                  x2="12"
+                  y2="24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeDasharray="5 5"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M6 22 L12 30 L18 22"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+
+            <div className="conversion-faq-answer conversion-faq-answer--select">{selectedFaq.answer}</div>
           </div>
         </div>
 
