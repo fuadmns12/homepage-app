@@ -130,14 +130,21 @@ export default function FloatingLogin() {
 
         <button
           type="button"
-          className="conversion-chibi-card conversion-chibi-trigger"
+          className="conversion-chibi-card conversion-chibi-trigger conversion-chibi-logo"
           aria-label="Buka pilihan login"
           aria-haspopup="menu"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((v) => !v)}
         >
           <span className="conversion-chibi-frame" aria-hidden="true">
-            <Image src="/Chibi/ChibiLogin.webp" alt="" fill sizes="72px" priority={false} className="conversion-chibi-image" />
+            <Image
+              src="/NewLogoRB.webp"
+              alt=""
+              fill
+              sizes="72px"
+              priority={false}
+              className="conversion-chibi-image"
+            />
           </span>
         </button>
 

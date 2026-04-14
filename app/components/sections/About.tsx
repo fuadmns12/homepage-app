@@ -84,12 +84,12 @@ export default function About({ backToMenu, isActive }: AboutProps) {
         </div>
         <div className="about-image">
           <div className="workflow-root">
-            <div className="workflow-header">
-              <h3 className="workflow-title">GEUWAT Progress Simulation</h3>
-              <button type="button" className="tab-btn active" onClick={handleStart}>
-                {isRunning ? 'Running...' : 'Mulai Simulasi'}
-              </button>
-            </div>
+              <div className="workflow-header">
+                <h3 className="workflow-title">GEUWAT Progress Simulation</h3>
+                <button type="button" className="tab-btn active" onClick={handleStart}>
+                  {isRunning ? 'Running...' : 'Lihat Perbedaannya'}
+                </button>
+              </div>
             <div className="workflow-status">
               {isRunning ? 'Simulasi berjalan' : 'Klik untuk memulai simulasi'}
             </div>

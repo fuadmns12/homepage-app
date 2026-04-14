@@ -17,7 +17,7 @@ describe('About section', () => {
 
     expect(screen.getByText('Tentang GEUWAT')).toBeInTheDocument()
     expect(screen.getByText('GEUWAT Progress Simulation')).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Mulai Simulasi' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Lihat Perbedaannya' })).toBeInTheDocument()
     expect(screen.getByText('Pakai aplikasi GEUWAT')).toBeInTheDocument()
     expect(screen.getByText('Tanpa aplikasi GEUWAT')).toBeInTheDocument()
   })
@@ -34,7 +34,7 @@ describe('About section', () => {
   it('runs progress simulation when start button is clicked', () => {
     const { container } = render(<About backToMenu={jest.fn()} isActive={true} />)
 
-    fireEvent.click(screen.getByRole('button', { name: 'Mulai Simulasi' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Lihat Perbedaannya' }))
 
     expect(screen.getByRole('button', { name: 'Running...' })).toBeInTheDocument()
     expect(screen.getByText('Simulasi berjalan')).toBeInTheDocument()
@@ -50,14 +50,14 @@ describe('About section', () => {
       jest.advanceTimersByTime(7000)
     })
 
-    expect(screen.getByRole('button', { name: 'Mulai Simulasi' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Lihat Perbedaannya' })).toBeInTheDocument()
     expect(screen.getByText('Klik untuk memulai simulasi')).toBeInTheDocument()
   })
 
   it('resets simulation state when section becomes inactive', () => {
     const { rerender, container } = render(<About backToMenu={jest.fn()} isActive={true} />)
 
-    fireEvent.click(screen.getByRole('button', { name: 'Mulai Simulasi' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Lihat Perbedaannya' }))
     act(() => {
       jest.advanceTimersByTime(1700)
     })
@@ -67,7 +67,7 @@ describe('About section', () => {
     rerender(<About backToMenu={jest.fn()} isActive={false} />)
 
     expect(container.querySelectorAll('.workflow-step.active').length).toBe(0)
-    expect(screen.getByRole('button', { name: 'Mulai Simulasi' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Lihat Perbedaannya' })).toBeInTheDocument()
     expect(screen.getByText('Klik untuk memulai simulasi')).toBeInTheDocument()
   })
 })

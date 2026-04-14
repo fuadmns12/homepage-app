@@ -704,6 +704,16 @@ body {
 	outline-offset: 4px;
 }
 
+.conversion-chibi-logo {
+	width: 74px;
+	height: 74px;
+	border-radius: 999px;
+}
+
+.conversion-chibi-logo .conversion-chibi-image {
+	transform: none;
+}
+
 .conversion-chibi-link {
 	text-decoration: none;
 	pointer-events: auto;
