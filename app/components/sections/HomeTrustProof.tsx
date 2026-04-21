@@ -2,19 +2,6 @@ import React from 'react'
 import useWorkflowStepSound from './useWorkflowStepSound'
 import { trackCtaClick, trackEvent } from '@/lib/analytics'
 
-const PROOF_CARDS = [
-  {
-    title: 'Belajar Terstruktur',
-    description:
-      'Jalur Pronunciation, Vocabulary, Grammar, dan Speaking sudah disusun dengan roadmap yang jelas dari dasar sampai praktik.'
-  },
-  {
-    title: 'Progress dan Pendampingan',
-    description:
-      'Kamu bisa pantau perkembangan dari dashboard, dibantu tutorial di app, dan saat butuh arahan cepat dengan robot GEUWAT'
-  }
-]
-
 const AUDIENCE_SEGMENTS = [
   {
     title: 'Pemula yang butuh arah belajar',
@@ -92,36 +79,6 @@ export default function HomeTrustProof() {
 
   return (
     <div className="home-trust-stack">
-      <section className="glass-card home-proof-block" aria-label="Fitur yang sudah bisa tersedia">
-        <div className="home-proof-head">
-          <h2 className="home-proof-title">Fitur yang Tersedia</h2>
-        </div>
-
-        <div className="home-proof-grid">
-          {PROOF_CARDS.map((card) => (
-            <article key={card.title} className="home-proof-card">
-              <h3>{card.title}</h3>
-              <p>{card.description}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className="home-proof-cta">
-          <a
-            href="/register"
-            className="intro-cta-primary conversion-primary-cta"
-            onClick={() =>
-              trackCtaClick('proof_register', {
-                location: 'proof_block',
-                target: '/register',
-              })
-            }
-          >
-            Daftar Sekarang
-          </a>
-        </div>
-      </section>
-
       <section className="glass-card home-audience-block" aria-label="Untuk siapa produk ini">
         <div className="home-proof-head">
           <h2 className="home-proof-title">Untuk siapa produk ini</h2>

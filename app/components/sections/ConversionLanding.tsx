@@ -1,54 +1,91 @@
-﻿import { useState } from 'react'
+import { type KeyboardEvent, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import HomeTrustProof from './HomeTrustProof'
+import OriginEvolutionSynergy from './OriginEvolutionSynergy'
 import { trackCtaClick } from '@/lib/analytics'
 
 interface ConversionLandingProps {
   onOpenFeatureHub: () => void
 }
 
+type TrustChip = {
+  label: string
+  title: string
+  bonus?: string
+  description?: string
+  imageSrc: string
+  imageAlt: string
+}
+
 const TRUST_CHIPS = [
   {
     label: 'VIEW',
+    title: 'Aksesibilitas',
+    description:
+      'Satu Akun, Akses Tanpa Batas di Semua Perangkat. Latih pelafalanmu kapan saja, di mana saja, baik di Laptop, Tablet, maupun Smartphone.',
     imageSrc: '/images/view.webp',
     imageAlt: 'Preview tampilan aplikasi GEUWAT'
   },
   {
     label: 'JALUR BELAJAR',
+    title: 'Jalur Belajar',
+    description:
+      'Belajar lebih terarah dengan Roadmap sistematis. Bangun fondasi kuat dan tingkatkan levelmu langkah demi langkah.',
     imageSrc: '/images/jalur-belajar.webp',
     imageAlt: 'Preview jalur belajar GEUWAT'
   },
   {
     label: 'VOCABULARY',
+    title: 'Vocabulary',
+    bonus:
+      'Bonus: Perkaya Kosakata Pendukung. Tidak sekadar tahu arti, tapi langsung tahu cara mengucapkannya dengan benar lewat panduan audio dan simbol IPA di setiap kata.',
+    description: '',
     imageSrc: '/images/vocabulary.webp',
     imageAlt: 'Preview modul vocabulary GEUWAT'
   },
   {
     label: 'SPEAKING',
+    title: 'Speaking',
+    bonus:
+      'Bonus: Roadmap Bicara Siap Pakai. Gunakan pelafalan hebatmu pada ribuan kalimat kunci yang telah disusun rapi.',
+    description: '',
     imageSrc: '/images/speaking.webp',
     imageAlt: 'Preview modul speaking GEUWAT'
   },
   {
     label: 'GRAMMAR',
+    title: 'Grammar',
+    bonus:
+      'Bonus: Fondasi Akurasi. Lengkapi kemahiran bicaramu dengan pemahaman struktur kalimat yang tepat agar pesanmu tersampaikan dengan jelas dan benar.',
+    description: '',
     imageSrc: '/images/grammar.webp',
     imageAlt: 'Preview modul grammar GEUWAT'
   },
   {
     label: 'PRONUNCIATION',
+    title: 'Pronunciation', 
+    description:
+      'Bicara dengan pelafalan layaknya Native Speaker. Pelajari teknik intonasi, penekanan kata, hingga detail terkecil.',
     imageSrc: '/images/pronunciation.webp',
     imageAlt: 'Preview modul pronunciation GEUWAT'
   },
   {
     label: 'GEUWAT',
+    title: 'Robot GEUWAT',
+    description:
+      'Asisten pribadi yang selalu siap membantu. Cukup ketik perintah singkat untuk navigasi, kuis, atau tanya jawab instan.',
     imageSrc: '/images/bot.webp',
     imageAlt: 'Preview robot GEUWAT'
   },
   {
     label: 'PROGRESS TRACKER',
+    title: 'Progress Tracker',
+    description:
+      'Visualisasikan kemajuanmu setiap hari. Pantau perkembangan tiap skill agar kamu tahu kapan harus melangkah lebih jauh.',
     imageSrc: '/images/progress.webp',
     imageAlt: 'Preview progress tracker GEUWAT'
   }
-] as const
+] as const satisfies ReadonlyArray<TrustChip>
 type TrustChipLabel = (typeof TRUST_CHIPS)[number]['label']
 
 const FAQ_ITEMS = [
@@ -63,6 +100,16 @@ const FAQ_ITEMS = [
   {
     question: 'Sekali bayar atau langganan?',
     answer: <p>Sekali bayar Rp169.000 untuk akses penuh (sekali investasi).</p>,
+  },
+  {
+    question: 'Apakah akun saya bisa diperjualbelikan atau dipindahtangankan?',
+    answer: (
+      <p>
+        Bisa. Namun, untuk menjaga keamanan data dan kualitas ekosistem belajar, setiap perpindahan kepemilikan akun
+        dikenakan Biaya Administrasi sebesar 50% dari harga resmi saat ini. Biaya ini mencakup penggantian data akses,
+        pembersihan riwayat belajar (jika diperlukan), dan validasi keamanan akun.
+      </p>
+    ),
   },
   {
     question: 'Materi apa saja yang tersedia?',
@@ -152,6 +199,9 @@ const FAQ_ITEMS = [
               <div className="conversion-faq-step-frame conversion-faq-step-frame--action">
                 <div className="conversion-faq-step-action" aria-label="Langkah berikutnya: selesaikan pembayaran">
                   <div className="conversion-faq-step-action-text">Selesaikan Pembayaran</div>
+                  <div className="conversion-faq-step-action-subtext">
+                    Detail E-wallet dan Rekening Bank akan dikirimkan melalui WhatsApp
+                  </div>
                 </div>
               </div>
             </div>
@@ -262,14 +312,154 @@ const FAQ_ITEMS = [
 ] as const
 
 export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandingProps) {
-  const [selectedChipLabel, setSelectedChipLabel] = useState<TrustChipLabel>(TRUST_CHIPS[0].label)
-  const selectedChip = TRUST_CHIPS.find((chip) => chip.label === selectedChipLabel) ?? TRUST_CHIPS[0]
+  const [selectedChipIndex, setSelectedChipIndex] = useState(0)
+  const selectedChip = TRUST_CHIPS[selectedChipIndex] ?? TRUST_CHIPS[0]
   const [selectedFaqIndex, setSelectedFaqIndex] = useState(0)
-  const selectedFaq = FAQ_ITEMS[selectedFaqIndex] ?? FAQ_ITEMS[0]
+
+  const [faqDisplayIndex, setFaqDisplayIndex] = useState(0)
+  const faqDisplayItem = FAQ_ITEMS[faqDisplayIndex] ?? FAQ_ITEMS[0]
+  const [faqPhase, setFaqPhase] = useState<'idle' | 'out' | 'in'>('idle')
+  const faqTimeoutRef = useRef<number | null>(null)
+  const faqSwapTimeoutRef = useRef<number | null>(null)
+
+  const [captionChipIndex, setCaptionChipIndex] = useState(0)
+  const captionChip = TRUST_CHIPS[captionChipIndex] ?? TRUST_CHIPS[0]
+  const [captionPhase, setCaptionPhase] = useState<'idle' | 'out' | 'in'>('idle')
+  const captionTimeoutRef = useRef<number | null>(null)
+  const captionSwapTimeoutRef = useRef<number | null>(null)
+
+  const captionChipBonus = 'bonus' in captionChip ? captionChip.bonus : undefined
+  const bonusText = captionChipBonus ?? ''
+  const bonusPrefix = bonusText.startsWith('Bonus:') ? 'Bonus:' : ''
+  const bonusBody = bonusPrefix ? bonusText.slice(bonusPrefix.length).trimStart() : bonusText
+
+  const carouselRef = useRef<HTMLDivElement | null>(null)
+  const selectedChipIndexRef = useRef(0)
+  const scrollRafRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    selectedChipIndexRef.current = selectedChipIndex
+  }, [selectedChipIndex])
+
+  useEffect(() => {
+    if (selectedFaqIndex === faqDisplayIndex) return
+
+    if (faqTimeoutRef.current !== null) {
+      window.clearTimeout(faqTimeoutRef.current)
+      faqTimeoutRef.current = null
+    }
+
+    if (faqSwapTimeoutRef.current !== null) {
+      window.clearTimeout(faqSwapTimeoutRef.current)
+      faqSwapTimeoutRef.current = null
+    }
+
+    setFaqPhase('out')
+
+    faqSwapTimeoutRef.current = window.setTimeout(() => {
+      faqSwapTimeoutRef.current = null
+      setFaqDisplayIndex(selectedFaqIndex)
+      setFaqPhase('in')
+
+      faqTimeoutRef.current = window.setTimeout(() => {
+        faqTimeoutRef.current = null
+        setFaqPhase('idle')
+      }, 180)
+    }, 120)
+  }, [faqDisplayIndex, selectedFaqIndex])
+
+  useEffect(() => {
+    if (selectedChipIndex === captionChipIndex) return
+
+    if (captionTimeoutRef.current !== null) {
+      window.clearTimeout(captionTimeoutRef.current)
+      captionTimeoutRef.current = null
+    }
+
+    if (captionSwapTimeoutRef.current !== null) {
+      window.clearTimeout(captionSwapTimeoutRef.current)
+      captionSwapTimeoutRef.current = null
+    }
+
+    setCaptionPhase('out')
+
+    captionSwapTimeoutRef.current = window.setTimeout(() => {
+      captionSwapTimeoutRef.current = null
+      setCaptionChipIndex(selectedChipIndex)
+      setCaptionPhase('in')
+
+      captionTimeoutRef.current = window.setTimeout(() => {
+        captionTimeoutRef.current = null
+        setCaptionPhase('idle')
+      }, 180)
+    }, 120)
+  }, [captionChipIndex, selectedChipIndex])
+
+  const scrollToChipIndex = (nextIndex: number, behavior: ScrollBehavior = 'smooth') => {
+    const carouselEl = carouselRef.current
+    if (!carouselEl) return
+
+    const chipCount = TRUST_CHIPS.length
+    const slideWidth = carouselEl.clientWidth || 1
+
+    const normalizedIndex = ((nextIndex % chipCount) + chipCount) % chipCount
+
+    const isWrapJump = nextIndex < 0 || nextIndex >= chipCount
+    carouselEl.scrollTo({ left: normalizedIndex * slideWidth, behavior: isWrapJump ? 'auto' : behavior })
+    setSelectedChipIndex(normalizedIndex)
+  }
+
+  useEffect(() => {
+    // Start on the first "real" slide (index 1 because index 0 is the "last" clone).
+    scrollToChipIndex(selectedChipIndexRef.current, 'auto')
+
+    const handleResize = () => scrollToChipIndex(selectedChipIndexRef.current, 'auto')
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const handleCarouselScroll = () => {
+    if (scrollRafRef.current !== null) return
+
+    scrollRafRef.current = window.requestAnimationFrame(() => {
+      scrollRafRef.current = null
+
+      const carouselEl = carouselRef.current
+      if (!carouselEl) return
+
+      const slideWidth = carouselEl.clientWidth || 1
+      const nextIndex = Math.round(carouselEl.scrollLeft / slideWidth)
+
+      if (nextIndex !== selectedChipIndexRef.current && nextIndex >= 0 && nextIndex < TRUST_CHIPS.length) {
+        setSelectedChipIndex(nextIndex)
+      }
+    })
+  }
+
+  const handleCarouselKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault()
+      scrollToChipIndex(selectedChipIndexRef.current - 1)
+      return
+    }
+
+    if (event.key === 'ArrowRight') {
+      event.preventDefault()
+      scrollToChipIndex(selectedChipIndexRef.current + 1)
+    }
+  }
 
   const handleOpenFeatureHub = () => {
     trackCtaClick('hero_view_features', { location: 'conversion_landing' })
     onOpenFeatureHub()
+  }
+
+  const moveFaq = (delta: number) => {
+    setSelectedFaqIndex((prev) => {
+      const count = FAQ_ITEMS.length
+      return (prev + delta + count) % count
+    })
   }
 
   return (
@@ -278,10 +468,10 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
         <p className="conversion-badge">GEUWAT 2026</p>
 
         <h1 className="conversion-title conversion-hook-title">
-          <span className="conversion-hook-line">Ketika Kamu Mulai dari Kosong,</span>
+          <span className="conversion-hook-line">Ketika Kamu Mulai dari Nol,</span>
           <span className="conversion-hook-line">Dan Waktu Tak Pernah Longgar,</span>
           <span className="conversion-hook-line conversion-hook-line--accent">
-            GEUWAT Susun Jalannya Untukmu.
+            GEUWAT Susun Jalannya Untuk Kamu Belajar Bahasa Inggris.
           </span>
         </h1>
 
@@ -292,7 +482,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
 
         <div className="conversion-pricing-wrap">
           <p className="conversion-price-main conversion-price-stack">
-            <span className="conversion-price-label">Upgrade Diri</span>
+            <span className="conversion-price-label">Akun Belajar GEUWAT</span>
             <span className="conversion-price-value">
               <span className="conversion-price-highlight">Rp169.000</span>
             </span>
@@ -316,80 +506,176 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
         </div>
 
         <div className="conversion-faq" aria-label="FAQ GEUWAT">
-          <h2 className="conversion-faq-title">Pertanyaan Umum</h2>
-          <div className="conversion-faq-list">
-            <div className="conversion-faq-select-block">
-              <label className="conversion-faq-select-sr" htmlFor="conversion-faq-select">
-                Pilih pertanyaan
-              </label>
-              <select
-                id="conversion-faq-select"
-                className="conversion-faq-select"
-                value={selectedFaqIndex}
-                onChange={(event) => setSelectedFaqIndex(Number(event.target.value))}
-              >
-                {FAQ_ITEMS.map((item, index) => (
-                  <option key={item.question} value={index}>
-                    {item.question}
-                  </option>
-                ))}
-              </select>
+          <div className="conversion-preview-head">
+            <div className="conversion-preview-copy">
+              <h2 className="conversion-preview-title">Pertanyaan Umum</h2>
+            </div>
+          </div>
+
+          <label className="conversion-feature-select-sr" htmlFor="conversion-faq-select">
+            Pilih pertanyaan
+          </label>
+          <select
+            id="conversion-faq-select"
+            className="conversion-feature-select conversion-feature-select--sr"
+            value={selectedFaqIndex}
+            onChange={(event) => setSelectedFaqIndex(Number(event.target.value))}
+          >
+            {FAQ_ITEMS.map((item, index) => (
+              <option key={item.question} value={index}>
+                {item.question}
+              </option>
+            ))}
+          </select>
+
+          <div className={`conversion-chip-caption conversion-faq-caption ${faqPhase !== 'idle' ? `is-${faqPhase}` : ''}`}>
+            <div className="conversion-chip-caption-head">
+              <h3 className="conversion-chip-caption-title">{faqDisplayItem.question}</h3>
+            </div>
+            <div className="conversion-faq-body">{faqDisplayItem.answer}</div>
+          </div>
+
+          <div className="conversion-faq-controls" aria-label="Navigasi pertanyaan umum">
+            <button
+              type="button"
+              className="conversion-carousel-btn"
+              onClick={() => moveFaq(-1)}
+              aria-label="Pertanyaan sebelumnya"
+            >
+              {'\u2039'}
+            </button>
+
+            <div className="conversion-faq-dots" role="tablist" aria-label="Pilih pertanyaan">
+              {FAQ_ITEMS.map((item, index) => (
+                <button
+                  key={item.question}
+                  type="button"
+                  role="tab"
+                  className={`conversion-carousel-dot ${index === selectedFaqIndex ? 'is-active' : ''}`}
+                  aria-selected={index === selectedFaqIndex}
+                  aria-label={`Pilih pertanyaan: ${item.question}`}
+                  onClick={() => setSelectedFaqIndex(index)}
+                />
+              ))}
             </div>
 
-            <div className="conversion-faq-flow" aria-hidden="true">
-              <svg className="conversion-faq-flow-icon" viewBox="0 0 24 36" focusable="false" aria-hidden="true">
-                <line
-                  x1="12"
-                  y1="2"
-                  x2="12"
-                  y2="24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeDasharray="5 5"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M6 22 L12 30 L18 22"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-
-            <div className="conversion-faq-answer conversion-faq-answer--select">{selectedFaq.answer}</div>
+            <button
+              type="button"
+              className="conversion-carousel-btn"
+              onClick={() => moveFaq(1)}
+              aria-label="Pertanyaan berikutnya"
+            >
+              {'\u203A'}
+            </button>
           </div>
         </div>
 
         <div className="conversion-chip-preview conversion-feature-card" aria-live="polite">
-          <div className="conversion-feature-select-block">
-            <label className="conversion-feature-select-sr" htmlFor="conversion-feature-select">
-              Pilih preview
-            </label>
-            <select
-              id="conversion-feature-select"
-              className="conversion-feature-select"
-              value={selectedChipLabel}
-              onChange={(event) => setSelectedChipLabel(event.target.value as TrustChipLabel)}
-            >
-              {TRUST_CHIPS.map((chip) => (
-                <option key={chip.label} value={chip.label}>
-                  {chip.label}
-                </option>
-              ))}
-            </select>
+          <div className="conversion-preview-head">
+            <div className="conversion-preview-copy">
+              <h2 className="conversion-preview-title">Apa aja sih di GEUWAT?</h2>
+            </div>
+
+          </div>
+
+          <label className="conversion-feature-select-sr" htmlFor="conversion-feature-select">
+            Pilih preview
+          </label>
+          <select
+            id="conversion-feature-select"
+            className="conversion-feature-select conversion-feature-select--sr"
+            value={selectedChip.label}
+            onChange={(event) => {
+              const nextLabel = event.target.value as TrustChipLabel
+              const nextIndex = TRUST_CHIPS.findIndex((chip) => chip.label === nextLabel)
+              if (nextIndex !== -1) scrollToChipIndex(nextIndex)
+            }}
+          >
+            {TRUST_CHIPS.map((chip) => (
+              <option key={chip.label} value={chip.label}>
+                {chip.title}
+              </option>
+            ))}
+          </select>
+
+          <div className={`conversion-chip-caption ${captionPhase !== 'idle' ? `is-${captionPhase}` : ''}`} aria-live="polite">
+            <div className="conversion-chip-caption-head">
+              <h3 className="conversion-chip-caption-title">{captionChip.title}</h3>
+            </div>
+            <p className="conversion-chip-caption-bonus">
+              {bonusPrefix ? (
+                <>
+                  <span className="conversion-chip-caption-bonus-label">{bonusPrefix}</span> {bonusBody}
+                </>
+              ) : (
+                bonusBody
+              )}
+            </p>
+            <p className="conversion-chip-caption-desc">{captionChip.description ?? ''}</p>
           </div>
 
           <div className="conversion-chip-preview-media">
-            <Image
-              src={selectedChip.imageSrc}
-              alt={selectedChip.imageAlt}
-              fill
-              sizes="(max-width: 768px) 100vw, 720px"
-              priority={false}
-            />
+            <div className="conversion-carousel-nav" aria-label="Kontrol carousel preview">
+              <button
+                type="button"
+                className="conversion-carousel-btn conversion-carousel-btn--prev"
+                onClick={() => scrollToChipIndex(selectedChipIndexRef.current - 1)}
+                aria-label="Preview sebelumnya"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                className="conversion-carousel-btn conversion-carousel-btn--next"
+                onClick={() => scrollToChipIndex(selectedChipIndexRef.current + 1)}
+                aria-label="Preview berikutnya"
+              >
+                ›
+              </button>
+            </div>
+
+            <div
+              ref={carouselRef}
+              className="conversion-carousel"
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="Preview fitur. Geser untuk melihat."
+              tabIndex={0}
+              onScroll={handleCarouselScroll}
+              onKeyDown={handleCarouselKeyDown}
+            >
+              {TRUST_CHIPS.map((chip, index) => (
+                <div
+                  key={chip.label}
+                  className="conversion-carousel-slide"
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`${index + 1} dari ${TRUST_CHIPS.length}`}
+                >
+                  <Image
+                    src={chip.imageSrc}
+                    alt={chip.imageAlt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 720px"
+                    priority={index === 0}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="conversion-carousel-dots" role="tablist" aria-label="Pilih preview">
+              {TRUST_CHIPS.map((chip, index) => (
+                <button
+                  key={chip.label}
+                  type="button"
+                  role="tab"
+                  className={`conversion-carousel-dot ${index === selectedChipIndex ? 'is-active' : ''}`}
+                  aria-selected={index === selectedChipIndex}
+                  aria-label={`Pilih ${chip.title}`}
+                  onClick={() => scrollToChipIndex(index)}
+                />
+              ))}
+            </div>
           </div>
         </div>
 
@@ -401,7 +687,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
       </div>
 
       <HomeTrustProof />
+      <OriginEvolutionSynergy />
     </section>
   )
 }
-
