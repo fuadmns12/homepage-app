@@ -23,7 +23,11 @@ export default function Contact({ backToMenu }: ContactProps) {
             <span className="conversion-price-value">
               <span className="conversion-price-highlight">Rp169.000</span>
             </span>
-            <span className="conversion-price-duration">Akses penuh, sekali investasi.</span>
+            <span className="conversion-price-duration">
+              Edisi Terbatas
+              <br />
+              Hanya Tersedia untuk 150 Akun
+            </span>
           </div>
           <div className="glass-card">
             <a

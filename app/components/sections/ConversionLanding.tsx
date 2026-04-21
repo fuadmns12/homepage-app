@@ -2,6 +2,7 @@ import { type KeyboardEvent, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import HomeTrustProof from './HomeTrustProof'
 import OriginEvolutionSynergy from './OriginEvolutionSynergy'
+import SocialMedia from './SocialMedia'
 import { trackCtaClick } from '@/lib/analytics'
 
 interface ConversionLandingProps {
@@ -27,6 +28,14 @@ const TRUST_CHIPS = [
     imageAlt: 'Preview tampilan aplikasi GEUWAT'
   },
   {
+    label: 'PRONUNCIATION',
+    title: 'Pronunciation',
+    description:
+      'Bicara dengan pelafalan layaknya Native Speaker. Pelajari teknik intonasi, penekanan kata, hingga detail terkecil.',
+    imageSrc: '/images/pronunciation.webp',
+    imageAlt: 'Preview modul pronunciation GEUWAT'
+  },
+  {
     label: 'JALUR BELAJAR',
     title: 'Jalur Belajar',
     description:
@@ -36,38 +45,30 @@ const TRUST_CHIPS = [
   },
   {
     label: 'VOCABULARY',
-    title: 'Vocabulary',
+    title: 'Vocabulary (Bonus)',
     bonus:
-      'Bonus: Perkaya Kosakata Pendukung. Tidak sekadar tahu arti, tapi langsung tahu cara mengucapkannya dengan benar lewat panduan audio dan simbol IPA di setiap kata.',
+      'Perkaya Kosakata Pendukung. Tidak sekadar tahu arti, tapi langsung tahu cara mengucapkannya dengan benar lewat panduan audio dan simbol IPA di setiap kata.',
     description: '',
     imageSrc: '/images/vocabulary.webp',
     imageAlt: 'Preview modul vocabulary GEUWAT'
   },
   {
     label: 'SPEAKING',
-    title: 'Speaking',
+    title: 'Speaking (Bonus)',
     bonus:
-      'Bonus: Roadmap Bicara Siap Pakai. Gunakan pelafalan hebatmu pada ribuan kalimat kunci yang telah disusun rapi.',
+      'Roadmap Bicara Siap Pakai. Gunakan pelafalan hebatmu pada ribuan kalimat kunci yang telah disusun rapi.',
     description: '',
     imageSrc: '/images/speaking.webp',
     imageAlt: 'Preview modul speaking GEUWAT'
   },
   {
     label: 'GRAMMAR',
-    title: 'Grammar',
+    title: 'Grammar (Bonus)',
     bonus:
-      'Bonus: Fondasi Akurasi. Lengkapi kemahiran bicaramu dengan pemahaman struktur kalimat yang tepat agar pesanmu tersampaikan dengan jelas dan benar.',
+      'Fondasi Akurasi. Lengkapi kemahiran bicaramu dengan pemahaman struktur kalimat yang tepat agar pesanmu tersampaikan dengan jelas dan benar.',
     description: '',
     imageSrc: '/images/grammar.webp',
     imageAlt: 'Preview modul grammar GEUWAT'
-  },
-  {
-    label: 'PRONUNCIATION',
-    title: 'Pronunciation', 
-    description:
-      'Bicara dengan pelafalan layaknya Native Speaker. Pelajari teknik intonasi, penekanan kata, hingga detail terkecil.',
-    imageSrc: '/images/pronunciation.webp',
-    imageAlt: 'Preview modul pronunciation GEUWAT'
   },
   {
     label: 'GEUWAT',
@@ -486,7 +487,11 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
             <span className="conversion-price-value">
               <span className="conversion-price-highlight">Rp169.000</span>
             </span>
-            <span className="conversion-price-duration">Akses penuh, sekali investasi.</span>
+            <span className="conversion-price-duration">
+              Edisi Terbatas
+              <br />
+              Hanya Tersedia untuk 150 Akun
+            </span>
           </p>
         </div>
 
@@ -688,6 +693,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
 
       <HomeTrustProof />
       <OriginEvolutionSynergy />
+      <SocialMedia />
     </section>
   )
 }

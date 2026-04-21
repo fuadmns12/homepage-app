@@ -11,7 +11,8 @@ describe('Contact section', () => {
     expect(screen.queryByText('Harga Program')).not.toBeInTheDocument()
     expect(screen.getAllByText('Rp169.000')).toHaveLength(1)
     expect(screen.getByText('Upgrade Diri')).toBeInTheDocument()
-    expect(screen.getByText('Akses penuh, sekali investasi.')).toBeInTheDocument()
+    expect(screen.getByText(/Edisi Terbatas/i)).toBeInTheDocument()
+    expect(screen.getByText(/Hanya Tersedia untuk 150 Akun/i)).toBeInTheDocument()
   })
 
   it('renders register, login, and contact links', () => {
