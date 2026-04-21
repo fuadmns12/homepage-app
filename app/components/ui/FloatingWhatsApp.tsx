@@ -35,8 +35,6 @@ export default function FloatingWhatsApp() {
       <span className="floating-whatsapp-icon" aria-hidden="true">
         <WhatsAppIcon className="floating-whatsapp-icon-svg" />
       </span>
-      <span className="floating-whatsapp-text">WhatsApp</span>
     </a>
   )
 }
-

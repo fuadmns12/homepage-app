@@ -37,8 +37,8 @@ const SOCIAL_LINKS = [
 export default function SocialMedia() {
   return (
     <section className="glass-card conversion-social" aria-label="Sosial media GEUWAT">
-      <div className="conversion-social-head">
-        <h2 className="conversion-social-title">Sosial Media</h2>
+    <div className="conversion-social-head">
+        <h2 className="conversion-social-title">Social Media</h2>
         <p className="conversion-social-subtitle">Ikuti update dan konten terbaru dari GEUWAT.</p>
       </div>
 
@@ -62,11 +62,9 @@ export default function SocialMedia() {
             <span className="conversion-social-icon" aria-hidden="true">
               <Icon className="conversion-social-icon-svg" />
             </span>
-            <span className="conversion-social-name">{label}</span>
           </a>
         ))}
       </div>
     </section>
   )
 }
-
