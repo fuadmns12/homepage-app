@@ -90,11 +90,13 @@ export default function FloatingLogin() {
       if (!target) return
       if (root.contains(target)) return
       setMenuOpen(false)
+      setBreakdownOpen(false)
     }
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setMenuOpen(false)
+        setBreakdownOpen(false)
       }
     }
 
@@ -128,12 +130,6 @@ export default function FloatingLogin() {
     }, 160)
   }
 
-  useEffect(() => {
-    if (!menuOpen) {
-      setBreakdownOpen(false)
-    }
-  }, [menuOpen])
-
   return (
     <div className="conversion-login-row" aria-label="Login ke Member GEUWAT">
       <div className="conversion-login-stack" ref={rootRef}>
@@ -143,7 +139,13 @@ export default function FloatingLogin() {
           aria-label="Buka pilihan login"
           aria-haspopup="menu"
           aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((v) => !v)}
+          onClick={() =>
+            setMenuOpen((v) => {
+              const next = !v
+              if (!next) setBreakdownOpen(false)
+              return next
+            })
+          }
         >
           <span className="conversion-chibi-frame" aria-hidden="true">
             <Image

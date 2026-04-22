@@ -494,8 +494,10 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
         </h1>
 
         <p className="conversion-subtitle">
-          Dibuat untuk belajar harian yang realistis: materi pengucapan, kosakata, tata bahasa,
-          dan speaking tersusun rapi supaya progresmu lebih terarah.
+          Fokus di GEUWAT cuma satu: Bikin lidahmu fasih dengan sistem pelafalan yang akurat. Begitu paham polanya, kamu
+          bakal bisa cari dan ucapkan kata apa pun sendiri.
+          <br />
+          Materi grammar &amp; kosakata? Tenang, itu bonus buat bantu progresmu.
         </p>
 
         <div className="conversion-pricing-wrap">

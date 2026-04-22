@@ -72,7 +72,7 @@ export default function NotificationPrompt() {
             onClick={requestPermission}
             disabled={isRequesting}
           >
-            {isRequesting ? 'Meminta izin...' : 'Permintaan cookies'}
+            {isRequesting ? 'Meminta izin...' : 'Aktifkan Notifikasi'}
           </button>
         )}
         <button

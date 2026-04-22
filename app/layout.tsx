@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Outfit, Syne } from 'next/font/google'
-import Script from 'next/script'
 import './globals.css'
 import './styles/GEUWAT.css'
+import AnalyticsScripts from './components/ui/AnalyticsScripts'
+import CookieConsent from './components/ui/CookieConsent'
 
 const outfit = Outfit({ 
   subsets: ['latin'], 
@@ -63,18 +64,8 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${outfit.variable} ${syne.variable}`}>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="ga4" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
+        <AnalyticsScripts measurementId={GA_MEASUREMENT_ID} />
+        <CookieConsent />
         {children}
       </body>
     </html>
