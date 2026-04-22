@@ -334,6 +334,23 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
   const bonusPrefix = bonusText.startsWith('Bonus:') ? 'Bonus:' : ''
   const bonusBody = bonusPrefix ? bonusText.slice(bonusPrefix.length).trimStart() : bonusText
 
+  const renderChipTitle = (title: string) => {
+    const token = '(Bonus)'
+    const idx = title.indexOf(token)
+    if (idx === -1) return title
+
+    const before = title.slice(0, idx).trimEnd()
+    const after = title.slice(idx + token.length)
+
+    return (
+      <>
+        {before}{' '}
+        <span className="conversion-bonus-tag">{token}</span>
+        {after}
+      </>
+    )
+  }
+
   const carouselRef = useRef<HTMLDivElement | null>(null)
   const selectedChipIndexRef = useRef(0)
   const scrollRafRef = useRef<number | null>(null)
@@ -490,7 +507,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
             <span className="conversion-price-duration">
               Edisi Terbatas
               <br />
-              Hanya Tersedia untuk 150 Akun
+              Hanya Tersedia untuk <span className="conversion-inline-red">150</span> Akun
             </span>
           </p>
         </div>
@@ -575,13 +592,13 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
           </div>
         </div>
 
-        <div className="conversion-chip-preview conversion-feature-card" aria-live="polite">
-          <div className="conversion-preview-head">
-            <div className="conversion-preview-copy">
-              <h2 className="conversion-preview-title">Apa aja sih di GEUWAT?</h2>
-            </div>
+          <div className="conversion-chip-preview conversion-feature-card" aria-live="polite">
+            <div className="conversion-preview-head">
+              <div className="conversion-preview-copy">
+                <h2 className="conversion-preview-title">Apa aja sih di GEUWAT?</h2>
+              </div>
 
-          </div>
+            </div>
 
           <label className="conversion-feature-select-sr" htmlFor="conversion-feature-select">
             Pilih preview
@@ -605,7 +622,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
 
           <div className={`conversion-chip-caption ${captionPhase !== 'idle' ? `is-${captionPhase}` : ''}`} aria-live="polite">
             <div className="conversion-chip-caption-head">
-              <h3 className="conversion-chip-caption-title">{captionChip.title}</h3>
+              <h3 className="conversion-chip-caption-title">{renderChipTitle(captionChip.title)}</h3>
             </div>
             <p className="conversion-chip-caption-bonus">
               {bonusPrefix ? (
