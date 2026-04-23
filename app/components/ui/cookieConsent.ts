@@ -7,7 +7,14 @@ const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365
 
 function readCookie(name: string) {
   if (typeof document === 'undefined') return null
-  const parts = document.cookie.split(';').map((part) => part.trim())
+  let cookieSource = ''
+  try {
+    cookieSource = document.cookie
+  } catch {
+    return null
+  }
+
+  const parts = cookieSource.split(';').map((part) => part.trim())
   const found = parts.find((part) => part.startsWith(`${name}=`))
   if (!found) return null
   const raw = found.slice(name.length + 1)
