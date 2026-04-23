@@ -1,11 +1,20 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { readCookieConsent, writeCookieConsent, type CookieConsentValue } from './cookieConsent'
 
 export default function CookieConsent() {
-  const [nextConsent, setNextConsent] = useState<CookieConsentValue | null>(null)
-  const consent = nextConsent ?? readCookieConsent()
+  const [consent, setConsent] = useState<CookieConsentValue>(() => readCookieConsent())
+
+  useEffect(() => {
+    const refresh = () => setConsent(readCookieConsent())
+    window.addEventListener('geuwat_cookie_consent_changed', refresh)
+    window.addEventListener('storage', refresh)
+    return () => {
+      window.removeEventListener('geuwat_cookie_consent_changed', refresh)
+      window.removeEventListener('storage', refresh)
+    }
+  }, [])
 
   if (consent !== 'unknown') return null
 
@@ -20,10 +29,8 @@ export default function CookieConsent() {
           type="button"
           className="cookie-consent__button"
           onClick={() => {
-            setNextConsent('granted')
-            try {
-              writeCookieConsent('granted')
-            } catch {}
+            setConsent('granted')
+            writeCookieConsent('granted')
           }}
         >
           Setujui
@@ -32,10 +39,8 @@ export default function CookieConsent() {
           type="button"
           className="cookie-consent__button cookie-consent__button--secondary"
           onClick={() => {
-            setNextConsent('denied')
-            try {
-              writeCookieConsent('denied')
-            } catch {}
+            setConsent('denied')
+            writeCookieConsent('denied')
           }}
         >
           Tolak

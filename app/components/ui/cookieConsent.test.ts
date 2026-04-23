@@ -1,4 +1,10 @@
-import { readCookieConsent, writeCookieConsent, COOKIE_CONSENT_COOKIE_NAME, COOKIE_CONSENT_STORAGE_KEY } from './cookieConsent'
+import {
+  readCookieConsent,
+  writeCookieConsent,
+  COOKIE_CONSENT_COOKIE_NAME,
+  COOKIE_CONSENT_STORAGE_KEY,
+  COOKIE_CONSENT_SESSION_KEY,
+} from './cookieConsent'
 
 function clearConsentCookie() {
   document.cookie = `${COOKIE_CONSENT_COOKIE_NAME}=; Max-Age=0; Path=/`
@@ -8,6 +14,7 @@ describe('cookieConsent', () => {
   beforeEach(() => {
     clearConsentCookie()
     window.localStorage.removeItem(COOKIE_CONSENT_STORAGE_KEY)
+    window.sessionStorage.removeItem(COOKIE_CONSENT_SESSION_KEY)
   })
 
   afterEach(() => {
