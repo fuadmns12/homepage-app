@@ -34,13 +34,22 @@ function writeStorageValue(storage: Storage | null, key: string, value: string) 
   } catch {}
 }
 
+function getSafeStorage(type: 'localStorage' | 'sessionStorage') {
+  if (typeof window === 'undefined') return null
+  try {
+    return window[type]
+  } catch {
+    return null
+  }
+}
+
 export function readCookieConsent(): CookieConsentValue {
   if (typeof window === 'undefined') return 'unknown'
 
-  const session = readStorageValue(window.sessionStorage, COOKIE_CONSENT_SESSION_KEY)
+  const session = readStorageValue(getSafeStorage('sessionStorage'), COOKIE_CONSENT_SESSION_KEY)
   if (session === 'granted' || session === 'denied') return session
 
-  const stored = readStorageValue(window.localStorage, COOKIE_CONSENT_STORAGE_KEY)
+  const stored = readStorageValue(getSafeStorage('localStorage'), COOKIE_CONSENT_STORAGE_KEY)
   if (stored === 'granted' || stored === 'denied') return stored
 
   const cookie = readCookie(COOKIE_CONSENT_COOKIE_NAME)
@@ -52,8 +61,8 @@ export function readCookieConsent(): CookieConsentValue {
 export function writeCookieConsent(value: Exclude<CookieConsentValue, 'unknown'>) {
   if (typeof window === 'undefined' || typeof document === 'undefined') return
 
-  writeStorageValue(window.sessionStorage, COOKIE_CONSENT_SESSION_KEY, value)
-  writeStorageValue(window.localStorage, COOKIE_CONSENT_STORAGE_KEY, value)
+  writeStorageValue(getSafeStorage('sessionStorage'), COOKIE_CONSENT_SESSION_KEY, value)
+  writeStorageValue(getSafeStorage('localStorage'), COOKIE_CONSENT_STORAGE_KEY, value)
 
   try {
     document.cookie = `${COOKIE_CONSENT_COOKIE_NAME}=${encodeURIComponent(value)}; Max-Age=${COOKIE_MAX_AGE_SECONDS}; Path=/; SameSite=Lax`
