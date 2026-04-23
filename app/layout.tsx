@@ -3,7 +3,6 @@ import { Outfit, Syne } from 'next/font/google'
 import './globals.css'
 import './styles/GEUWAT.css'
 import AnalyticsScripts from './components/ui/AnalyticsScripts'
-import CookieConsent from './components/ui/CookieConsent'
 
 const outfit = Outfit({ 
   subsets: ['latin'], 
@@ -65,7 +64,6 @@ export default function RootLayout({
     <html lang="id">
       <body className={`${outfit.variable} ${syne.variable}`}>
         <AnalyticsScripts measurementId={GA_MEASUREMENT_ID} />
-        <CookieConsent />
         {children}
       </body>
     </html>
