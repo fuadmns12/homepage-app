@@ -20,8 +20,10 @@ export default function CookieConsent() {
           type="button"
           className="cookie-consent__button"
           onClick={() => {
-            writeCookieConsent('granted')
             setNextConsent('granted')
+            try {
+              writeCookieConsent('granted')
+            } catch {}
           }}
         >
           Setujui
@@ -30,8 +32,10 @@ export default function CookieConsent() {
           type="button"
           className="cookie-consent__button cookie-consent__button--secondary"
           onClick={() => {
-            writeCookieConsent('denied')
             setNextConsent('denied')
+            try {
+              writeCookieConsent('denied')
+            } catch {}
           }}
         >
           Tolak

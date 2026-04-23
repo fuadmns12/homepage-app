@@ -139,16 +139,18 @@ export default function HomeTrustProof() {
 
         <div className="home-proof-cta">
           <a
-            href="/register"
+            href="https://chat.whatsapp.com/JLaBgBoQM5zB5KNfSfEaCI"
             className="intro-cta-primary conversion-primary-cta"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() =>
               trackCtaClick('audience_register', {
                 location: 'audience_block',
-                target: '/register',
+                target: 'https://chat.whatsapp.com/JLaBgBoQM5zB5KNfSfEaCI',
               })
             }
           >
-            Daftar Sekarang
+            FREE TRIAL
           </a>
         </div>
       </section>
