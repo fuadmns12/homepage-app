@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { readCookieConsent, writeCookieConsent, type CookieConsentValue } from './cookieConsentStore'
+import { readCookieConsent, writeCookieConsent, type CookieConsentValue } from './cookieConsent'
 
 export default function CookieConsent() {
   const [consent, setConsent] = useState<CookieConsentValue>(() => readCookieConsent())
