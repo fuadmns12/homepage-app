@@ -114,6 +114,24 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
           </a>
         </div>
 
+        <div className="conversion-secondary-row" aria-label="Diskon GEUWAT Ambassador">
+          <a
+            href="https://discord.gg/kpPQHW7gFA"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="conversion-secondary-link"
+            onClick={() =>
+              trackCtaClick('hero_ambassador_discount', {
+                location: 'conversion_landing',
+                target: 'https://discord.gg/kpPQHW7gFA',
+              })
+            }
+          >
+            Dapatkan Rekomendasi dari GEUWAT Ambassador untuk mendapatkan diskon{' '}
+            <span className="conversion-inline-accent">5-10%</span>
+          </a>
+        </div>
+
         <div className="conversion-secondary-row" aria-label="Jelajahi informasi lain">
           <a
             href="#services"
@@ -161,7 +179,6 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
             Halaman kontak
           </Link>
         </nav>
-
         <div className="conversion-faq" aria-label="FAQ GEUWAT">
           <div className="conversion-preview-head">
             <div className="conversion-preview-copy">
