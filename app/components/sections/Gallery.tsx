@@ -1,13 +1,19 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface GalleryProps {
   backToMenu: () => void
+  standalone?: boolean
 }
 
-export default function Gallery({ backToMenu }: GalleryProps) {
+export default function Gallery({ backToMenu, standalone = false }: GalleryProps) {
   return (
     <>
-      <button className="back-btn" onClick={backToMenu}>Kembali ke Menu</button>
+      {standalone ? (
+        <Link className="back-btn" href="/">Kembali ke Beranda</Link>
+      ) : (
+        <button className="back-btn" onClick={backToMenu}>Kembali ke Menu</button>
+      )}
       
       <div className="section-header">
         <h2 className="section-title">Galeri Kami</h2>

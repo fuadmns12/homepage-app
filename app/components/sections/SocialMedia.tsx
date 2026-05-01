@@ -83,6 +83,7 @@ export default function SocialMedia({ trackLocation = 'conversion_landing' }: So
             <span className="conversion-social-icon" aria-hidden="true">
               <Icon className="conversion-social-icon-svg" />
             </span>
+            <span className="sr-only">{label}</span>
           </a>
         ))}
       </div>

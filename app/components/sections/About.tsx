@@ -1,14 +1,16 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import useWorkflowStepSound from './useWorkflowStepSound'
 
 interface AboutProps {
   backToMenu: () => void
   isActive: boolean
+  standalone?: boolean
 }
 
-export default function About({ backToMenu, isActive }: AboutProps) {
+export default function About({ backToMenu, isActive, standalone = false }: AboutProps) {
   const [fastActiveIndex, setFastActiveIndex] = React.useState(-1)
   const [slowActiveIndex, setSlowActiveIndex] = React.useState(-1)
   const [isRunning, setIsRunning] = React.useState(false)
@@ -68,7 +70,11 @@ export default function About({ backToMenu, isActive }: AboutProps) {
 
   return (
     <>
-      <button className="back-btn" onClick={backToMenu}>Kembali ke Menu</button>
+      {standalone ? (
+        <Link className="back-btn" href="/">Kembali ke Beranda</Link>
+      ) : (
+        <button className="back-btn" onClick={backToMenu}>Kembali ke Menu</button>
+      )}
       
       <div className="section-header">
         <h2 className="section-title">Tentang GEUWAT</h2>
