@@ -89,9 +89,6 @@ export default function Contact({ backToMenu }: ContactProps) {
             >
               Instagram
             </a>
-            <span style={{color: 'var(--primary)'}}>
-              learningenglishgeuwat@gmail.com
-            </span>
           </div>
         </div>
       </div>

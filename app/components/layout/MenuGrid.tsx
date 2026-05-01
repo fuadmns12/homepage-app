@@ -53,15 +53,31 @@ const menuItems: MenuItem[] = [
     id: '1',
     badge: (
       <svg viewBox="0 0 64 64" aria-hidden="true" className="menu-badge-icon">
-        <g fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="16" y="10" width="32" height="44" rx="4" />
-          <circle cx="32" cy="48" r="1.8" />
-          <path d="M24 18h16" />
-        </g>
-        <rect x="20" y="18" width="24" height="22" rx="2" fill="currentColor" opacity="0.12" />
+        <rect x="12" y="12" width="40" height="40" rx="8" fill="currentColor" opacity="0.08" />
+        <path
+          d="M32 24.2c-1.7-2.1-5-2.6-7.2-.7-2.4 2.1-2.5 5.7-.4 7.9l7.6 7.7 7.6-7.7c2.1-2.2 2-5.8-.4-7.9-2.2-1.9-5.5-1.4-7.2.7z"
+          fill="#ff00d4"
+          opacity="0.88"
+        />
+        <path
+          d="M18 38c5.5 0 8.7-3.8 14-3.8S40.5 38 46 38"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.6"
+          strokeLinecap="round"
+        />
+        <path
+          d="M20 41.5c5 0 7.8-3.2 12-3.2s7 3.2 12 3.2"
+          fill="none"
+          stroke="#00f0ff"
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          opacity="0.85"
+        />
+        <circle cx="46.5" cy="19" r="2" fill="#00f0ff" opacity="0.8" />
       </svg>
     ),
-    title: 'Pengantar',
+    title: 'GEUWAT Peduli',
     section: 'introduction'
   },
   {
@@ -85,6 +101,47 @@ const menuItems: MenuItem[] = [
     ),
     title: 'Testimoni',
     section: 'testimonials'
+  },
+  {
+    id: '7',
+    badge: (
+      <svg viewBox="0 0 64 64" aria-hidden="true" className="menu-badge-icon">
+        <rect x="12" y="14" width="40" height="36" rx="7" fill="currentColor" opacity="0.08" />
+        <rect x="16" y="20" width="32" height="26" rx="5" fill="none" stroke="currentColor" strokeWidth="2.6" />
+        <path d="M22 16v8M42 16v8" fill="none" stroke="#00f0ff" strokeWidth="3" strokeLinecap="round" opacity="0.85" />
+        <path d="M22 30h20" fill="none" stroke="#ff00d4" strokeWidth="2.8" strokeLinecap="round" opacity="0.75" />
+        <path d="M22 36h14" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" opacity="0.7" />
+      </svg>
+    ),
+    title: 'GEUWAT EVENT',
+    section: 'event',
+  },
+  {
+    id: '8',
+    badge: (
+      <svg viewBox="0 0 64 64" aria-hidden="true" className="menu-badge-icon">
+        <rect x="12" y="12" width="40" height="40" rx="9" fill="currentColor" opacity="0.08" />
+        <path
+          d="M32 22c3.6 0 6.5 2.9 6.5 6.5S35.6 35 32 35s-6.5-2.9-6.5-6.5S28.4 22 32 22z"
+          fill="#00f0ff"
+          opacity="0.75"
+        />
+        <path
+          d="M19.5 46.5c1.7-6.4 7.1-10.5 12.5-10.5s10.8 4.1 12.5 10.5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.6"
+          strokeLinecap="round"
+        />
+        <path
+          d="M32 16.5l2.2 4.4 4.9.7-3.5 3.4.8 4.9-4.4-2.3-4.4 2.3.8-4.9-3.5-3.4 4.9-.7L32 16.5z"
+          fill="#ffb347"
+          opacity="0.85"
+        />
+      </svg>
+    ),
+    title: 'GEUWAT AMBASSADOR',
+    section: 'ambassador',
   },
   {
     id: '6',

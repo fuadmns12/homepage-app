@@ -28,7 +28,6 @@ describe('Contact section', () => {
       'href',
       'https://www.instagram.com/learningenglishgeuwat/'
     )
-    expect(screen.getByText('learningenglishgeuwat@gmail.com')).toBeInTheDocument()
   })
 
   it('calls backToMenu when back button is clicked', () => {
