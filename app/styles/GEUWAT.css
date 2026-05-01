@@ -2212,6 +2212,11 @@ body {
 	transition: color 0.25s ease;
 }
 
+.conversion-inline-accent {
+	color: #ffb347;
+	text-shadow: 0 0 8px rgba(255, 140, 0, 0.55), 0 0 16px rgba(255, 140, 0, 0.3);
+}
+
 .conversion-secondary-link:hover {
 	color: #ffffff;
 }
