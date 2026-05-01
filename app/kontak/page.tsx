@@ -27,7 +27,7 @@ export default function KontakPage() {
         </nav>
       </div>
 
-      <Contact backToMenu={() => {}} standalone />
+      <Contact standalone />
     </main>
   )
 }

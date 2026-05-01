@@ -27,7 +27,7 @@ export default function FiturPage() {
         </nav>
       </div>
 
-      <Services backToMenu={() => {}} isActive={true} standalone />
+      <Services standalone />
     </main>
   )
 }

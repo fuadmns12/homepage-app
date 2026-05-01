@@ -26,7 +26,7 @@ export default function GaleriPage() {
         </nav>
       </div>
 
-      <Gallery backToMenu={() => {}} standalone />
+      <Gallery standalone />
     </main>
   )
 }

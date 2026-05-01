@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Facebook, Instagram } from 'lucide-react'
 import { trackCtaClick } from '@/lib/analytics'

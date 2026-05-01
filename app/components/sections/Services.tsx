@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,12 +8,12 @@ import FeaturePreviewCarousel from './FeaturePreviewCarousel'
 import { FAQ_ITEMS } from './faq-items'
 
 interface ServicesProps {
-  backToMenu: () => void
-  isActive: boolean
+  backToMenu?: () => void
+  isActive?: boolean
   standalone?: boolean
 }
 
-export default function Services({ backToMenu, isActive, standalone = false }: ServicesProps) {
+export default function Services({ backToMenu, isActive = true, standalone = false }: ServicesProps) {
   const BRAND = 'GEUWAT' as const
   const WHATSAPP_CHAT_URL = 'https://wa.me/6285846003119' as const
   type SupportFaqCategory = 'all' | 'mulai' | 'akun' | 'batch' | 'pembayaran' | 'update' | 'akses'
@@ -117,7 +119,7 @@ export default function Services({ backToMenu, isActive, standalone = false }: S
       {standalone ? (
         <Link className="back-btn" href="/">Kembali ke Beranda</Link>
       ) : (
-        <button className="back-btn" onClick={backToMenu}>Kembali ke Menu</button>
+        <button className="back-btn" onClick={backToMenu ?? (() => {})}>Kembali ke Menu</button>
       )}
       
       <div className="section-header">

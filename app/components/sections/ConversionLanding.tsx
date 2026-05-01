@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 import HomeTrustProof from './HomeTrustProof'
 import OriginEvolutionSynergy from './OriginEvolutionSynergy'

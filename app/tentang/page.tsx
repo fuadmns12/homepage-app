@@ -27,7 +27,7 @@ export default function TentangPage() {
         </nav>
       </div>
 
-      <About backToMenu={() => {}} isActive={true} standalone />
+      <About standalone />
     </main>
   )
 }

@@ -27,7 +27,7 @@ export default function TestimoniPage() {
         </nav>
       </div>
 
-      <Testimonials backToMenu={() => {}} isActive={true} standalone />
+      <Testimonials standalone />
     </main>
   )
 }

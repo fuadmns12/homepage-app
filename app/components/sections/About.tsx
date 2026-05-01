@@ -5,12 +5,12 @@ import Link from 'next/link'
 import useWorkflowStepSound from './useWorkflowStepSound'
 
 interface AboutProps {
-  backToMenu: () => void
-  isActive: boolean
+  backToMenu?: () => void
+  isActive?: boolean
   standalone?: boolean
 }
 
-export default function About({ backToMenu, isActive, standalone = false }: AboutProps) {
+export default function About({ backToMenu, isActive = true, standalone = false }: AboutProps) {
   const [fastActiveIndex, setFastActiveIndex] = React.useState(-1)
   const [slowActiveIndex, setSlowActiveIndex] = React.useState(-1)
   const [isRunning, setIsRunning] = React.useState(false)
@@ -73,7 +73,7 @@ export default function About({ backToMenu, isActive, standalone = false }: Abou
       {standalone ? (
         <Link className="back-btn" href="/">Kembali ke Beranda</Link>
       ) : (
-        <button className="back-btn" onClick={backToMenu}>Kembali ke Menu</button>
+        <button className="back-btn" onClick={backToMenu ?? (() => {})}>Kembali ke Menu</button>
       )}
       
       <div className="section-header">
