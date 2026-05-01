@@ -1,13 +1,21 @@
+'use client'
+
 import { trackCtaClick } from '@/lib/analytics'
+import Link from 'next/link'
 
 interface ContactProps {
-  backToMenu: () => void
+  backToMenu?: () => void
+  standalone?: boolean
 }
 
-export default function Contact({ backToMenu }: ContactProps) {
+export default function Contact({ backToMenu, standalone = false }: ContactProps) {
   return (
     <>
-      <button className="back-btn" onClick={backToMenu}>Kembali ke Menu</button>
+      {standalone ? (
+        <Link className="back-btn" href="/">Kembali ke Beranda</Link>
+      ) : (
+        <button className="back-btn" onClick={backToMenu ?? (() => {})}>Kembali ke Menu</button>
+      )}
       
       <div className="section-header">
         <h2 className="section-title">Kontak</h2>

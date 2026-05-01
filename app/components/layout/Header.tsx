@@ -7,8 +7,8 @@ export default function Header() {
       <div className="logo">
         <Image src="/NewLogoRB.webp" alt="GEUWAT logo" width={160} height={160} />
       </div>
-      <h1 className="brand-name">GEUWAT</h1>
-      <p className="tagline">Webiste Belajar Bahasa Inggris</p>
+      <p className="brand-name">GEUWAT</p>
+      <p className="tagline">Website Belajar Bahasa Inggris</p>
     </div>
   )
 }

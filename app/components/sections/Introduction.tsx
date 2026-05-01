@@ -19,7 +19,7 @@ export default function Introduction({ backToMenu, isActive }: IntroductionProps
       >
         <div className="intro-hero-content">
           <span className="intro-badge">COMING SOON</span>
-          <h1 className="intro-headline">{BRAND} Peduli</h1>
+          <h2 className="intro-headline">{BRAND} Peduli</h2>
           <p className="intro-subtext">Bekal Nyata untuk Karier Pendidikan Pengajar Bahasa Inggris</p>
           <p className="intro-subtext" style={{ marginTop: 12 }}>
             Berbagi, Membangun Mimpi: Kelas Bahasa Inggris untuk Panti Asuhan

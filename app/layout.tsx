@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Outfit, Syne } from 'next/font/google'
 import './globals.css'
 import './styles/GEUWAT.css'
@@ -18,13 +18,50 @@ const syne = Syne({
 
 const GA_MEASUREMENT_ID = 'G-SPZJEWNXSR'
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#0b0b12',
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://learningenglishgeuwat-ten.vercel.app'),
-  title: 'GEUWAT - Website Belajar Bahasa Inggris',
+  title: {
+    default: 'GEUWAT - Website Belajar Bahasa Inggris',
+    template: '%s | GEUWAT',
+  },
   description:
     'Belajar English terarah dengan jalur Pronunciation, Vocabulary, Grammar, dan Speaking. Akses seumur hidup Rp169.000 dengan Pembayaran Sekali.',
+  applicationName: 'GEUWAT',
+  generator: 'Next.js',
+  keywords: [
+    'belajar bahasa inggris',
+    'pronunciation',
+    'speaking',
+    'vocabulary',
+    'grammar',
+    'kursus bahasa inggris online',
+    'GEUWAT',
+  ],
+  creator: 'GEUWAT',
+  publisher: 'GEUWAT',
   alternates: {
     canonical: '/',
+  },
+  manifest: '/site.webmanifest',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  verification: {
+    google: 'fe4f2e7852b5ef54',
   },
   openGraph: {
     type: 'website',
@@ -51,7 +88,8 @@ export const metadata: Metadata = {
     images: ['/images/view.webp'],
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: [{ url: '/favicon.ico' }],
+    shortcut: [{ url: '/favicon.ico' }],
   },
 }
 

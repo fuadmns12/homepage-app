@@ -1,3 +1,5 @@
+'use client'
+
 import { type KeyboardEvent, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 

@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 import HomeTrustProof from './HomeTrustProof'
 import OriginEvolutionSynergy from './OriginEvolutionSynergy'
@@ -5,6 +7,7 @@ import SocialMedia from './SocialMedia'
 import FeaturePreviewCarousel from './FeaturePreviewCarousel'
 import { FAQ_ITEMS } from './faq-items'
 import { trackCtaClick } from '@/lib/analytics'
+import Link from 'next/link'
 
 interface ConversionLandingProps {
   onOpenFeatureHub: () => void
@@ -110,6 +113,54 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
             Daftar Sekarang
           </a>
         </div>
+
+        <div className="conversion-secondary-row" aria-label="Jelajahi informasi lain">
+          <a
+            href="#services"
+            className="conversion-secondary-link"
+            onClick={() => trackCtaClick('hero_jump_services', { location: 'conversion_landing', target: '#services' })}
+          >
+            Lihat fitur
+          </a>
+          <a
+            href="#about"
+            className="conversion-secondary-link"
+            onClick={() => trackCtaClick('hero_jump_about', { location: 'conversion_landing', target: '#about' })}
+          >
+            Tentang
+          </a>
+          <a
+            href="#contact"
+            className="conversion-secondary-link"
+            onClick={() => trackCtaClick('hero_jump_contact', { location: 'conversion_landing', target: '#contact' })}
+          >
+            Kontak
+          </a>
+        </div>
+
+        <nav className="conversion-secondary-row" aria-label="Buka halaman informasi">
+          <Link
+            href="/fitur"
+            className="conversion-secondary-link"
+            onClick={() => trackCtaClick('hero_open_page_fitur', { location: 'conversion_landing', target: '/fitur' })}
+          >
+            Halaman fitur
+          </Link>
+          <Link
+            href="/tentang"
+            className="conversion-secondary-link"
+            onClick={() => trackCtaClick('hero_open_page_tentang', { location: 'conversion_landing', target: '/tentang' })}
+          >
+            Halaman tentang
+          </Link>
+          <Link
+            href="/kontak"
+            className="conversion-secondary-link"
+            onClick={() => trackCtaClick('hero_open_page_kontak', { location: 'conversion_landing', target: '/kontak' })}
+          >
+            Halaman kontak
+          </Link>
+        </nav>
 
         <div className="conversion-faq" aria-label="FAQ GEUWAT">
           <div className="conversion-preview-head">

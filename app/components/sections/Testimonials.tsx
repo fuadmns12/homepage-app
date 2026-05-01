@@ -1,12 +1,16 @@
+'use client'
+
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface TestimonialsProps {
-  backToMenu: () => void
-  isActive: boolean
+  backToMenu?: () => void
+  isActive?: boolean
+  standalone?: boolean
 }
 
-export default function Testimonials({ backToMenu, isActive }: TestimonialsProps) {
+export default function Testimonials({ backToMenu, isActive = true, standalone = false }: TestimonialsProps) {
   const [buttonPos, setButtonPos] = React.useState<{ x: number; y: number } | null>(null)
   const wrapperRef = React.useRef<HTMLDivElement | null>(null)
   const buttonRef = React.useRef<HTMLButtonElement | null>(null)
@@ -86,7 +90,11 @@ export default function Testimonials({ backToMenu, isActive }: TestimonialsProps
 
   return (
     <>
-      <button className="back-btn" onClick={backToMenu}>Kembali ke Menu</button>
+      {standalone ? (
+        <Link className="back-btn" href="/">Kembali ke Beranda</Link>
+      ) : (
+        <button className="back-btn" onClick={backToMenu ?? (() => {})}>Kembali ke Menu</button>
+      )}
       
       <div className="section-header testimonials-header">
         <h2 className="section-title">Testimoni</h2>
