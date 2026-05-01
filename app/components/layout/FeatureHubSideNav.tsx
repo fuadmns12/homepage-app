@@ -44,9 +44,7 @@ const NAV_ITEMS: ReadonlyArray<{
   { section: 'contact', label: 'Start', Icon: MessageCircle },
 ] as const
 
-const FREE_TRIAL_WA_URL =
-  'https://wa.me/6285846003119?text=' +
-  encodeURIComponent('Halo Admin GEUWAT, saya ingin Free Trial dan minta dimasukkan ke grup WA. Terima kasih.')
+const FREE_TRIAL_GROUP_URL = 'https://chat.whatsapp.com/JLaBgBoQM5zB5KNfSfEaCI'
 const MEDSOS_URL = 'https://www.instagram.com/learningenglishgeuwat/'
 const GROUP_URL = 'https://discord.gg/kpPQHW7gFA'
 
@@ -179,9 +177,9 @@ export default function FeatureHubSideNav({
                       className="featurehub-sidenav-item"
                       onClick={() => {
                         closeMobile()
-                        openExternal(FREE_TRIAL_WA_URL)
+                        openExternal(FREE_TRIAL_GROUP_URL)
                       }}
-                      title="Free Trial (Masuk grup WA)"
+                      title="Free Trial (Grup WA)"
                     >
                       <Gift aria-hidden="true" className="featurehub-sidenav-icon" />
                       <span className="featurehub-sidenav-label">Free Trial</span>
