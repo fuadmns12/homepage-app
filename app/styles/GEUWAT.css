@@ -201,14 +201,17 @@ body {
 }
 
 .container.sidenav-active {
-	padding-left: 280px;
+	padding-left: 20px;
 }
 
 .featurehub-sidenav {
 	position: fixed;
 	top: 50%;
 	left: calc(16px + env(safe-area-inset-left));
-	transform: translateY(-50%);
+	transform: translate(calc(-100% - 14px), -50%);
+	opacity: 0;
+	pointer-events: none;
+	transition: transform 220ms ease, opacity 220ms ease;
 	width: 240px;
 	z-index: 1000;
 	border-radius: 18px;
@@ -220,6 +223,12 @@ body {
 	padding: 12px;
 	display: grid;
 	gap: 10px;
+}
+
+.featurehub-sidenav.is-mobile-open {
+	transform: translate(0, -50%);
+	opacity: 1;
+	pointer-events: auto;
 }
 
 .featurehub-entry-arrow,
@@ -243,6 +252,10 @@ body {
 }
 
 .featurehub-mobile-launcher {
+	display: inline-flex;
+}
+
+.featurehub-mobile-launcher.is-open {
 	display: none;
 }
 
@@ -272,7 +285,20 @@ body {
 }
 
 .featurehub-sidenav-backdrop {
-	display: none;
+	display: block;
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.35);
+	backdrop-filter: blur(2px);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 200ms ease;
+	z-index: 990;
+}
+
+.featurehub-sidenav-backdrop.is-open {
+	opacity: 1;
+	pointer-events: auto;
 }
 
 .featurehub-sidenav.is-collapsed {

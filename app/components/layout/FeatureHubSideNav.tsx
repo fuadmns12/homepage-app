@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Home, Info, LayoutGrid, MessageCircle, CalendarDays, Users, Images, Star, House } from 'lucide-react'
+import { Home, Info, LayoutGrid, MessageCircle, CalendarDays, Users, Images, Star, House, Gift, Instagram, UsersRound } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 function ChevronIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -44,6 +44,12 @@ const NAV_ITEMS: ReadonlyArray<{
   { section: 'contact', label: 'Start', Icon: MessageCircle },
 ] as const
 
+const FREE_TRIAL_WA_URL =
+  'https://wa.me/6285846003119?text=' +
+  encodeURIComponent('Halo Admin GEUWAT, saya ingin Free Trial dan minta dimasukkan ke grup WA. Terima kasih.')
+const MEDSOS_URL = 'https://www.instagram.com/learningenglishgeuwat/'
+const GROUP_URL = 'https://discord.gg/kpPQHW7gFA'
+
 interface FeatureHubSideNavProps {
   activeSection: string
   onNavigate: (sectionId: FeatureSection) => void
@@ -64,7 +70,11 @@ export default function FeatureHubSideNav({
   onMobileOpenChange,
 }: FeatureHubSideNavProps) {
   const [isCollapsed, setIsCollapsed] = React.useState(false)
-  const [isMobileOpen, setIsMobileOpen] = React.useState(false)
+  const [isMobileOpen, setIsMobileOpen] = React.useState(mode === 'featureHub')
+
+  const openExternal = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
 
   const effectiveMobileOpen = typeof mobileOpen === 'boolean' ? mobileOpen : isMobileOpen
   const setEffectiveMobileOpen = (open: boolean) => {
@@ -103,13 +113,13 @@ export default function FeatureHubSideNav({
         <button
           type="button"
           className="featurehub-sidenav-handle"
-          aria-label={mode === 'landing' ? 'Tutup navigasi' : isCollapsed ? 'Buka navigasi' : 'Tutup navigasi'}
+          aria-label={effectiveMobileOpen ? 'Tutup navigasi' : 'Buka navigasi'}
           onClick={() => {
-            if (mode === 'landing') {
+            if (effectiveMobileOpen) {
               closeMobile()
               return
             }
-            setIsCollapsed((prev) => !prev)
+            setEffectiveMobileOpen(true)
           }}
         >
           <ChevronIcon
@@ -147,20 +157,64 @@ export default function FeatureHubSideNav({
           {NAV_ITEMS.map(({ section, label, Icon }) => {
             const isActive = activeSection === section
             return (
-              <button
-                key={section}
-                type="button"
-                className={`featurehub-sidenav-item ${isActive ? 'is-active' : ''}`}
-                onClick={() => {
-                  closeMobile()
-                  onNavigate(section)
-                }}
-                aria-current={isActive ? 'page' : undefined}
-                title={label}
-              >
-                <Icon aria-hidden="true" className="featurehub-sidenav-icon" />
-                <span className="featurehub-sidenav-label">{label}</span>
-              </button>
+              <React.Fragment key={section}>
+                <button
+                  type="button"
+                  className={`featurehub-sidenav-item ${isActive ? 'is-active' : ''}`}
+                  onClick={() => {
+                    closeMobile()
+                    onNavigate(section)
+                  }}
+                  aria-current={isActive ? 'page' : undefined}
+                  title={label}
+                >
+                  <Icon aria-hidden="true" className="featurehub-sidenav-icon" />
+                  <span className="featurehub-sidenav-label">{label}</span>
+                </button>
+
+                {section === 'ambassador' ? (
+                  <>
+                    <button
+                      type="button"
+                      className="featurehub-sidenav-item"
+                      onClick={() => {
+                        closeMobile()
+                        openExternal(FREE_TRIAL_WA_URL)
+                      }}
+                      title="Free Trial (Masuk grup WA)"
+                    >
+                      <Gift aria-hidden="true" className="featurehub-sidenav-icon" />
+                      <span className="featurehub-sidenav-label">Free Trial</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      className="featurehub-sidenav-item"
+                      onClick={() => {
+                        closeMobile()
+                        openExternal(MEDSOS_URL)
+                      }}
+                      title="Medsos"
+                    >
+                      <Instagram aria-hidden="true" className="featurehub-sidenav-icon" />
+                      <span className="featurehub-sidenav-label">Medsos</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      className="featurehub-sidenav-item"
+                      onClick={() => {
+                        closeMobile()
+                        openExternal(GROUP_URL)
+                      }}
+                      title="Grup"
+                    >
+                      <UsersRound aria-hidden="true" className="featurehub-sidenav-icon" />
+                      <span className="featurehub-sidenav-label">Grup</span>
+                    </button>
+                  </>
+                ) : null}
+              </React.Fragment>
             )
           })}
         </nav>
