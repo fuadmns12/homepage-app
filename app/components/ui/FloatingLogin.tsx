@@ -34,14 +34,29 @@ function DiamondIcon(props: React.SVGProps<SVGSVGElement>) {
   )
 }
 
+function ChevronIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path
+        d="M6 9l6 6 6-6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
 export default function FloatingLogin() {
   const [userCount, setUserCount] = useState<number | null>(null)
   const [trialCount, setTrialCount] = useState<number | null>(null)
   const [paidCount, setPaidCount] = useState<number | null>(null)
-  const [menuOpen, setMenuOpen] = useState(false)
   const [breakdownOpen, setBreakdownOpen] = useState(false)
-  const rootRef = useRef<HTMLDivElement | null>(null)
+  const [collapsed, setCollapsed] = useState(false)
   const breakdownCloseTimerRef = useRef<number | null>(null)
+  const touchStartYRef = useRef<number | null>(null)
 
   useEffect(() => {
     const controller = new AbortController()
@@ -80,37 +95,6 @@ export default function FloatingLogin() {
     return new Intl.NumberFormat('id-ID').format(paidCount)
   }, [paidCount])
 
-  useEffect(() => {
-    if (!menuOpen) return
-
-    const onPointerDown = (event: MouseEvent | TouchEvent) => {
-      const root = rootRef.current
-      if (!root) return
-      const target = event.target as Node | null
-      if (!target) return
-      if (root.contains(target)) return
-      setMenuOpen(false)
-      setBreakdownOpen(false)
-    }
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setMenuOpen(false)
-        setBreakdownOpen(false)
-      }
-    }
-
-    document.addEventListener('mousedown', onPointerDown, true)
-    document.addEventListener('touchstart', onPointerDown, true)
-    document.addEventListener('keydown', onKeyDown, true)
-
-    return () => {
-      document.removeEventListener('mousedown', onPointerDown, true)
-      document.removeEventListener('touchstart', onPointerDown, true)
-      document.removeEventListener('keydown', onKeyDown, true)
-    }
-  }, [menuOpen])
-
   const openBreakdown = () => {
     if (breakdownCloseTimerRef.current !== null) {
       window.clearTimeout(breakdownCloseTimerRef.current)
@@ -130,40 +114,34 @@ export default function FloatingLogin() {
     }, 160)
   }
 
-  return (
-    <div className="conversion-login-row" aria-label="Login ke Member GEUWAT">
-      <div className="conversion-login-stack" ref={rootRef}>
-        <button
-          type="button"
-          className="conversion-chibi-card conversion-chibi-trigger conversion-chibi-logo"
-          aria-label="Buka pilihan login"
-          aria-haspopup="menu"
-          aria-expanded={menuOpen}
-          onClick={() =>
-            setMenuOpen((v) => {
-              const next = !v
-              if (!next) setBreakdownOpen(false)
-              return next
-            })
-          }
-        >
-          <span className="conversion-chibi-frame" aria-hidden="true">
-            <Image
-              src="/NewLogoRB.webp"
-              alt=""
-              fill
-              sizes="72px"
-              priority={false}
-              className="conversion-chibi-image"
-            />
-          </span>
-        </button>
+  const onTouchStart = (event: React.TouchEvent) => {
+    touchStartYRef.current = event.touches[0]?.clientY ?? null
+  }
 
-        {menuOpen ? (
-          <div className="conversion-chibi-menu" role="menu" aria-label="Pilih akun login">
-            <div className="conversion-chibi-item" role="none">
+  const onTouchEnd = (event: React.TouchEvent) => {
+    const startY = touchStartYRef.current
+    touchStartYRef.current = null
+    if (startY == null) return
+    const endY = event.changedTouches[0]?.clientY ?? startY
+    const deltaY = endY - startY
+    const threshold = 28
+    if (deltaY <= -threshold) setCollapsed(true)
+    if (deltaY >= threshold) setCollapsed(false)
+  }
+
+  return (
+    <div
+      className={`conversion-login-row ${collapsed ? 'is-collapsed' : ''}`}
+      aria-label="Login ke Member GEUWAT"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
+      <div className="conversion-login-inner">
+        {!collapsed ? (
+          <nav className="conversion-chibi-menu" aria-label="Login GEUWAT">
+            <div className="conversion-chibi-item">
               {formattedCount ? (
-                <div className="conversion-menu-count-wrap" role="none">
+                <div className="conversion-menu-count-wrap">
                   <button
                     type="button"
                     className="conversion-menu-count-badge"
@@ -181,8 +159,7 @@ export default function FloatingLogin() {
 
               <a
                 href={MEMBER_LOGIN_URL}
-                className="conversion-chibi-card conversion-chibi-link"
-                role="menuitem"
+                className="conversion-chibi-card conversion-chibi-link conversion-chibi-spotlight"
                 aria-label="Login (Chibi 1)"
                 onClick={() =>
                   trackCtaClick('hero_login', {
@@ -192,19 +169,12 @@ export default function FloatingLogin() {
                 }
               >
                 <span className="conversion-chibi-frame" aria-hidden="true">
-                  <Image
-                    src="/Chibi/chibi1.webp"
-                    alt=""
-                    fill
-                    sizes="72px"
-                    priority={false}
-                    className="conversion-chibi-image"
-                  />
+                  <Image src="/Chibi/chibi1.webp" alt="" fill sizes="72px" priority={false} className="conversion-chibi-image" />
                 </span>
               </a>
             </div>
 
-            <div className="conversion-chibi-card conversion-chibi-soon" role="menuitem" aria-label="Chibi 2 (Soon)">
+            <div className="conversion-chibi-card conversion-chibi-soon" aria-label="Chibi 2 (Soon)">
               <span className="conversion-chibi-frame" aria-hidden="true">
                 <Image src="/Chibi/chibi2.webp" alt="" fill sizes="72px" className="conversion-chibi-image" />
               </span>
@@ -213,7 +183,13 @@ export default function FloatingLogin() {
               </span>
             </div>
 
-            <div className="conversion-chibi-card conversion-chibi-soon" role="menuitem" aria-label="Chibi 3 (Soon)">
+            <div className="conversion-chibi-card conversion-chibi-logo conversion-chibi-logo-static" role="img" aria-label="Logo GEUWAT">
+              <span className="conversion-chibi-frame" aria-hidden="true">
+                <Image src="/NewLogoRB.webp" alt="" fill sizes="72px" priority={false} className="conversion-chibi-image" />
+              </span>
+            </div>
+
+            <div className="conversion-chibi-card conversion-chibi-soon" aria-label="Chibi 3 (Soon)">
               <span className="conversion-chibi-frame" aria-hidden="true">
                 <Image src="/Chibi/chibi3.webp" alt="" fill sizes="72px" className="conversion-chibi-image" />
               </span>
@@ -222,7 +198,7 @@ export default function FloatingLogin() {
               </span>
             </div>
 
-            <div className="conversion-chibi-card conversion-chibi-soon" role="menuitem" aria-label="Chibi 4 (Soon)">
+            <div className="conversion-chibi-card conversion-chibi-soon" aria-label="Chibi 4 (Soon)">
               <span className="conversion-chibi-frame" aria-hidden="true">
                 <Image src="/Chibi/chibi4.webp" alt="" fill sizes="72px" className="conversion-chibi-image" />
               </span>
@@ -238,25 +214,26 @@ export default function FloatingLogin() {
               onMouseEnter={openBreakdown}
               onMouseLeave={scheduleCloseBreakdown}
             >
-              <div
-                className="conversion-menu-breakdown-card conversion-menu-breakdown-card--trial"
-                aria-label={`User trial: ${formattedTrialCount ?? '—'}`}
-              >
+              <div className="conversion-menu-breakdown-card conversion-menu-breakdown-card--trial" aria-label={`User trial: ${formattedTrialCount ?? '—'}`}>
                 <LightningIcon className="conversion-menu-breakdown-icon" aria-hidden="true" />
                 <span className="conversion-menu-breakdown-value">{formattedTrialCount ?? '—'}</span>
               </div>
-              <div
-                className="conversion-menu-breakdown-card conversion-menu-breakdown-card--paid"
-                aria-label={`User berbayar: ${formattedPaidCount ?? '—'}`}
-              >
+              <div className="conversion-menu-breakdown-card conversion-menu-breakdown-card--paid" aria-label={`User berbayar: ${formattedPaidCount ?? '—'}`}>
                 <DiamondIcon className="conversion-menu-breakdown-icon" aria-hidden="true" />
                 <span className="conversion-menu-breakdown-value">{formattedPaidCount ?? '—'}</span>
               </div>
             </div>
-          </div>
+          </nav>
         ) : null}
 
-        <span className="conversion-login-text">Login</span>
+        <button
+          type="button"
+          className="conversion-login-handle"
+          aria-label={collapsed ? 'Tampilkan login bar' : 'Sembunyikan login bar'}
+          onClick={() => setCollapsed((v) => !v)}
+        >
+          <ChevronIcon className={`conversion-login-chevron ${collapsed ? 'is-down' : 'is-up'}`} />
+        </button>
       </div>
     </div>
   )
