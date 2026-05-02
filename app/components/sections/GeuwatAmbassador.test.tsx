@@ -3,11 +3,12 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import GeuwatAmbassador from './GeuwatAmbassador'
 
 describe('GeuwatAmbassador section', () => {
-  it('renders coming soon content', () => {
+  it('renders ambassador navigation', () => {
     render(<GeuwatAmbassador backToMenu={jest.fn()} isActive={true} />)
 
     expect(screen.getAllByText('GEUWAT AMBASSADOR').length).toBeGreaterThan(0)
-    expect(screen.getByText(/COMING SOON/i)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'GEUWAT Ambassador +18' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'GEUWAT Ambassador <18' })).toBeInTheDocument()
   })
 
   it('calls backToMenu', () => {
