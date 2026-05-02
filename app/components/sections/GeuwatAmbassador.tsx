@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 interface GeuwatAmbassadorProps {
   backToMenu: () => void
@@ -19,13 +20,24 @@ export default function GeuwatAmbassador({ backToMenu, isActive }: GeuwatAmbassa
 
       <div
         className="intro-hero"
-        aria-label="GEUWAT AMBASSADOR (Coming Soon)"
+        aria-label="GEUWAT AMBASSADOR"
         data-active={isActive ? 'true' : 'false'}
       >
         <div className="intro-hero-content">
-          <span className="intro-badge">COMING SOON</span>
-          <h3 className="intro-headline">GEUWAT AMBASSADOR</h3>
-          <p className="intro-subtext">Halaman ambassador sedang kami siapkan. Nantinya berisi syarat, benefit, dan cara daftar.</p>
+          <span className="intro-badge">DAFTAR AMBASSADOR</span>
+          <h3 className="intro-headline">Pendaftaran GEUWAT Ambassador</h3>
+          <p className="intro-subtext">
+            Pilih kategori usia untuk membuka halaman pendaftaran (Google Form).
+          </p>
+
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 14 }} aria-label="Tab pendaftaran">
+            <Link href="/geuwat-ambassador/18-plus" className="conversion-secondary-link">
+              GEUWAT Ambassador +18
+            </Link>
+            <Link href="/geuwat-ambassador/under-18" className="conversion-secondary-link">
+              GEUWAT Ambassador &lt;18
+            </Link>
+          </div>
         </div>
 
         <div className="intro-hero-visual" aria-hidden="true">

@@ -120,6 +120,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
             target="_blank"
             rel="noopener noreferrer"
             className="conversion-secondary-link"
+            style={{ textAlign: 'center' }}
             onClick={() =>
               trackCtaClick('hero_ambassador_discount', {
                 location: 'conversion_landing',
