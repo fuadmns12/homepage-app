@@ -11,15 +11,20 @@ const ADMIN_WA = '6285846003119'
 export default function AmbassadorFormClient({ variant }: { variant: AmbassadorFormVariant }) {
   const [isTermsOpen, setIsTermsOpen] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState(false)
+  const [email, setEmail] = useState('')
+
+  const normalizedEmail = email.trim()
+  const hasEmail = normalizedEmail.length > 0
 
   const whatsappHref = useMemo(() => {
-    const message =
+    const baseMessage =
       variant === '18-plus'
         ? 'Halo Admin GEUWAT, saya sudah mengisi form pendaftaran GEUWAT Ambassador +18. Mohon verifikasi pendaftaran saya.'
         : 'Halo Admin GEUWAT, saya sudah mengisi form pendaftaran GEUWAT Ambassador <18. Mohon verifikasi pendaftaran saya.'
 
+    const message = hasEmail ? `${baseMessage}\n\nEmail: ${normalizedEmail}` : baseMessage
     return `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(message)}`
-  }, [variant])
+  }, [hasEmail, normalizedEmail, variant])
 
   return (
     <>
@@ -30,6 +35,32 @@ export default function AmbassadorFormClient({ variant }: { variant: AmbassadorF
               {variant === '18-plus' ? 'GEUWAT Ambassador +18' : 'GEUWAT Ambassador <18'}
             </h2>
             <p className="section-subtitle">Isi form, lalu lanjutkan verifikasi via WhatsApp.</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 10 }}>
+              <button
+                type="button"
+                onClick={() => setIsTermsOpen(true)}
+                className="conversion-secondary-link"
+                style={{ width: 'fit-content' }}
+              >
+                Baca Ketentuan dan Kebijakan Privasi
+              </button>
+              {variant === 'under-18' && (
+                <a
+                  href="https://docs.google.com/document/d/1x8XbezNFF59Uvq5OePJ8MtVPyktnvlBT/edit?usp=sharing&ouid=115056304457337211926&rtpof=true&sd=true"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="conversion-secondary-link"
+                  style={{ width: 'fit-content', display: 'flex', alignItems: 'center', gap: 6 }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  Download Surat Izin Orang Tua
+                </a>
+              )}
+            </div>
           </div>
 
           <nav aria-label="Tab pendaftaran" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
@@ -66,7 +97,7 @@ export default function AmbassadorFormClient({ variant }: { variant: AmbassadorF
                   Silakan isi form pendaftaran dengan klik tombol di bawah ini.
                 </p>
                 <a
-                  href="https://forms.gle/VNEBCKDLtLBQQ5KB6"
+                  href="https://forms.gle/BTA8sutVkfTzBAis9"
                   target="_blank"
                   rel="noreferrer"
                   className="intro-cta-primary conversion-primary-cta"
@@ -78,20 +109,38 @@ export default function AmbassadorFormClient({ variant }: { variant: AmbassadorF
             )}
 
             <div style={{ display: 'grid', gap: 10 }}>
-              <button
-                type="button"
-                onClick={() => setIsTermsOpen(true)}
-                className="conversion-secondary-link"
-                style={{ width: 'fit-content' }}
-              >
-                Baca Ketentuan dan Kebijakan Privasi
-              </button>
+              <label style={{ display: 'grid', gap: 6, width: 'min(520px, 100%)' }}>
+                <span className="section-subtitle" style={{ marginBottom: 0 }}>
+                  Email
+                </span>
+                <input
+                  type="email"
+                  inputMode="email"
+                  autoComplete="email"
+                  placeholder="contoh: nama@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  style={{
+                    borderRadius: 12,
+                    padding: '12px 14px',
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    background: 'rgba(0,0,0,0.18)',
+                    color: 'inherit',
+                    outline: 'none',
+                  }}
+                />
+              </label>
 
               <button
                 type="button"
                 className="intro-cta-primary conversion-primary-cta"
                 onClick={() => setHasSubmitted(true)}
-                style={{ width: 'fit-content' }}
+                disabled={!hasEmail}
+                style={{
+                  width: 'fit-content',
+                  opacity: !hasEmail ? 0.6 : 1,
+                  cursor: !hasEmail ? 'not-allowed' : 'pointer',
+                }}
               >
                 Saya sudah isi form, lanjut verifikasi WhatsApp
               </button>

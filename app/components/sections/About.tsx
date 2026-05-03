@@ -71,7 +71,7 @@ export default function About({ backToMenu, isActive = true, standalone = false 
   return (
     <>
       {standalone ? (
-        <Link className="back-btn" href="/">Kembali ke Beranda</Link>
+        <Link className="back-btn" href="/">Kembali ke Menu</Link>
       ) : (
         <button className="back-btn" onClick={backToMenu ?? (() => {})}>Kembali ke Menu</button>
       )}

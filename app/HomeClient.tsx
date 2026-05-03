@@ -8,7 +8,6 @@ import AmbientBg from './components/ui/AmbientBg'
 import GridOverlay from './components/ui/GridOverlay'
 import NotificationPrompt from './components/ui/NotificationPrompt'
 import ScrollTracker from './components/ui/ScrollTracker'
-import FloatingLogin from './components/ui/FloatingLogin'
 import FloatingWhatsApp from './components/ui/FloatingWhatsApp'
 import Header from './components/layout/Header'
 import MenuGrid from './components/layout/MenuGrid'
@@ -224,7 +223,6 @@ export default function HomeClient() {
       <GridOverlay />
       <NotificationPrompt />
       <ScrollTracker />
-      <FloatingLogin />
       <FloatingWhatsApp />
 
       <div

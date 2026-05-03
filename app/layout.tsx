@@ -4,6 +4,8 @@ import './globals.css'
 import './styles/GEUWAT.css'
 import AnalyticsScripts from './components/ui/AnalyticsScripts'
 import CookieConsent from './components/ui/CookieConsent'
+import FloatingLogin from './components/ui/FloatingLogin'
+import GlobalSideNav from './components/layout/GlobalSideNav'
 
 const outfit = Outfit({ 
   subsets: ['latin'], 
@@ -105,6 +107,8 @@ export default function RootLayout({
         <AnalyticsScripts measurementId={GA_MEASUREMENT_ID} />
         {children}
         <CookieConsent />
+        <FloatingLogin />
+        <GlobalSideNav />
       </body>
     </html>
   )
