@@ -3,6 +3,7 @@ export type CookieConsentValue = 'unknown' | 'granted' | 'denied'
 export const COOKIE_CONSENT_STORAGE_KEY = 'geuwat_cookie_consent'
 export const COOKIE_CONSENT_COOKIE_NAME = 'geuwat_cookie_consent'
 export const COOKIE_CONSENT_SESSION_KEY = 'geuwat_cookie_consent'
+export const COOKIE_CONSENT_HIDDEN_SESSION_KEY = 'geuwat_cookie_consent_hidden'
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365
 
 function readCookie(name: string) {
@@ -73,11 +74,23 @@ export function writeCookieConsent(value: Exclude<CookieConsentValue, 'unknown'>
 
   try {
     document.cookie = `${COOKIE_CONSENT_COOKIE_NAME}=${encodeURIComponent(value)}; Max-Age=${COOKIE_MAX_AGE_SECONDS}; Path=/; SameSite=Lax`
-  } catch {
-  }
+  } catch {}
 
   try {
     window.dispatchEvent(new Event('geuwat_cookie_consent_changed'))
-  } catch {
-  }
+  } catch {}
+}
+
+export function readCookieConsentHidden(): boolean {
+  if (typeof window === 'undefined') return false
+  const raw = readStorageValue(getSafeStorage('sessionStorage'), COOKIE_CONSENT_HIDDEN_SESSION_KEY)
+  return raw === '1'
+}
+
+export function hideCookieConsent() {
+  if (typeof window === 'undefined') return
+  writeStorageValue(getSafeStorage('sessionStorage'), COOKIE_CONSENT_HIDDEN_SESSION_KEY, '1')
+  try {
+    window.dispatchEvent(new Event('geuwat_cookie_consent_changed'))
+  } catch {}
 }

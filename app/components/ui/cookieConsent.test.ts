@@ -1,10 +1,13 @@
 import {
   readCookieConsent,
+  readCookieConsentHidden,
+  hideCookieConsent,
   writeCookieConsent,
   COOKIE_CONSENT_COOKIE_NAME,
   COOKIE_CONSENT_STORAGE_KEY,
   COOKIE_CONSENT_SESSION_KEY,
-} from './cookieConsent'
+  COOKIE_CONSENT_HIDDEN_SESSION_KEY,
+} from './cookieConsentState'
 
 function clearConsentCookie() {
   document.cookie = `${COOKIE_CONSENT_COOKIE_NAME}=; Max-Age=0; Path=/`
@@ -15,6 +18,7 @@ describe('cookieConsent', () => {
     clearConsentCookie()
     window.localStorage.removeItem(COOKIE_CONSENT_STORAGE_KEY)
     window.sessionStorage.removeItem(COOKIE_CONSENT_SESSION_KEY)
+    window.sessionStorage.removeItem(COOKIE_CONSENT_HIDDEN_SESSION_KEY)
   })
 
   afterEach(() => {
@@ -41,6 +45,18 @@ describe('cookieConsent', () => {
 
     expect(() => writeCookieConsent('granted')).not.toThrow()
     expect(document.cookie).toContain(`${COOKIE_CONSENT_COOKIE_NAME}=granted`)
+    expect(dispatchSpy).toHaveBeenCalled()
+  })
+
+  it('can be hidden without changing consent', () => {
+    expect(readCookieConsent()).toBe('unknown')
+    expect(readCookieConsentHidden()).toBe(false)
+
+    const dispatchSpy = jest.spyOn(window, 'dispatchEvent')
+    expect(() => hideCookieConsent()).not.toThrow()
+
+    expect(readCookieConsent()).toBe('unknown')
+    expect(readCookieConsentHidden()).toBe(true)
     expect(dispatchSpy).toHaveBeenCalled()
   })
 })

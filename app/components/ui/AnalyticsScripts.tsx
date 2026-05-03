@@ -2,7 +2,7 @@
 
 import Script from 'next/script'
 import { useEffect, useState } from 'react'
-import { readCookieConsent, type CookieConsentValue, COOKIE_CONSENT_STORAGE_KEY } from './cookieConsent'
+import { readCookieConsent, type CookieConsentValue, COOKIE_CONSENT_STORAGE_KEY } from './cookieConsentState'
 
 type AnalyticsScriptsProps = {
   measurementId: string
