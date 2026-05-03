@@ -16,9 +16,6 @@ export default function GeuwatAmbassadorUnder18Page() {
           <Link href="/geuwat-ambassador" className="conversion-secondary-link">
             Kembali
           </Link>
-          <Link href="/" className="conversion-secondary-link">
-            Beranda
-          </Link>
         </nav>
       </div>
 

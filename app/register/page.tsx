@@ -153,7 +153,7 @@ export default function RegisterPage() {
                     color: 'var(--dark-1)'
                   }}
                 >
-                  Kembali ke Beranda
+                  Kembali ke Menu
                 </button>
                 <button
                   onClick={() => window.location.reload()}
