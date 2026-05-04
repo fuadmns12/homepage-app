@@ -1,178 +1,27 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { User, Mail, Phone, AlertCircle } from 'lucide-react'
+import React, { useState, useMemo } from 'react'
+import { User } from 'lucide-react'
 import Link from 'next/link'
 import AmbientBg from '../components/ui/AmbientBg'
 import GridOverlay from '../components/ui/GridOverlay'
 import TermsModal from './components/TermsModal'
-import { registerUser } from '../../lib/register'
 
-interface FormData {
-  fullName: string
-  email: string
-  whatsapp: string
-  referral: string
-  agreeTerms: boolean
-}
+const ADMIN_WA = '6285846003119'
 
 export default function RegisterPage() {
-  const [formData, setFormData] = useState<FormData>({
-    fullName: '',
-    email: '',
-    whatsapp: '',
-    referral: '',
-    agreeTerms: false
-  })
-
-  const [errors, setErrors] = useState<Partial<FormData>>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
   const [showTermsModal, setShowTermsModal] = useState(false)
+  const [hasSubmitted, setHasSubmitted] = useState(false)
+  const [email, setEmail] = useState('')
 
-  // Get referral code from URL if exists
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const ref = urlParams.get('ref')
-    
-    if (ref) {
-      setFormData(prev => ({ ...prev, referral: ref }))
-    }
-  }, [])
+  const normalizedEmail = email.trim()
+  const hasEmail = normalizedEmail.length > 0
 
-  const validateForm = (): boolean => {
-    const newErrors: Partial<FormData> = {}
-
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Nama lengkap wajib diisi'
-    } else if (formData.fullName.length < 3) {
-      newErrors.fullName = 'Nama lengkap minimal 3 karakter'
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email wajib diisi'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Format email tidak valid'
-    }
-
-    if (!formData.whatsapp.trim()) {
-      newErrors.whatsapp = 'Nomor WhatsApp wajib diisi'
-    } else if (!/^[0-9+\-\s()]+$/.test(formData.whatsapp)) {
-      newErrors.whatsapp = 'Format nomor WhatsApp tidak valid'
-    }
-
-    
-    if (!formData.agreeTerms) {
-      newErrors.agreeTerms = true
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!validateForm()) return
-
-    setIsSubmitting(true)
-
-    try {
-      // Send registration to WhatsApp
-      const result = await registerUser({
-        fullname: formData.fullName,
-        email: formData.email,
-        whatsapp: formData.whatsapp,
-        referral: formData.referral || undefined
-      })
-
-      if (result.success) {
-        setSubmitSuccess(true)
-      } else {
-        setErrors({ email: result.error || 'Pendaftaran gagal. Silakan coba lagi.' })
-      }
-    } catch (error) {
-      console.error('Registration error:', error)
-      setErrors({ email: 'Terjadi kesalahan saat pendaftaran. Silakan coba lagi.' })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }))
-    
-    // Clear error for this field
-    if (errors[name as keyof FormData]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: undefined
-      }))
-    }
-  }
-
-  const handleTermsAcknowledge = () => {
-    setFormData(prev => ({
-      ...prev,
-      agreeTerms: true
-    }))
-    setErrors(prev => ({
-      ...prev,
-      agreeTerms: undefined
-    }))
-    setShowTermsModal(false)
-  }
-
-  if (submitSuccess) {
-    return (
-      <>
-        <AmbientBg />
-        <GridOverlay />
-        <div className="min-h-screen flex items-center justify-center relative z-10">
-          <div className="container">
-            <div className="max-w-md w-full mx-auto glass-card rounded-2xl p-4 sm:p-6 md:p-8 text-center">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'var(--glow-green)' }}>
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-bold text-white mb-4">Pendaftaran Berhasil!</h2>
-              <p className="text-gray-300 mb-6">
-                Data pendaftaran Anda telah dikirim ke WhatsApp admin. Kami akan segera menghubungi Anda untuk proses selanjutnya.
-              </p>
-              <div className="space-y-3">
-                <button
-                  onClick={() => window.location.href = '/'}
-                  className="w-full py-3 rounded-lg font-medium transition-colors"
-                  style={{
-                    background: 'var(--primary)',
-                    color: 'var(--dark-1)'
-                  }}
-                >
-                  Kembali ke Menu
-                </button>
-                <button
-                  onClick={() => window.location.reload()}
-                  className="w-full py-3 rounded-lg font-medium transition-colors border"
-                  style={{
-                    background: 'transparent',
-                    borderColor: 'var(--glass-border)',
-                    color: 'white'
-                  }}
-                >
-                  Daftar Lagi
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    )
-  }
+  const whatsappHref = useMemo(() => {
+    const baseMessage = 'Halo Admin GEUWAT, saya sudah mengisi form pendaftaran member baru. Mohon verifikasi pendaftaran saya.'
+    const message = hasEmail ? `${baseMessage}\n\nEmail: ${normalizedEmail}` : baseMessage
+    return `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(message)}`
+  }, [hasEmail, normalizedEmail])
 
   return (
     <>
@@ -181,182 +30,126 @@ export default function RegisterPage() {
       <Link href="/" className="back-btn">
         Kembali ke Menu
       </Link>
-      <div className="min-h-screen flex items-center justify-center relative z-10">
+      
+      <div className="min-h-screen flex items-center justify-center relative z-10 py-16">
         <div className="container">
-          <div className="max-w-sm w-full mx-auto glass-card rounded-2xl p-3 sm:p-4 md:p-5">
-            {/* Header */}
-            <div className="text-center mb-6">
-              <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3" style={{ background: 'var(--glow-cyan)' }}>
-                <User className="w-7 h-7 text-white" />
+          <div className="max-w-2xl w-full mx-auto">
+            {/* Header Card */}
+            <div className="glass-card mb-4" style={{ padding: 18 }}>
+              <div className="text-center mb-6">
+                <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3" style={{ background: 'var(--glow-cyan)' }}>
+                  <User className="w-7 h-7 text-white" />
+                </div>
+                <h1 className="text-lg sm:text-xl font-bold text-white mb-1">Form Pendaftaran</h1>
+                <p className="text-gray-400 text-xs">Bergabung dengan platform pembelajaran English GEUWAT</p>
               </div>
-              <h1 className="text-lg sm:text-xl font-bold text-white mb-1">Form Pendaftaran</h1>
-              <p className="text-gray-400 text-xs">Bergabung dengan platform pembelajaran English GEUWAT</p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center' }}>
+                <button
+                  type="button"
+                  onClick={() => setShowTermsModal(true)}
+                  className="conversion-secondary-link"
+                  style={{ width: 'fit-content' }}
+                >
+                  Baca Ketentuan dan Kebijakan Privasi
+                </button>
+              </div>
             </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Full Name */}
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
-                  Nama Lengkap
-                </label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <input
-                    type="text"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleInputChange}
-                    className={`w-full pl-9 pr-3 py-2 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent ${
-                      errors.fullName ? 'border-red-500' : 'border'
-                    }`}
-                    style={{
-                      background: 'var(--glass-bg)',
-                      borderColor: errors.fullName ? '#ef4444' : 'var(--glass-border)'
-                    }}
-                    placeholder="Masukkan nama lengkap Anda"
-                  />
-                </div>
-                {errors.fullName && (
-                  <p className="mt-1 text-sm text-red-400 flex items-center">
-                    <AlertCircle className="w-4 h-4 mr-1" />
-                    {errors.fullName}
-                  </p>
-                )}
-              </div>
+            {/* Form / Verification Card */}
+            {!hasSubmitted ? (
+              <div className="glass-card" style={{ padding: 18 }}>
+                <div style={{ display: 'grid', gap: 14 }}>
+                  <div style={{ borderRadius: 14, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)' }}>
+                    <iframe 
+                      src="https://docs.google.com/forms/d/e/1FAIpQLSdVhc9VCg_9QmsgYLMR2oNFsmZNeyzXeUfLR1BnImTYJ514JA/viewform?embedded=true" 
+                      width="100%" 
+                      height="1313" 
+                      frameBorder="0" 
+                      marginHeight={0} 
+                      marginWidth={0}
+                    >
+                      Memuat…
+                    </iframe>
+                  </div>
 
-              {/* Email */}
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
-                  Alamat Email
-                </label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className={`w-full pl-9 pr-3 py-2 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent ${
-                      errors.email ? 'border-red-500' : 'border'
-                    }`}
-                    style={{
-                      background: 'var(--glass-bg)',
-                      borderColor: errors.email ? '#ef4444' : 'var(--glass-border)'
-                    }}
-                    placeholder="Masukkan email Anda"
-                  />
-                </div>
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-400 flex items-center">
-                    <AlertCircle className="w-4 h-4 mr-1" />
-                    {errors.email}
-                  </p>
-                )}
-              </div>
+                  <div style={{ display: 'grid', gap: 10, marginTop: 10 }}>
+                    <label style={{ display: 'grid', gap: 6, width: '100%' }}>
+                      <span className="section-subtitle" style={{ marginBottom: 0 }}>
+                        Email
+                      </span>
+                      <input
+                        type="email"
+                        inputMode="email"
+                        autoComplete="email"
+                        placeholder="contoh: nama@email.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        style={{
+                          borderRadius: 12,
+                          padding: '12px 14px',
+                          border: '1px solid rgba(255,255,255,0.12)',
+                          background: 'rgba(0,0,0,0.18)',
+                          color: 'inherit',
+                          outline: 'none',
+                          width: '100%'
+                        }}
+                      />
+                    </label>
 
-              {/* WhatsApp */}
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
-                  Nomor WhatsApp
-                </label>
-                <div className="relative">
-                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <input
-                    type="tel"
-                    name="whatsapp"
-                    value={formData.whatsapp}
-                    onChange={handleInputChange}
-                    className={`w-full pl-9 pr-3 py-2 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent ${
-                      errors.whatsapp ? 'border-red-500' : 'border'
-                    }`}
-                    style={{
-                      background: 'var(--glass-bg)',
-                      borderColor: errors.whatsapp ? '#ef4444' : 'var(--glass-border)'
-                    }}
-                    placeholder="+62 812-3456-7890"
-                  />
-                </div>
-                {errors.whatsapp && (
-                  <p className="mt-1 text-sm text-red-400 flex items-center">
-                    <AlertCircle className="w-4 h-4 mr-1" />
-                    {errors.whatsapp}
-                  </p>
-                )}
-              </div>
-
-              {/* Referral */}
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
-                  Kode Referral (Opsional)
-                </label>
-                <input
-                  type="text"
-                  name="referral"
-                  value={formData.referral}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent border"
-                  style={{
-                    background: 'var(--glass-bg)',
-                    borderColor: 'var(--glass-border)'
-                  }}
-                  placeholder="Masukkan kode referral"
-                />
-              </div>
-
-              
-              {/* Terms and Privacy */}
-              <div className="space-y-3">
-                <label className="flex items-start space-x-3">
-                  <input
-                    type="checkbox"
-                    name="agreeTerms"
-                    checked={formData.agreeTerms}
-                    onChange={handleInputChange}
-                    className="mt-1 w-4 h-4 rounded focus:outline-none focus:ring-2"
-                    style={{
-                      background: 'var(--glass-bg)',
-                      borderColor: 'var(--glass-border)',
-                      accentColor: 'var(--primary)'
-                    }}
-                  />
-                  <span className="text-xs sm:text-sm text-gray-300">
-                    Saya setuju dengan{' '}
                     <button
                       type="button"
-                      onClick={() => setShowTermsModal(true)}
-                      className="text-cyan-400 hover:text-cyan-300 underline transition-colors text-xs sm:text-sm"
+                      className="intro-cta-primary conversion-primary-cta"
+                      onClick={() => setHasSubmitted(true)}
+                      disabled={!hasEmail}
+                      style={{
+                        width: '100%',
+                        opacity: !hasEmail ? 0.6 : 1,
+                        cursor: !hasEmail ? 'not-allowed' : 'pointer',
+                        justifyContent: 'center'
+                      }}
                     >
-                      Ketentuan dan Kebijakan Privasi
+                      Saya sudah isi form, lanjut verifikasi WhatsApp
                     </button>
-                  </span>
-                </label>
-                {errors.agreeTerms && (
-                  <p className="text-xs sm:text-sm text-red-400 flex items-center">
-                    <AlertCircle className="w-4 h-4 mr-1" />
-                    Anda harus menyetujui ketentuan dan kebijakan
-                  </p>
-                )}
+                  </div>
+                </div>
               </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm"
-                style={{
-                  background: 'var(--primary)',
-                  color: 'var(--dark-1)'
-                }}
-              >
-                {isSubmitting ? 'Membuat Akun...' : 'Daftar'}
-              </button>
-            </form>
+            ) : (
+              <div className="glass-card" style={{ padding: 18 }}>
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'var(--glow-green)' }}>
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="section-title" style={{ paddingTop: 0, marginBottom: 6 }}>
+                    Verifikasi Pendaftaran
+                  </h3>
+                  <p className="section-subtitle mb-6">
+                    Klik tombol WhatsApp untuk mengirim pesan ke admin dan memproses verifikasi pendaftaran.
+                  </p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                    <a
+                      href={whatsappHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="intro-cta-primary conversion-primary-cta"
+                      style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}
+                    >
+                      Chat WhatsApp Admin
+                    </a>
+                    <button type="button" className="conversion-secondary-link" style={{ width: '100%', justifyContent: 'center' }} onClick={() => setHasSubmitted(false)}>
+                      Kembali ke Form
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Login Link */}
-            <div className="mt-4 text-center">
+            <div className="mt-6 text-center">
               <p className="text-xs sm:text-sm text-gray-400">
-                Already have an account?{' '}
+                Sudah punya akun?{' '}
                 <Link href="https://learningenglishgeuwat.vercel.app" className="font-medium transition-colors text-xs sm:text-sm"
                   style={{ color: 'var(--primary)' }}>
                   Masuk
@@ -371,8 +164,9 @@ export default function RegisterPage() {
       <TermsModal
         isOpen={showTermsModal}
         onClose={() => setShowTermsModal(false)}
-        onAcknowledge={handleTermsAcknowledge}
+        onAcknowledge={() => setShowTermsModal(false)}
       />
     </>
   )
 }
+
