@@ -174,6 +174,22 @@ export default function TermsModal({ isOpen, onClose, onAcknowledge }: TermsModa
               GEUWAT tidak bertanggung jawab atas gangguan layanan sementara yang disebabkan oleh pemeliharaan sistem, pembaruan, atau faktor teknis lainnya.
             </p>
           </div>
+
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-2">10. Ketergantungan pada Layanan Pihak Ketiga</h3>
+            <p className="text-sm mb-3">
+              <strong>Infrastruktur:</strong> Pengguna memahami bahwa Layanan ini dioperasikan menggunakan infrastruktur, server, dan hosting yang disediakan oleh pihak ketiga.
+            </p>
+            <p className="text-sm mb-3">
+              <strong>Ketersediaan Layanan:</strong> Meskipun kami berusaha maksimal untuk memastikan ketersediaan layanan 24/7, kami tidak memberikan jaminan mutlak atas uptime atau aksesibilitas layanan karena ketergantungan pada stabilitas penyedia infrastruktur pihak ketiga.
+            </p>
+            <p className="text-sm mb-3">
+              <strong>Batasan Tanggung Jawab:</strong> Kami tidak bertanggung jawab atas kegagalan, gangguan, kehilangan data, atau ketidaktersediaan layanan yang disebabkan oleh kegagalan sistem, pemeliharaan, atau penghentian operasional oleh penyedia infrastruktur pihak ketiga.
+            </p>
+            <p className="text-sm">
+              <strong>Akses Seumur Hidup:</strong> Dalam konteks 'Akses Seumur Hidup', pengguna memahami bahwa akses tersebut berlaku selama layanan ini masih dapat dioperasikan secara teknis dan finansial. Jika terjadi penghentian layanan yang disebabkan oleh kegagalan pihak ketiga yang berada di luar kendali kami, tanggung jawab kami terbatas pada upaya pemulihan layanan tersebut, dan tidak mencakup ganti rugi atas hilangnya akses tersebut.
+            </p>
+          </div>
         </div>
         
         <div className="mt-3 sm:mt-4 flex justify-end flex-shrink-0">
