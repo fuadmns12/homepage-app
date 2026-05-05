@@ -111,7 +111,7 @@ export default function AmbassadorFormClient({ variant }: { variant: AmbassadorF
             <div style={{ display: 'grid', gap: 10 }}>
               <label style={{ display: 'grid', gap: 6, width: 'min(520px, 100%)' }}>
                 <span className="section-subtitle" style={{ marginBottom: 0 }}>
-                  Email
+                  Silahkan masukkan email yang didaftarkan
                 </span>
                 <input
                   type="email"
@@ -134,7 +134,10 @@ export default function AmbassadorFormClient({ variant }: { variant: AmbassadorF
               <button
                 type="button"
                 className="intro-cta-primary conversion-primary-cta"
-                onClick={() => setHasSubmitted(true)}
+                onClick={() => {
+                  window.open(whatsappHref, '_blank')
+                  setHasSubmitted(true)
+                }}
                 disabled={!hasEmail}
                 style={{
                   width: 'fit-content',
@@ -142,7 +145,7 @@ export default function AmbassadorFormClient({ variant }: { variant: AmbassadorF
                   cursor: !hasEmail ? 'not-allowed' : 'pointer',
                 }}
               >
-                Saya sudah isi form, lanjut verifikasi WhatsApp
+                Konfirmasi Pengaktifan Akun
               </button>
             </div>
           </div>
