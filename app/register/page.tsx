@@ -22,7 +22,7 @@ export default function RegisterPage() {
     const baseMessage = 'Halo Admin GEUWAT, saya sudah mengisi form pendaftaran member baru. Mohon verifikasi pendaftaran saya.'
     let message = baseMessage
     if (hasEmail) message += `\n\nEmail: ${normalizedEmail}`
-    if (edition === 'free') message += `\nPilihan: Free Edition`
+    if (edition === 'free') message += `\nPilihan: Free Trial`
     if (edition === 'pro') message += `\nPilihan: Pro Edition (Akses Selamanya)`
     return `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(message)}`
   }, [hasEmail, normalizedEmail, edition])
@@ -114,7 +114,7 @@ export default function RegisterPage() {
                           onChange={() => setEdition('free')}
                           style={{ accentColor: 'var(--primary)', width: 16, height: 16 }}
                         />
-                        <span style={{ color: edition === 'free' ? 'var(--primary)' : 'inherit', fontSize: '14px', fontWeight: edition === 'free' ? 500 : 400 }}>Free Edition</span>
+                        <span style={{ color: edition === 'free' ? 'var(--primary)' : 'inherit', fontSize: '14px', fontWeight: edition === 'free' ? 500 : 400 }}>Free Trial</span>
                       </label>
                       <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', padding: '10px 14px', borderRadius: 12, border: edition === 'pro' ? '1px solid var(--glow-cyan)' : '1px solid rgba(255,255,255,0.12)', background: edition === 'pro' ? 'rgba(0,255,255,0.05)' : 'rgba(0,0,0,0.18)' }}>
                         <input
