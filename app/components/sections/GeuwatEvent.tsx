@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 interface GeuwatEventProps {
   backToMenu: () => void
@@ -6,6 +6,7 @@ interface GeuwatEventProps {
 }
 
 export default function GeuwatEvent({ backToMenu, isActive }: GeuwatEventProps) {
+  const [showTutorial, setShowTutorial] = useState(false)
   return (
     <>
       <button className="back-btn" onClick={backToMenu}>
@@ -64,6 +65,186 @@ export default function GeuwatEvent({ backToMenu, isActive }: GeuwatEventProps) 
           </div>
         </div>
       </div>
+
+      <h3 style={{ textAlign: 'center', color: '#00ffff', marginTop: '2rem', fontSize: '1.5rem', fontWeight: '600' }}>
+        GEUWAT TOWER
+      </h3>
+
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginTop: '1.5rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+          <a
+            href="https://geuwat-tower.netlify.app/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '60px',
+              height: '60px',
+              borderRadius: '50%',
+              backgroundColor: '#ffffff',
+              boxShadow: '0 0 20px rgba(0, 255, 255, 0.6), 0 4px 12px rgba(0, 0, 0, 0.3)',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+              textDecoration: 'none',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.1)'
+              e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 255, 255, 0.8), 0 6px 16px rgba(0, 0, 0, 0.4)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)'
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 255, 255, 0.6), 0 4px 12px rgba(0, 0, 0, 0.3)'
+            }}
+          >
+            <img
+              src="/GEUWAT-TOWER-BUILD.jpeg"
+              alt="Login ke Geuwat Tower"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: '50%',
+              }}
+            />
+          </a>
+          <span style={{ fontSize: '0.75rem', color: '#e0e0e0', fontWeight: '500' }}>Login</span>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+          <button
+            type="button"
+            onClick={() => setShowTutorial(true)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '60px',
+              height: '60px',
+              borderRadius: '50%',
+              backgroundColor: '#ffffff',
+              boxShadow: '0 0 20px rgba(59, 130, 246, 0.6), 0 4px 12px rgba(0, 0, 0, 0.3)',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.1)'
+              e.currentTarget.style.boxShadow = '0 0 30px rgba(59, 130, 246, 0.8), 0 6px 16px rgba(0, 0, 0, 0.4)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)'
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.6), 0 4px 12px rgba(0, 0, 0, 0.3)'
+            }}
+          >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="#3B82F6" strokeWidth="2"/>
+              <path d="M12 16V12" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M12 8H12.01" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          </button>
+          <span style={{ fontSize: '0.75rem', color: '#e0e0e0', fontWeight: '500' }}>Petunjuk</span>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+          <a
+            href="https://docs.google.com/spreadsheets/d/1mvYokNQwpEQV9XwGD9_Yj5rejW4lkZNe/edit?usp=sharing&ouid=115056304457337211926&rtpof=true&sd=true"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '60px',
+              height: '60px',
+              borderRadius: '50%',
+              backgroundColor: '#000000',
+              boxShadow: '0 0 20px rgba(0, 200, 83, 0.6), 0 4px 12px rgba(0, 0, 0, 0.3)',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+              textDecoration: 'none',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.1)'
+              e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 200, 83, 0.8), 0 6px 16px rgba(0, 0, 0, 0.4)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)'
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 200, 83, 0.6), 0 4px 12px rgba(0, 0, 0, 0.3)'
+            }}
+          >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#0F9D58" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M14 2V8H20" stroke="#0F9D58" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 13H16" stroke="#0F9D58" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 17H16" stroke="#0F9D58" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+          <span style={{ fontSize: '0.75rem', color: '#e0e0e0', fontWeight: '500' }}>Data Sheets</span>
+        </div>
+      </div>
+
+      {showTutorial && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+          }}
+          onClick={() => setShowTutorial(false)}
+        >
+          <div
+            style={{
+              backgroundColor: '#1a1a2e',
+              padding: '2rem',
+              borderRadius: '1rem',
+              maxWidth: '500px',
+              width: '90%',
+              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.5)',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 style={{ color: '#ffffff', marginBottom: '1rem', fontSize: '1.5rem', fontWeight: '600' }}>
+              Petunjuk Akses
+            </h3>
+            <div style={{ color: '#e0e0e0', lineHeight: '1.8', fontSize: '1rem' }}>
+              <p style={{ marginBottom: '1rem' }}>
+                <strong style={{ color: '#00ffff' }}>1.</strong> Klik tombol dengan gambar Geuwat Tower untuk mengakses halaman login.
+              </p>
+              <p style={{ marginBottom: '1.5rem' }}>
+                <strong style={{ color: '#00c853' }}>2.</strong> Gunakan akun yang terdaftar di Google Sheets untuk proses autentikasi.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowTutorial(false)}
+              style={{
+                backgroundColor: '#00ffff',
+                color: '#0b0b12',
+                padding: '0.75rem 2rem',
+                borderRadius: '0.5rem',
+                border: 'none',
+                fontSize: '1rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#00cccc'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#00ffff'
+              }}
+            >
+              Mengerti
+            </button>
+          </div>
+        </div>
+      )}
     </>
   )
 }

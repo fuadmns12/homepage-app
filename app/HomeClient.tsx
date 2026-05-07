@@ -56,7 +56,7 @@ function ChevronIcon(props: SVGProps<SVGSVGElement>) {
 export default function HomeClient() {
   const [activeSection, setActiveSection] = useState('')
   const [showFeatureHub, setShowFeatureHub] = useState(false)
-  const [sideNavOpen, setSideNavOpen] = useState(false)
+  const [sideNavOpen, setSideNavOpen] = useState(true)
   const [sectionSource, setSectionSource] = useState<'feature-hub' | 'conversion'>('conversion')
   const [isTransitioning, setIsTransitioning] = useState(false)
   const showSectionTimerRef = useRef<number | null>(null)
