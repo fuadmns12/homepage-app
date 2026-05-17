@@ -44,9 +44,10 @@ const NAV_ITEMS: ReadonlyArray<{
   { section: 'contact', label: 'Start', Icon: MessageCircle },
 ] as const
 
-const FREE_TRIAL_GROUP_URL = 'https://chat.whatsapp.com/JLaBgBoQM5zB5KNfSfEaCI'
+const FREE_TRIAL_GROUP_URL = 'https://geuwat-free-trial.netlify.app/login'
 const MEDSOS_URL = 'https://www.instagram.com/learningenglishgeuwat/'
-const GROUP_URL = 'https://discord.gg/kpPQHW7gFA'
+const DISCORD_GROUP_URL = 'https://discord.gg/kpPQHW7gFA'
+const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/JLaBgBoQM5zB5KNfSfEaCI'
 
 interface FeatureHubSideNavProps {
   activeSection: string
@@ -69,6 +70,7 @@ export default function FeatureHubSideNav({
 }: FeatureHubSideNavProps) {
   const [isCollapsed, setIsCollapsed] = React.useState(false)
   const [isMobileOpen, setIsMobileOpen] = React.useState(mode === 'featureHub')
+  const [isGroupSubmenuOpen, setIsGroupSubmenuOpen] = React.useState(false)
 
   const openExternal = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer')
@@ -190,7 +192,21 @@ export default function FeatureHubSideNav({
                       className="featurehub-sidenav-item"
                       onClick={() => {
                         closeMobile()
-                        openExternal(MEDSOS_URL)
+                        const socialMediaSection = document.getElementById('social-media-section')
+                        if (socialMediaSection) {
+                          // Jika section ada di DOM, berarti sudah di landing page, langsung scroll
+                          socialMediaSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                        } else {
+                          // Jika tidak ada, navigasi ke landing page dulu, lalu scroll
+                          onGoHome?.()
+                          // Tunggu sebentar agar landing page ter-render
+                          setTimeout(() => {
+                            const section = document.getElementById('social-media-section')
+                            if (section) {
+                              section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                            }
+                          }, 300)
+                        }
                       }}
                       title="Medsos"
                     >
@@ -202,14 +218,58 @@ export default function FeatureHubSideNav({
                       type="button"
                       className="featurehub-sidenav-item"
                       onClick={() => {
-                        closeMobile()
-                        openExternal(GROUP_URL)
+                        setIsGroupSubmenuOpen(!isGroupSubmenuOpen)
                       }}
                       title="Grup"
+                      style={{ gridTemplateColumns: '28px 1fr auto' }}
                     >
                       <UsersRound aria-hidden="true" className="featurehub-sidenav-icon" />
                       <span className="featurehub-sidenav-label">Grup</span>
+                      <ChevronIcon
+                        style={{
+                          width: '16px',
+                          height: '16px',
+                          transform: isGroupSubmenuOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                          transition: 'transform 0.2s ease',
+                        }}
+                      />
                     </button>
+
+                    {isGroupSubmenuOpen && (
+                      <div className="featurehub-sidenav-submenu" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
+                        <button
+                          type="button"
+                          className="featurehub-sidenav-item featurehub-sidenav-subitem"
+                          onClick={() => {
+                            closeMobile()
+                            openExternal(DISCORD_GROUP_URL)
+                          }}
+                          title="Grup Discord"
+                          style={{ gridTemplateColumns: '28px 1fr' }}
+                        >
+                          <span style={{ width: '28px' }}></span>
+                          <span className="featurehub-sidenav-label">
+                            Grup Discord
+                          </span>
+                        </button>
+
+                        <button
+                          type="button"
+                          className="featurehub-sidenav-item featurehub-sidenav-subitem"
+                          onClick={() => {
+                            closeMobile()
+                            openExternal(WHATSAPP_GROUP_URL)
+                          }}
+                          title="Grup WhatsApp"
+                          style={{ gridTemplateColumns: '28px 1fr' }}
+                        >
+                          <span style={{ width: '28px' }}></span>
+                          <span className="featurehub-sidenav-label">
+                            Grup WhatsApp
+                          </span>
+                        </button>
+                      </div>
+                    )}
                   </>
                 ) : null}
               </React.Fragment>

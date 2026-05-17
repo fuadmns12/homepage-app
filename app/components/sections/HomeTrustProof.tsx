@@ -139,14 +139,14 @@ export default function HomeTrustProof() {
 
         <div className="home-proof-cta">
           <a
-            href="https://chat.whatsapp.com/JLaBgBoQM5zB5KNfSfEaCI"
+            href="https://geuwat-free-trial.netlify.app/login"
             className="intro-cta-primary conversion-primary-cta"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() =>
               trackCtaClick('audience_register', {
                 location: 'audience_block',
-                target: 'https://chat.whatsapp.com/JLaBgBoQM5zB5KNfSfEaCI',
+                target: 'https://geuwat-free-trial.netlify.app/login',
               })
             }
           >

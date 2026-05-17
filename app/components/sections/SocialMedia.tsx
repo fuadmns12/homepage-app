@@ -59,7 +59,7 @@ interface SocialMediaProps {
 
 export default function SocialMedia({ trackLocation = 'conversion_landing' }: SocialMediaProps) {
   return (
-    <section className="glass-card conversion-social" aria-label="Sosial media GEUWAT">
+    <section id="social-media-section" className="glass-card conversion-social" aria-label="Sosial media GEUWAT">
     <div className="conversion-social-head">
         <h2 className="conversion-social-title">Social Media</h2>
         <p className="conversion-social-subtitle">Ikuti update dan konten terbaru dari GEUWAT.</p>
