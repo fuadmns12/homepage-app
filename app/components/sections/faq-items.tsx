@@ -84,6 +84,29 @@ export const FAQ_ITEMS = [
                   </div>
                 </div>
               </div>
+              <div className="conversion-faq-step-arrow" aria-hidden="true" />
+              <div className="conversion-faq-step-frame conversion-faq-step-frame--action">
+                <div className="conversion-faq-step-action" aria-label="Detail pembayaran">
+                  <div className="conversion-faq-step-action-text" style={{ fontSize: 'clamp(9px, 2vw, 11px)', lineHeight: '1.4', textAlign: 'center' }}>
+                    Pastikan transferan dikirimkan ke
+                  </div>
+                  <div className="conversion-faq-step-action-subtext" style={{ fontSize: 'clamp(8px, 1.8vw, 10px)', lineHeight: '1.5', marginTop: '6px', textAlign: 'left' }}>
+                    <div style={{ textAlign: 'center', fontWeight: 'bold', marginBottom: '4px' }}>Bila Rekening Bank</div>
+                    Nama Bank: Mandiri
+                    <br />
+                    Nama di rek: Fuad Muslim Nur Syamsodik
+                    <br />
+                    No rek: 1710015448486
+                    <br />
+                    <br />
+                    <div style={{ textAlign: 'center', fontWeight: 'bold', marginBottom: '4px' }}>Bila E-wallet</div>
+                    <div style={{ textAlign: 'center', marginBottom: '4px' }}>GoPay/DANA</div>
+                    Nama: Fuad Muslim Nur Syamsodik
+                    <br />
+                    No HP: 082338792512
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

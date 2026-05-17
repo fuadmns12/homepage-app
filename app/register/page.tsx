@@ -13,7 +13,6 @@ export default function RegisterPage() {
   const [showTermsModal, setShowTermsModal] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [email, setEmail] = useState('')
-  const [edition, setEdition] = useState<'free' | 'pro' | null>(null)
 
   const normalizedEmail = email.trim()
   const hasEmail = normalizedEmail.length > 0
@@ -22,10 +21,8 @@ export default function RegisterPage() {
     const baseMessage = 'Halo Admin GEUWAT, saya sudah mengisi form pendaftaran member baru. Mohon verifikasi pendaftaran saya.'
     let message = baseMessage
     if (hasEmail) message += `\n\nEmail: ${normalizedEmail}`
-    if (edition === 'free') message += `\nPilihan: Free Trial`
-    if (edition === 'pro') message += `\nPilihan: Pro Edition (Akses Selamanya)`
     return `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(message)}`
-  }, [hasEmail, normalizedEmail, edition])
+  }, [hasEmail, normalizedEmail])
 
   return (
     <>
@@ -101,34 +98,6 @@ export default function RegisterPage() {
                       />
                     </label>
 
-                    <div style={{ display: 'grid', gap: 8 }}>
-                      <span className="section-subtitle" style={{ marginBottom: 0 }}>
-                        Silahkan ceklis dari pilihan tersedia:
-                      </span>
-                      <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', padding: '10px 14px', borderRadius: 12, border: edition === 'free' ? '1px solid var(--primary)' : '1px solid rgba(255,255,255,0.12)', background: edition === 'free' ? 'rgba(0,255,128,0.05)' : 'rgba(0,0,0,0.18)' }}>
-                        <input
-                          type="radio"
-                          name="edition"
-                          value="free"
-                          checked={edition === 'free'}
-                          onChange={() => setEdition('free')}
-                          style={{ accentColor: 'var(--primary)', width: 16, height: 16 }}
-                        />
-                        <span style={{ color: edition === 'free' ? 'var(--primary)' : 'inherit', fontSize: '14px', fontWeight: edition === 'free' ? 500 : 400 }}>Free Trial</span>
-                      </label>
-                      <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', padding: '10px 14px', borderRadius: 12, border: edition === 'pro' ? '1px solid var(--glow-cyan)' : '1px solid rgba(255,255,255,0.12)', background: edition === 'pro' ? 'rgba(0,255,255,0.05)' : 'rgba(0,0,0,0.18)' }}>
-                        <input
-                          type="radio"
-                          name="edition"
-                          value="pro"
-                          checked={edition === 'pro'}
-                          onChange={() => setEdition('pro')}
-                          style={{ accentColor: 'var(--glow-cyan)', width: 16, height: 16 }}
-                        />
-                        <span style={{ color: edition === 'pro' ? 'var(--glow-cyan)' : 'inherit', fontSize: '14px', fontWeight: edition === 'pro' ? 500 : 400 }}>Pro Edition (Akses Selamanya)</span>
-                      </label>
-                    </div>
-
                     <button
                       type="button"
                       className="intro-cta-primary conversion-primary-cta"
@@ -136,11 +105,11 @@ export default function RegisterPage() {
                         window.open(whatsappHref, '_blank')
                         setHasSubmitted(true)
                       }}
-                      disabled={!hasEmail || !edition}
+                      disabled={!hasEmail}
                       style={{
                         width: '100%',
-                        opacity: (!hasEmail || !edition) ? 0.6 : 1,
-                        cursor: (!hasEmail || !edition) ? 'not-allowed' : 'pointer',
+                        opacity: !hasEmail ? 0.6 : 1,
+                        cursor: !hasEmail ? 'not-allowed' : 'pointer',
                         justifyContent: 'center'
                       }}
                     >
