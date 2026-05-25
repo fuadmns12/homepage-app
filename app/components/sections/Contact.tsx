@@ -29,7 +29,7 @@ export default function Contact({ backToMenu, standalone = false }: ContactProps
           <div className="conversion-price-main conversion-price-stack">
             <span className="conversion-price-label">Upgrade Diri</span>
             <span className="conversion-price-value">
-              <span className="conversion-price-highlight">Rp169.000</span>
+              <span className="conversion-price-highlight">Rp599.000</span>
             </span>
             <span className="conversion-price-duration">
               Edisi Terbatas

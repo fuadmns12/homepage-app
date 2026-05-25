@@ -13,7 +13,7 @@ export const FAQ_ITEMS = [
   },
   {
     question: 'Sekali bayar atau langganan?',
-    answer: <p>Sekali bayar Rp169.000 untuk akses penuh (sekali investasi).</p>,
+    answer: <p>Sekali bayar Rp599.000 untuk akses penuh (sekali investasi).</p>,
   },
   {
     question: 'Apakah akun saya bisa diperjualbelikan atau dipindahtangankan?',
