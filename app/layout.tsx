@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: '%s | GEUWAT',
   },
   description:
-    'Belajar English terarah dengan jalur Pronunciation, Vocabulary, Grammar, dan Speaking. Akses seumur hidup Rp169.000 dengan Pembayaran Sekali.',
+    'Belajar English terarah dengan jalur Pronunciation, Vocabulary, Grammar, dan Speaking. Akses seumur hidup Rp599.000 dengan Pembayaran Sekali.',
   applicationName: 'GEUWAT',
   generator: 'Next.js',
   keywords: [
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     url: 'https://learningenglishgeuwat-ten.vercel.app/',
     title: 'GEUWAT - Website Belajar Bahasa Inggris',
     description:
-      'Belajar English terarah dengan jalur Pronunciation, Vocabulary, Grammar, dan Speaking. Akses seumur hidup Rp169.000 dengan Pembayaran Sekali.',
+      'Belajar English terarah dengan jalur Pronunciation, Vocabulary, Grammar, dan Speaking. Akses seumur hidup Rp599.000 dengan Pembayaran Sekali.',
     siteName: 'GEUWAT',
     images: [
       {
@@ -87,7 +87,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'GEUWAT - Website Belajar Bahasa Inggris',
     description:
-      'Belajar English terarah dengan jalur Pronunciation, Vocabulary, Grammar, dan Speaking. Akses seumur hidup Rp169.000 dengan Pembayaran Sekali.',
+      'Belajar English terarah dengan jalur Pronunciation, Vocabulary, Grammar, dan Speaking. Akses seumur hidup Rp599.000 dengan Pembayaran Sekali.',
     images: ['/images/view.webp'],
   },
   icons: {

@@ -98,7 +98,7 @@ export default function OriginEvolutionSynergy() {
           <article className="founder-synergy-card">
             <h4 className="founder-synergy-head">The AI Accelerator</h4>
             <p className="founder-synergy-desc">
-              AI di sini berfungsi sebagai asisten yang memastikan praktikmu sesuai dengan teori dalam waktu singkat.
+              Didukung teknologi AI mutakhir sebagai asisten interaktif untuk memvalidasi praktikmu secara instan, melatih intuisi dan kemandirianmu agar bisa mengoreksi pelafalanmu sendiri kapan saja.
             </p>
           </article>
         </div>
@@ -108,6 +108,19 @@ export default function OriginEvolutionSynergy() {
           tahun mengajar, menyaring teorinya, dan memberikan mesin penggerak AI agar kamu bisa mencapai hasil tahunan
           hanya dalam hitungan minggu.”
         </blockquote>
+
+        <div className="founder-pricing-summary" aria-label="Opsi langganan terjangkau">
+          <div className="founder-pricing-card">
+            <p className="founder-pricing-kicker">Akses teknologi untuk siapa saja</p>
+            <h3 className="founder-pricing-headline">Mulai langkahmu dari harga secangkir kopi per bulan.</h3>
+            <p className="founder-pricing-copy">
+              Pilih paket tahunan Rp169.000/tahun (setara Rp14.000-an/bulan), atau fleksibel dengan Rp25.000/bulan.
+            </p>
+            <a href="#pricing-options" className="founder-pricing-link">
+              Kembali ke pilihan harga
+            </a>
+          </div>
+        </div>
 
         <div className="founder-track-record" aria-label="Track record kursus">
           <h3 className="founder-title founder-track-title">Track Record</h3>

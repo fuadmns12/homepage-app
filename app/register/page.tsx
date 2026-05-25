@@ -13,6 +13,7 @@ export default function RegisterPage() {
   const [showTermsModal, setShowTermsModal] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [email, setEmail] = useState('')
+  const [selectedPrice, setSelectedPrice] = useState('lifetime')
 
   const normalizedEmail = email.trim()
   const hasEmail = normalizedEmail.length > 0
@@ -21,8 +22,16 @@ export default function RegisterPage() {
     const baseMessage = 'Halo Admin GEUWAT, saya sudah mengisi form pendaftaran member baru. Mohon verifikasi pendaftaran saya.'
     let message = baseMessage
     if (hasEmail) message += `\n\nEmail: ${normalizedEmail}`
+    if (selectedPrice) {
+      const priceLabel = {
+        lifetime: 'Rp599.000 (Akses Selamanya)',
+        yearly: 'Rp169.000/tahun (Paket Edukasi)',
+        monthly: 'Rp25.000/bulan (Paket Edukasi)'
+      }[selectedPrice] || selectedPrice
+      message += `\n\nPilihan Paket: ${priceLabel}`
+    }
     return `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(message)}`
-  }, [hasEmail, normalizedEmail])
+  }, [hasEmail, normalizedEmail, selectedPrice])
 
   return (
     <>
@@ -96,6 +105,31 @@ export default function RegisterPage() {
                           width: '100%'
                         }}
                       />
+                    </label>
+
+                    <label style={{ display: 'grid', gap: 6, width: '100%' }}>
+                      <span className="section-subtitle" style={{ marginBottom: 0 }}>
+                        Pilih paket harga
+                      </span>
+                      <select
+                        value={selectedPrice}
+                        onChange={(e) => setSelectedPrice(e.target.value)}
+                        style={{
+                          borderRadius: 12,
+                          padding: '12px 14px',
+                          border: '1px solid rgba(255,255,255,0.12)',
+                          background: 'rgba(0,0,0,0.18)',
+                          color: 'inherit',
+                          outline: 'none',
+                          width: '100%',
+                          cursor: 'pointer',
+                          fontFamily: 'inherit'
+                        }}
+                      >
+                        <option value="lifetime">Rp599.000 - Akses Selamanya (Edisi Terbatas)</option>
+                        <option value="yearly">Rp169.000/tahun - Paket Edukasi (Hemat 43%)</option>
+                        <option value="monthly">Rp25.000/bulan - Paket Edukasi (Fleksibel)</option>
+                      </select>
                     </label>
 
                     <button

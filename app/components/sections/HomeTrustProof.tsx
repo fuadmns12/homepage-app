@@ -133,6 +133,51 @@ export default function HomeTrustProof() {
             </div>
           </div>
         </div>
+
+        <div id="pricing-options" className="home-pricing-grid" aria-label="Opsi harga GEUWAT">
+          <article className="home-pricing-card">
+            <p className="home-pricing-label">Pilihan Sekali Bayar</p>
+            <p className="home-pricing-title">Rp599.000</p>
+            <p className="home-pricing-desc">Akses penuh sekali bayar, bukan langganan.</p>
+            <p className="home-pricing-note">Akses selamanya - Edisi Terbatas untuk 150 akun.</p>
+            <div className="home-pricing-actions">
+              <a
+                href="/register"
+                className="intro-cta-primary conversion-primary-cta"
+                onClick={() =>
+                  trackCtaClick('buy_lifetime_access', {
+                    location: 'audience_pricing_card',
+                    target: '/register',
+                  })
+                }
+              >
+                Beli Akses Selamanya
+              </a>
+            </div>
+          </article>
+
+          <article className="home-pricing-card home-pricing-card--highlight">
+            <p className="home-pricing-chip">Rekomendasi Pelajar</p>
+            <p className="home-pricing-title">Rp169.000/tahun</p>
+            <p className="home-pricing-subtitle">Hanya Rp14.000-an/bulan — Hemat 43%</p>
+            <p className="home-pricing-desc">Atau pilih bayar bulanan: Rp25.000/bulan untuk fleksibilitas maksimal.</p>
+            <div className="home-pricing-actions">
+              <a
+                href="/register"
+                className="intro-cta-primary conversion-primary-cta"
+                onClick={() =>
+                  trackCtaClick('buy_education_plan', {
+                    location: 'audience_pricing_card',
+                    target: '/register',
+                  })
+                }
+              >
+                Pilih Paket Edukasi
+              </a>
+            </div>
+          </article>
+        </div>
+
         <p className="home-proof-microcopy home-simulation-note">
           Bersama GEUWAT, belajar bahasa Inggris semakin mudah dan cepat
         </p>

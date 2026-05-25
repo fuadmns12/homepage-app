@@ -1855,6 +1855,116 @@ body {
 	text-shadow: 0 0 8px rgba(255, 77, 77, 0.7), 0 0 16px rgba(255, 77, 77, 0.38);
 }
 
+.home-pricing-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 14px;
+	margin: 24px 0 6px;
+}
+
+.home-pricing-card {
+	border-radius: 18px;
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	background: rgba(255, 255, 255, 0.05);
+	padding: 18px;
+	display: grid;
+	gap: 10px;
+}
+
+.home-pricing-card--highlight {
+	border-color: rgba(0, 255, 222, 0.3);
+	background: linear-gradient(180deg, rgba(6, 182, 255, 0.12), rgba(0, 0, 0, 0.18));
+}
+
+.home-pricing-label,
+.home-pricing-chip,
+.founder-pricing-kicker {
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.72);
+}
+
+.home-pricing-title,
+.founder-pricing-headline {
+	font-size: 26px;
+	font-weight: 800;
+	line-height: 1.1;
+	color: #ffffff;
+}
+
+.home-pricing-subtitle,
+.home-pricing-desc,
+.home-pricing-note,
+.founder-pricing-copy {
+	font-size: 13px;
+	line-height: 1.65;
+	color: rgba(255, 255, 255, 0.78);
+}
+
+.home-pricing-badge {
+	align-self: start;
+	display: inline-flex;
+	padding: 6px 10px;
+	border-radius: 999px;
+	background: rgba(0, 255, 222, 0.14);
+	color: #b8ffff;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+}
+
+.home-pricing-actions {
+	display: grid;
+	gap: 10px;
+	margin-top: 18px;
+}
+
+.home-pricing-actions .conversion-primary-cta {
+	width: 100%;
+}
+
+.founder-pricing-summary {
+	margin-top: 18px;
+	border-radius: 16px;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	background: rgba(0, 0, 0, 0.16);
+	padding: 18px;
+}
+
+.founder-pricing-link {
+	display: inline-flex;
+	margin-top: 12px;
+	padding: 10px 16px;
+	border-radius: 999px;
+	border: 1px solid rgba(0, 240, 255, 0.35);
+	background: rgba(0, 240, 255, 0.08);
+	color: #b8ffff;
+	font-size: 13px;
+	font-weight: 700;
+	text-decoration: none;
+	transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.founder-pricing-link:hover {
+	background: rgba(0, 240, 255, 0.16);
+	transform: translateY(-1px);
+}
+
+.founder-pricing-card {
+	display: grid;
+	gap: 10px;
+}
+
+.founder-pricing-headline {
+	margin: 0;
+}
+
+.founder-pricing-copy {
+	margin: 0;
+}
+
 .conversion-price-duration {
 	font-size: 15px;
 	color: rgba(255, 255, 255, 0.82);

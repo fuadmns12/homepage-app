@@ -9,7 +9,7 @@ describe('Contact section', () => {
     expect(screen.getByText('Kontak')).toBeInTheDocument()
     expect(screen.getByText('Hubungi tim GEUWAT')).toBeInTheDocument()
     expect(screen.queryByText('Harga Program')).not.toBeInTheDocument()
-    expect(screen.getAllByText('Rp169.000')).toHaveLength(1)
+    expect(screen.getAllByText('Rp599.000')).toHaveLength(1)
     expect(screen.getByText('Upgrade Diri')).toBeInTheDocument()
     expect(screen.getByText(/Edisi Terbatas/i)).toBeInTheDocument()
     expect(screen.getByText(/Hanya Tersedia untuk 150 Akun/i)).toBeInTheDocument()
