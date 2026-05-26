@@ -138,8 +138,8 @@ export default function HomeTrustProof() {
           <article className="home-pricing-card">
             <p className="home-pricing-label">Pilihan Sekali Bayar</p>
             <p className="home-pricing-title home-pricing-title--orange">Rp599.000</p>
-            <p className="home-pricing-desc">Akses penuh sekali bayar, bukan langganan</p>
-            <p className="home-pricing-note">Akses selamanya - Edisi Terbatas untuk 150 akun</p>
+            <p className="home-pricing-desc">Akses penuh sekali bayar, bukan langganan.</p>
+            <p className="home-pricing-note">Akses selamanya - Edisi Terbatas untuk 150 akun.</p>
             <div className="home-pricing-actions">
               <a
                 href="/register"
@@ -160,6 +160,7 @@ export default function HomeTrustProof() {
             <p className="home-pricing-chip">Rekomendasi Pelajar</p>
             <p className="home-pricing-title home-pricing-title--orange">Rp169.000/tahun</p>
             <p className="home-pricing-subtitle">Hanya Rp14.000-an/bulan — Hemat 43%</p>
+            <p className="home-pricing-desc">Atau pilih bayar bulanan: Rp25.000/bulan untuk fleksibilitas maksimal.</p>
             <div className="home-pricing-actions">
               <a
                 href="/register"
@@ -179,7 +180,7 @@ export default function HomeTrustProof() {
           <article className="home-pricing-card">
             <p className="home-pricing-label">Bayar Bulanan</p>
             <p className="home-pricing-title home-pricing-title--green">Rp25.000/bulan</p>
-            <p className="home-pricing-desc">Bayar per bulan untuk fleksibilitas maksimal</p>
+            <p className="home-pricing-desc">Bayar per bulan untuk fleksibilitas maksimal.</p>
             <div className="home-pricing-actions">
               <a
                 href="/register"
