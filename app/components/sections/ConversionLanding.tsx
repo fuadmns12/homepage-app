@@ -71,18 +71,18 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
         <p className="conversion-badge">GEUWAT 2026</p>
 
         <h1 className="conversion-title conversion-hook-title">
-          <span className="conversion-hook-line">Ketika Kamu Mulai dari Nol,</span>
-          <span className="conversion-hook-line">Dan Waktu Tak Pernah Longgar,</span>
+          <span className="conversion-hook-line">Ketika Kamu Mulai dari Nol</span>
+          <span className="conversion-hook-line">Dan Waktu Tak Pernah Longgar</span>
           <span className="conversion-hook-line conversion-hook-line--accent">
-            GEUWAT Susun Jalannya Untuk Kamu Belajar Bahasa Inggris.
+            GEUWAT Susun Jalannya Untuk Kamu Belajar Bahasa Inggris
           </span>
         </h1>
 
         <p className="conversion-subtitle">
-          Fokus di GEUWAT cuma satu: Bikin lidahmu fasih dengan sistem pelafalan yang akurat. Begitu paham polanya, kamu
-          bakal bisa cari dan ucapkan kata apa pun sendiri.
+          Fokus di GEUWAT cuma satu: Bikin lidahmu fasih dengan sistem pelafalan yang akurat Begitu paham polanya, kamu
+          bakal bisa cari dan ucapkan kata apa pun sendiri
           <br />
-          Materi grammar &amp; kosakata? Tenang, itu bonus buat bantu progresmu.
+          Materi grammar &amp; kosakata? Tenang, itu bonus buat bantu progresmu
         </p>
 
         <div className="conversion-pricing-wrap">
