@@ -1857,7 +1857,7 @@ body {
 
 .home-pricing-grid {
 	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 	gap: 14px;
 	margin: 24px 0 6px;
 }
@@ -1894,6 +1894,14 @@ body {
 	color: #ffffff;
 }
 
+.home-pricing-title--orange {
+	color: #ff9b48;
+}
+
+.home-pricing-title--green {
+	color: #7ed39a;
+}
+
 .home-pricing-subtitle,
 .home-pricing-desc,
 .home-pricing-note,
@@ -1901,6 +1909,40 @@ body {
 	font-size: 13px;
 	line-height: 1.65;
 	color: rgba(255, 255, 255, 0.78);
+}
+
+.home-pricing-desc.home-pricing-desc--green {
+	color: #7ed39a;
+}
+
+@media (max-width: 640px) {
+	.home-pricing-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.home-pricing-card {
+		padding: 16px;
+	}
+
+	.home-pricing-label,
+	.home-pricing-chip {
+		font-size: 11px;
+	}
+
+	.home-pricing-title {
+		font-size: 22px;
+	}
+
+	.home-pricing-subtitle,
+	.home-pricing-desc,
+	.home-pricing-note {
+		font-size: 12px;
+	}
+
+	.home-pricing-actions .intro-cta-primary {
+		font-size: 14px;
+		padding: 12px 16px;
+	}
 }
 
 .home-pricing-badge {

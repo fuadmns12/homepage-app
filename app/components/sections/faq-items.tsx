@@ -9,14 +9,17 @@ export type FaqItem = {
 export const FAQ_ITEMS = [
   {
     question: 'Apakah GEUWAT cocok untuk pemula?',
-    answer: <p>Ya. GEUWAT disusun untuk kamu yang mulai dari nol, step-by-step, supaya tidak bingung urutan belajarnya.</p>,
+    answer: <p>Ya. GEUWAT disusun untuk kamu yang mulai dari nol, step-by-step, supaya tidak bingung urutan belajarnya
+
+    </p>,
   },
   {
     question: 'Sekali bayar atau langganan?',
     answer: (
       <p>
         Kami menyediakan dua pilihan fleksibel: Anda bisa memilih akses selamanya (sekali bayar) untuk kuota terbatas,
-        atau memilih paket langganan bulanan/tahunan mulai dari Rp25.000 saja agar tetap ramah di kantong.
+        atau memilih paket langganan bulanan/tahunan mulai dari Rp25.000 saja agar tetap ramah di kantong
+
       </p>
     ),
   },
@@ -26,23 +29,23 @@ export const FAQ_ITEMS = [
       <p>
         Bisa. Namun, untuk menjaga keamanan data dan kualitas ekosistem belajar, setiap perpindahan kepemilikan akun
         dikenakan Biaya Administrasi sebesar 50% dari harga resmi saat ini. Biaya ini mencakup penggantian data akses,
-        pembersihan riwayat belajar (jika diperlukan), dan validasi keamanan akun.
+        pembersihan riwayat belajar (jika diperlukan), dan validasi keamanan akun
       </p>
     ),
   },
   {
     question: 'Materi apa saja yang tersedia?',
-    answer: <p>Pronunciation, Vocabulary, Grammar, dan Speaking dengan alur belajar yang terstruktur agar progres lebih terarah.</p>,
+    answer: <p>Pronunciation, Vocabulary, Grammar, dan Speaking dengan alur belajar yang terstruktur agar progres lebih terarah</p>,
   },
   {
     question: 'Bisa diakses di HP?',
-    answer: <p>Bisa. GEUWAT berbasis website, jadi bisa dibuka via browser di HP atau laptop (disarankan Chrome).</p>,
+    answer: <p>Bisa. GEUWAT berbasis website, jadi bisa dibuka via browser di HP atau laptop (disarankan Chrome)</p>,
   },
   {
     question: 'Bagaimana cara daftarnya?',
     answer: (
       <>
-        <p>Pilih jalur yang sesuai dengan posisi kamu sekarang.</p>
+        <p>Pilih paket yang sesuai dengan posisi kamu sekarang</p>
 
         <div className="conversion-faq-steps">
           <div className="conversion-faq-step-group">
@@ -124,7 +127,7 @@ export const FAQ_ITEMS = [
       <p>
         User Trial diberikan akses sementara untuk mencoba fitur kami. Namun, posisi Anda di dalam Batch (kuota 150 orang)
         tidak aman hingga Anda melakukan pembayaran. User berbayar akan langsung mengambil slot User Trial jika kuota hampir
-        penuh.
+        penuh
       </p>
     ),
   },
@@ -134,7 +137,7 @@ export const FAQ_ITEMS = [
       <p>
         Jika kuota 150 orang sudah terpenuhi oleh pengguna yang membayar, maka User Trial akan otomatis tersingkir dari Batch
         tersebut. Anda harus menunggu pembukaan Batch selanjutnya di pintu login yang berbeda untuk mencoba kembali atau
-        langsung mendaftar sebagai User Berbayar.
+        langsung mendaftar sebagai User Berbayar
       </p>
     ),
   },
@@ -143,7 +146,7 @@ export const FAQ_ITEMS = [
     answer: (
       <p>
         Batch baru hanya akan dibuka setelah Batch sebelumnya benar-benar penuh (150 User Berbayar). Pastikan Anda segera
-        mengamankan akses belajar penuh agar posisi Anda tidak digantikan oleh orang lain.
+        mengamankan akses belajar penuh agar posisi Anda tidak digantikan oleh orang lain
       </p>
     ),
   },
@@ -153,7 +156,7 @@ export const FAQ_ITEMS = [
       <p>
         Kompetisi hanya akan dipicu (triggered) setelah Batch Anda mencapai 150 User Berbayar. Selama masih ada User Trial di
         dalam Batch tersebut, kompetisi belum akan dimulai. Ini adalah motivasi agar komunitas di Batch Anda segera solid dan
-        siap bertanding.
+        siap bertanding
       </p>
     ),
   },
@@ -162,7 +165,7 @@ export const FAQ_ITEMS = [
     answer: (
       <p>
         Hanya User Berbayar yang memiliki akses belajar penuh yang berhak mengikuti lomba dan memperebutkan hadiah uang
-        pembinaan. User Trial tidak diikutsertakan dalam kompetisi.
+        pembinaan. User Trial tidak diikutsertakan dalam kompetisi
       </p>
     ),
   },
@@ -175,7 +178,7 @@ export const FAQ_ITEMS = [
         <a href="https://www.instagram.com/learningenglishgeuwat/" target="_blank" rel="noreferrer">
           @learningenglishgeuwat
         </a>
-        . Pastikan Anda mengikuti akun tersebut agar tidak tertinggal informasi.
+        . Pastikan Anda mengikuti akun tersebut agar tidak tertinggal informasi
       </p>
     ),
   },
@@ -184,7 +187,7 @@ export const FAQ_ITEMS = [
     answer: (
       <p>
         Setiap halaman login mewakili Batch tertentu. Ini memudahkan kami mengelola 150 orang per kelompok agar persaingan
-        lomba lebih adil dan sistem aplikasi tetap ringan serta cepat.
+        lomba lebih adil dan sistem aplikasi tetap ringan serta cepat
       </p>
     ),
   },
@@ -209,7 +212,7 @@ export const FAQ_ITEMS = [
     answer: (
       <p>
         Silakan hubungi Admin atau kirim DM ke Instagram @learningenglishgeuwat dengan melampirkan bukti pembayaran atau nama
-        akun Anda.
+        akun Anda
       </p>
     ),
   },

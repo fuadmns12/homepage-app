@@ -98,21 +98,19 @@ export default function OriginEvolutionSynergy() {
           <article className="founder-synergy-card">
             <h4 className="founder-synergy-head">The AI Accelerator</h4>
             <p className="founder-synergy-desc">
-              Didukung teknologi AI mutakhir sebagai asisten interaktif untuk memvalidasi praktikmu secara instan, melatih intuisi dan kemandirianmu agar bisa mengoreksi pelafalanmu sendiri kapan saja.
+              Panduan praktis memanfaatkan AI Gemini sebagai asisten interaktifmu. Gunakan simulasi perintah khusus dari kami untuk memvalidasi praktikmu secara instan, sekaligus melatih intuisi agar bisa mengoreksi pelafalanmu sendiri kapan saja.
             </p>
           </article>
         </div>
 
         <blockquote className="founder-quote">
-          “Saya melihat tren AI bukan sebagai pengganti guru, tapi sebagai Exoskeleton. Saya mengambil ingatan saya dari 8
-          tahun mengajar, menyaring teorinya, dan memberikan mesin penggerak AI agar kamu bisa mencapai hasil tahunan
-          hanya dalam hitungan minggu.”
+          "Saya melihat tren AI bukan sebagai pengganti guru, tapi sebagai Exoskeleton. Di sini, saya menyaring teori terbaik dari 8 tahun pengalaman mengajar menjadi panduan ringkas, lalu memberikanmu instruksi dan mesin penggerak khusus agar kamu bisa mengendalikan AI (seperti Gemini) untuk melatih pelafalanmu secara instan hingga mencapai hasil tahunan hanya dalam hitungan minggu."
         </blockquote>
 
         <div className="founder-pricing-summary" aria-label="Opsi langganan terjangkau">
           <div className="founder-pricing-card">
             <p className="founder-pricing-kicker">Akses teknologi untuk siapa saja</p>
-            <h3 className="founder-pricing-headline">Mulai langkahmu dari harga secangkir kopi per bulan.</h3>
+            <h3 className="founder-pricing-headline">Mulai langkahmu dari harga secangkir kopi per bulan</h3>
             <p className="founder-pricing-copy">
               Pilih paket tahunan Rp169.000/tahun (setara Rp14.000-an/bulan), atau fleksibel dengan Rp25.000/bulan.
             </p>
