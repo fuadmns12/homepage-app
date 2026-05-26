@@ -5,15 +5,15 @@ import { trackCtaClick, trackEvent } from '@/lib/analytics'
 const AUDIENCE_SEGMENTS = [
   {
     title: 'Pemula yang butuh arah belajar',
-    description: 'Mulai dari materi dasar, lanjut step-by-step tanpa harus bingung pilih urutan belajar.'
+    description: 'Mulai dari materi dasar, lanjut step-by-step tanpa harus bingung pilih urutan belajar'
   },
   {
     title: 'Karyawan atau mahasiswa sibuk',
-    description: 'Belajar ringkas dan praktis, fokus pada materi yang langsung bisa dipakai dalam aktivitas harian.'
+    description: 'Belajar ringkas dan praktis, fokus pada materi yang langsung bisa dipakai dalam aktivitas harian'
   },
   {
     title: 'Member yang ingin progres terukur',
-    description: 'Setiap perkembangan bisa dipantau agar latihan lebih konsisten dan hasilnya terlihat.'
+    description: 'Setiap perkembangan bisa dipantau agar latihan lebih konsisten dan hasilnya terlihat'
   }
 ]
 
@@ -83,7 +83,7 @@ export default function HomeTrustProof() {
         <div className="home-proof-head">
           <h2 className="home-proof-title">Untuk siapa produk ini</h2>
           <p className="home-proof-subtitle">
-            Fokus untuk user yang ingin belajar English dengan cara yang praktis, terarah, dan konsisten.
+            Fokus untuk user yang ingin belajar English dengan cara yang praktis, terarah, dan konsisten
           </p>
         </div>
 
@@ -137,9 +137,9 @@ export default function HomeTrustProof() {
         <div id="pricing-options" className="home-pricing-grid" aria-label="Opsi harga GEUWAT">
           <article className="home-pricing-card">
             <p className="home-pricing-label">Pilihan Sekali Bayar</p>
-            <p className="home-pricing-title">Rp599.000</p>
-            <p className="home-pricing-desc">Akses penuh sekali bayar, bukan langganan.</p>
-            <p className="home-pricing-note">Akses selamanya - Edisi Terbatas untuk 150 akun.</p>
+            <p className="home-pricing-title home-pricing-title--orange">Rp599.000</p>
+            <p className="home-pricing-desc">Akses penuh sekali bayar, bukan langganan</p>
+            <p className="home-pricing-note">Akses selamanya - Edisi Terbatas untuk 150 akun</p>
             <div className="home-pricing-actions">
               <a
                 href="/register"
@@ -158,9 +158,8 @@ export default function HomeTrustProof() {
 
           <article className="home-pricing-card home-pricing-card--highlight">
             <p className="home-pricing-chip">Rekomendasi Pelajar</p>
-            <p className="home-pricing-title">Rp169.000/tahun</p>
+            <p className="home-pricing-title home-pricing-title--orange">Rp169.000/tahun</p>
             <p className="home-pricing-subtitle">Hanya Rp14.000-an/bulan — Hemat 43%</p>
-            <p className="home-pricing-desc">Atau pilih bayar bulanan: Rp25.000/bulan untuk fleksibilitas maksimal.</p>
             <div className="home-pricing-actions">
               <a
                 href="/register"
@@ -173,6 +172,26 @@ export default function HomeTrustProof() {
                 }
               >
                 Pilih Paket Edukasi
+              </a>
+            </div>
+          </article>
+
+          <article className="home-pricing-card">
+            <p className="home-pricing-label">Bayar Bulanan</p>
+            <p className="home-pricing-title home-pricing-title--green">Rp25.000/bulan</p>
+            <p className="home-pricing-desc">Bayar per bulan untuk fleksibilitas maksimal</p>
+            <div className="home-pricing-actions">
+              <a
+                href="/register"
+                className="intro-cta-primary conversion-primary-cta"
+                onClick={() =>
+                  trackCtaClick('buy_monthly_plan', {
+                    location: 'audience_pricing_card',
+                    target: '/register',
+                  })
+                }
+              >
+                Pilih Paket Bulanan
               </a>
             </div>
           </article>
@@ -195,7 +214,7 @@ export default function HomeTrustProof() {
               })
             }
           >
-            FREE TRIAL
+            TRY LIVE DEMO
           </a>
         </div>
       </section>

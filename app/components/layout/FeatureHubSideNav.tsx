@@ -181,10 +181,10 @@ export default function FeatureHubSideNav({
                         closeMobile()
                         openExternal(FREE_TRIAL_GROUP_URL)
                       }}
-                      title="Free Trial (Grup WA)"
+                      title="TRY LIVE DEMO (Grup WA)"
                     >
                       <Gift aria-hidden="true" className="featurehub-sidenav-icon" />
-                      <span className="featurehub-sidenav-label">Free Trial</span>
+                      <span className="featurehub-sidenav-label">TRY LIVE DEMO</span>
                     </button>
 
                     <button
