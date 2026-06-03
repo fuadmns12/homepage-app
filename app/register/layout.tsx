@@ -1,19 +1,21 @@
 import type { Metadata } from 'next'
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://learningenglishgeuwat-ten.vercel.app'
+
 export const metadata: Metadata = {
   title: 'Register GEUWAT - Website Belajar Bahasa Inggris',
   description:
-    'Daftar member GEUWAT untuk akses seumur hidup materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp599.000.',
+    'Daftar member GEUWAT untuk akses setahun materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp169.000.',
   alternates: {
     canonical: '/register',
   },
   openGraph: {
     type: 'website',
     locale: 'id_ID',
-    url: 'https://learningenglishgeuwat-ten.vercel.app/register',
+    url: `${BASE_URL}/register`,
     title: 'Register GEUWAT - Website Belajar Bahasa Inggris',
     description:
-      'Daftar member GEUWAT untuk akses seumur hidup materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp599.000.',
+      'Daftar member GEUWAT untuk akses setahun materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp169.000.',
     siteName: 'GEUWAT',
     images: [
       {
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Register GEUWAT - Website Belajar Bahasa Inggris',
     description:
-      'Daftar member GEUWAT untuk akses seumur hidup materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp599.000.',
+      'Daftar member GEUWAT untuk akses setahun materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp169.000.',
     images: ['/images/view.webp'],
   },
 }

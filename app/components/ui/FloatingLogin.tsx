@@ -139,90 +139,22 @@ export default function FloatingLogin() {
       <div className="conversion-login-inner">
         {!collapsed ? (
           <nav className="conversion-chibi-menu" aria-label="Login GEUWAT">
-            <div className="conversion-chibi-item">
-              {formattedCount ? (
-                <div className="conversion-menu-count-wrap">
-                  <button
-                    type="button"
-                    className="conversion-menu-count-badge"
-                    aria-label="Lihat rincian user"
-                    title="Hover untuk lihat rincian"
-                    onMouseEnter={openBreakdown}
-                    onMouseLeave={scheduleCloseBreakdown}
-                    onFocus={openBreakdown}
-                    onBlur={scheduleCloseBreakdown}
-                  >
-                    {formattedCount}
-                  </button>
-                </div>
-              ) : null}
-
-              <a
-                href={MEMBER_LOGIN_URL}
-                className="conversion-chibi-card conversion-chibi-link conversion-chibi-spotlight"
-                aria-label="Login (Chibi 1)"
-                onClick={() =>
-                  trackCtaClick('hero_login', {
-                    location: 'homepage',
-                    target: MEMBER_LOGIN_URL,
-                  })
-                }
-              >
-                <span className="conversion-chibi-frame" aria-hidden="true">
-                  <Image src="/Chibi/chibi1.webp" alt="" fill sizes="72px" priority={false} className="conversion-chibi-image" />
-                </span>
-              </a>
-            </div>
-
-            <div className="conversion-chibi-card conversion-chibi-soon" aria-label="Chibi 2 (Soon)">
-              <span className="conversion-chibi-frame" aria-hidden="true">
-                <Image src="/Chibi/chibi2.webp" alt="" fill sizes="72px" className="conversion-chibi-image" />
-              </span>
-              <span className="conversion-chibi-soon-overlay" aria-hidden="true">
-                Soon
-              </span>
-            </div>
-
-            <div className="conversion-chibi-card conversion-chibi-logo conversion-chibi-logo-static" role="img" aria-label="Logo GEUWAT">
-              <span className="conversion-chibi-frame" aria-hidden="true">
-                <Image src="/NewLogoRB.webp" alt="" fill sizes="72px" priority={false} className="conversion-chibi-image" />
-              </span>
-            </div>
-
-            <div className="conversion-chibi-card conversion-chibi-soon" aria-label="Chibi 3 (Soon)">
-              <span className="conversion-chibi-frame" aria-hidden="true">
-                <Image src="/Chibi/chibi3.webp" alt="" fill sizes="72px" className="conversion-chibi-image" />
-              </span>
-              <span className="conversion-chibi-soon-overlay" aria-hidden="true">
-                Soon
-              </span>
-            </div>
-
-            <div className="conversion-chibi-card conversion-chibi-soon" aria-label="Chibi 4 (Soon)">
-              <span className="conversion-chibi-frame" aria-hidden="true">
-                <Image src="/Chibi/chibi4.webp" alt="" fill sizes="72px" className="conversion-chibi-image" />
-              </span>
-              <span className="conversion-chibi-soon-overlay" aria-hidden="true">
-                Soon
-              </span>
-            </div>
-
-            <div
-              className={`conversion-menu-breakdown ${breakdownOpen ? 'is-open' : ''}`}
-              role="group"
-              aria-label="Rincian user"
-              onMouseEnter={openBreakdown}
-              onMouseLeave={scheduleCloseBreakdown}
+            <a
+              href={MEMBER_LOGIN_URL}
+              className="conversion-chibi-card conversion-chibi-logo conversion-chibi-logo-static conversion-chibi-link"
+              aria-label="Login ke GEUWAT"
+              onClick={() =>
+                trackCtaClick('logo_login', {
+                  location: 'homepage',
+                  target: MEMBER_LOGIN_URL,
+                })
+              }
             >
-              <div className="conversion-menu-breakdown-card conversion-menu-breakdown-card--trial" aria-label={`User trial: ${formattedTrialCount ?? '—'}`}>
-                <LightningIcon className="conversion-menu-breakdown-icon" aria-hidden="true" />
-                <span className="conversion-menu-breakdown-value">{formattedTrialCount ?? '—'}</span>
-              </div>
-              <div className="conversion-menu-breakdown-card conversion-menu-breakdown-card--paid" aria-label={`User berbayar: ${formattedPaidCount ?? '—'}`}>
-                <DiamondIcon className="conversion-menu-breakdown-icon" aria-hidden="true" />
-                <span className="conversion-menu-breakdown-value">{formattedPaidCount ?? '—'}</span>
-              </div>
-            </div>
+              <span className="conversion-chibi-frame" aria-hidden="true">
+                <Image src="/rasio_1_1_2K_202606030906.webp" alt="" fill sizes="72px" priority={false} className="conversion-chibi-image" />
+              </span>
+            </a>
+            <span className="conversion-login-text">LOGIN</span>
           </nav>
         ) : null}
 

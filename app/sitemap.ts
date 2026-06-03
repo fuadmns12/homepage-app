@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-const BASE_URL = 'https://learningenglishgeuwat-ten.vercel.app'
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://learningenglishgeuwat-ten.vercel.app'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()

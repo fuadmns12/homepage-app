@@ -18,7 +18,7 @@ export const FAQ_ITEMS = [
     answer: (
       <p>
         Kami menyediakan dua pilihan fleksibel: Anda bisa memilih akses selamanya (sekali bayar) untuk kuota terbatas,
-        atau memilih paket langganan bulanan/tahunan mulai dari Rp25.000 saja agar tetap ramah di kantong.
+        atau memilih paket langganan bulanan/tahunan mulai dari Rp26.900 saja agar tetap ramah di kantong.
       </p>
     ),
   },

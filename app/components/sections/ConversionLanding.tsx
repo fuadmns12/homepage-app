@@ -89,12 +89,10 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
           <p className="conversion-price-main conversion-price-stack">
             <span className="conversion-price-label">Akun Belajar GEUWAT</span>
             <span className="conversion-price-value">
-              <span className="conversion-price-highlight">Rp599.000</span>
+              <span className="conversion-price-highlight">Rp26.900</span>
             </span>
             <span className="conversion-price-duration">
-              Edisi Terbatas
-              <br />
-              Hanya Tersedia untuk <span className="conversion-inline-red">150</span> Akun
+              Akses Sebulan
             </span>
           </p>
         </div>
@@ -114,17 +112,17 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
           </a>
         </div>
 
-        <div className="conversion-secondary-row" aria-label="Diskon GEUWAT Ambassador">
+        <div className="conversion-secondary-row" aria-label="Grup WhatsApp GEUWAT">
           <a
-            href="https://discord.gg/kpPQHW7gFA"
+            href="https://chat.whatsapp.com/JLaBgBoQM5zB5KNfSfEaCI"
             target="_blank"
             rel="noopener noreferrer"
             className="conversion-secondary-link"
             style={{ textAlign: 'center' }}
             onClick={() =>
-              trackCtaClick('hero_ambassador_discount', {
+              trackCtaClick('hero_whatsapp_group', {
                 location: 'conversion_landing',
-                target: 'https://discord.gg/kpPQHW7gFA',
+                target: 'https://chat.whatsapp.com/JLaBgBoQM5zB5KNfSfEaCI',
               })
             }
           >
