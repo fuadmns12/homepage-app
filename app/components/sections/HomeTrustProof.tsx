@@ -136,10 +136,10 @@ export default function HomeTrustProof() {
 
         <div id="pricing-options" className="home-pricing-grid" aria-label="Opsi harga GEUWAT">
           <article className="home-pricing-card">
-            <p className="home-pricing-label">Pilihan Sekali Bayar</p>
-            <p className="home-pricing-title home-pricing-title--orange">Rp599.000</p>
-            <p className="home-pricing-desc">Akses penuh sekali bayar, bukan langganan</p>
-            <p className="home-pricing-note">Akses selamanya - Edisi Terbatas untuk 150 akun</p>
+            <p className="home-pricing-label">Paket Hemat Maksimal</p>
+            <p className="home-pricing-title home-pricing-title--yellow">Rp316.900/2 tahun</p>
+            <p className="home-pricing-desc">Akses penuh selama 720 hari. Hanya Rp13.000-an/bulan — Hemat 47%</p>
+            <p className="home-pricing-note">Akses 2 tahun</p>
             <div className="home-pricing-actions">
               <a
                 href="/register"
@@ -157,9 +157,10 @@ export default function HomeTrustProof() {
           </article>
 
           <article className="home-pricing-card home-pricing-card--highlight">
-            <p className="home-pricing-chip">Rekomendasi Pelajar</p>
+            <p className="home-pricing-chip">Paket Hemat</p>
             <p className="home-pricing-title home-pricing-title--orange">Rp169.000/tahun</p>
             <p className="home-pricing-subtitle">Hanya Rp14.000-an/bulan — Hemat 43%</p>
+            <p className="home-pricing-desc">Hemat Santuy</p>
             <div className="home-pricing-actions">
               <a
                 href="/register"
@@ -195,7 +196,6 @@ export default function HomeTrustProof() {
               </a>
             </div>
           </article>
-
         </div>
 
         <p className="home-proof-microcopy home-simulation-note">
