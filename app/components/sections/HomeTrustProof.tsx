@@ -196,25 +196,6 @@ export default function HomeTrustProof() {
             </div>
           </article>
 
-          <article className="home-pricing-card">
-            <p className="home-pricing-label">Bayar Bulanan</p>
-            <p className="home-pricing-title home-pricing-title--green">Rp25.000/bulan</p>
-            <p className="home-pricing-desc">Bayar per bulan untuk fleksibilitas maksimal</p>
-            <div className="home-pricing-actions">
-              <a
-                href="/register"
-                className="intro-cta-primary conversion-primary-cta"
-                onClick={() =>
-                  trackCtaClick('buy_monthly_plan', {
-                    location: 'audience_pricing_card',
-                    target: '/register',
-                  })
-                }
-              >
-                Pilih Paket Bulanan
-              </a>
-            </div>
-          </article>
         </div>
 
         <p className="home-proof-microcopy home-simulation-note">
