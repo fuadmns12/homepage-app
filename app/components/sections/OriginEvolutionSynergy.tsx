@@ -110,7 +110,7 @@ export default function OriginEvolutionSynergy() {
         <div className="founder-pricing-summary" aria-label="Opsi langganan terjangkau">
           <div className="founder-pricing-card">
             <p className="founder-pricing-kicker">Akses teknologi untuk siapa saja</p>
-            <h3 className="founder-pricing-headline">Mulai langkahmu dari harga secangkir kopi per bulan.</h3>
+            <h3 className="founder-pricing-headline">Mulai langkahmu dari harga secangkir kopi per bulan</h3>
             <p className="founder-pricing-copy">
               Pilih paket tahunan Rp169.000/tahun (setara Rp14.000-an/bulan), atau fleksibel dengan Rp26.900/bulan.
             </p>
