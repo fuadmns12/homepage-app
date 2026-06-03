@@ -1,7 +1,7 @@
 import HomeClient from './HomeClient'
 
 export default function Home() {
-  const baseUrl = 'https://learningenglishgeuwat-ten.vercel.app'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://learningenglishgeuwat-ten.vercel.app'
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [

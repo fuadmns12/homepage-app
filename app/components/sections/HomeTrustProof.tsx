@@ -151,7 +151,7 @@ export default function HomeTrustProof() {
                   })
                 }
               >
-                Beli Akses Selamanya
+                Pilih Paket Hemat Maksimal
               </a>
             </div>
           </article>
@@ -171,15 +171,15 @@ export default function HomeTrustProof() {
                   })
                 }
               >
-                Pilih Paket Edukasi
+                Pilih Paket Hemat
               </a>
             </div>
           </article>
 
           <article className="home-pricing-card">
-            <p className="home-pricing-label">Bayar Bulanan</p>
-            <p className="home-pricing-title home-pricing-title--green">Rp25.000/bulan</p>
-            <p className="home-pricing-desc">Bayar per bulan untuk fleksibilitas maksimal</p>
+            <p className="home-pricing-label">Paket Fleksibel</p>
+            <p className="home-pricing-title home-pricing-title--lime">Rp26.900/bulan</p>
+            <p className="home-pricing-desc">Bebas berhenti berlangganan kapan saja.</p>
             <div className="home-pricing-actions">
               <a
                 href="/register"
@@ -191,10 +191,11 @@ export default function HomeTrustProof() {
                   })
                 }
               >
-                Pilih Paket Bulanan
+                Pilih Paket Fleksibel
               </a>
             </div>
           </article>
+
         </div>
 
         <p className="home-proof-microcopy home-simulation-note">

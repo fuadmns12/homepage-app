@@ -13,7 +13,7 @@ export default function RegisterPage() {
   const [showTermsModal, setShowTermsModal] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [email, setEmail] = useState('')
-  const [selectedPrice, setSelectedPrice] = useState('lifetime')
+  const [selectedPrice, setSelectedPrice] = useState('monthly')
 
   const normalizedEmail = email.trim()
   const hasEmail = normalizedEmail.length > 0
@@ -24,9 +24,9 @@ export default function RegisterPage() {
     if (hasEmail) message += `\n\nEmail: ${normalizedEmail}`
     if (selectedPrice) {
       const priceLabel = {
-        lifetime: 'Rp599.000 (Akses Selamanya)',
-        yearly: 'Rp169.000/tahun (Paket Edukasi)',
-        monthly: 'Rp25.000/bulan (Paket Edukasi)'
+        two_years: 'Rp316.900/2 tahun (Paket Hemat Maksimal)',
+        yearly: 'Rp169.000/tahun (Paket Hemat)',
+        monthly: 'Rp26.900/bulan (Paket Fleksibel)'
       }[selectedPrice] || selectedPrice
       message += `\n\nPilihan Paket: ${priceLabel}`
     }
@@ -109,7 +109,7 @@ export default function RegisterPage() {
 
                     <label style={{ display: 'grid', gap: 6, width: '100%' }}>
                       <span className="section-subtitle" style={{ marginBottom: 0 }}>
-                        Pilih paket harga
+                        Pilih paket
                       </span>
                       <select
                         value={selectedPrice}
@@ -126,9 +126,9 @@ export default function RegisterPage() {
                           fontFamily: 'inherit'
                         }}
                       >
-                        <option value="lifetime">Rp599.000 - Akses Selamanya (Edisi Terbatas)</option>
-                        <option value="yearly">Rp169.000/tahun - Paket Edukasi (Hemat 43%)</option>
-                        <option value="monthly">Rp25.000/bulan - Paket Edukasi (Fleksibel)</option>
+                        <option value="two_years">Rp316.900/2 tahun - Paket Hemat Maksimal (Hemat 47%)</option>
+                        <option value="yearly">Rp169.000/tahun - Paket Hemat (Hemat 43%)</option>
+                        <option value="monthly">Rp26.900/bulan - Paket Fleksibel</option>
                       </select>
                     </label>
 

@@ -112,7 +112,7 @@ export default function OriginEvolutionSynergy() {
             <p className="founder-pricing-kicker">Akses teknologi untuk siapa saja</p>
             <h3 className="founder-pricing-headline">Mulai langkahmu dari harga secangkir kopi per bulan</h3>
             <p className="founder-pricing-copy">
-              Pilih paket tahunan Rp169.000/tahun (setara Rp14.000-an/bulan), atau fleksibel dengan Rp25.000/bulan.
+              Pilih paket tahunan Rp169.000/tahun (setara Rp14.000-an/bulan), atau fleksibel dengan Rp26.900/bulan.
             </p>
             <a href="#pricing-options" className="founder-pricing-link">
               Kembali ke pilihan harga

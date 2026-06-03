@@ -147,7 +147,7 @@ const menuItems: MenuItem[] = [
     id: '6',
     badge: (
       <Image
-        src="/NewLogoRB.webp"
+        src="/rasio_1_1_2K_202606030906.webp"
         alt="GEUWAT"
         className="menu-badge-icon"
         width={64}
