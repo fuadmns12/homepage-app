@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-const REGISTER_URL = 'http://localhost:3002/register'
-const IDLE_TIMEOUT_MS = 3000
+const REGISTER_URL = 'https://learningenglishgeuwat-ten.vercel.app/register'
+const IDLE_TIMEOUT_MS = 2000
 
 const activityEvents: Array<keyof WindowEventMap> = [
   'mousemove',
