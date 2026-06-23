@@ -20,11 +20,11 @@ export default function About({ backToMenu, isActive = true, standalone = false 
   const fastSteps = ['User', 'English', 'Level 1', 'Level 2', 'Level 3']
   const slowSteps = ['User', 'English', 'Level 1', 'Level 2', 'Level 3']
 
-  const clearTimers = () => {
+  const clearTimers = React.useCallback(() => {
     timeoutsRef.current.forEach((id) => window.clearTimeout(id))
     timeoutsRef.current = []
     clearStepSounds()
-  }
+  }, [clearStepSounds])
 
   const runProgress = (speed: 'fast' | 'slow') => {
     const steps = speed === 'fast' ? fastSteps : slowSteps
@@ -66,7 +66,7 @@ export default function About({ backToMenu, isActive = true, standalone = false 
       setFastActiveIndex(-1)
       setSlowActiveIndex(-1)
     }
-  }, [isActive])
+  }, [isActive, clearTimers])
 
   return (
     <>

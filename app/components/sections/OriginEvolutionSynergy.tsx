@@ -1,6 +1,5 @@
 import React from 'react'
 import { Brain, Cpu } from 'lucide-react'
-import Image from 'next/image'
 
 export default function OriginEvolutionSynergy() {
   return (
@@ -96,7 +95,7 @@ export default function OriginEvolutionSynergy() {
         </div>
 
         <blockquote className="founder-quote">
-          "Saya melihat tren AI bukan sebagai pengganti guru, tapi sebagai Exoskeleton. Di sini, saya menyaring teori terbaik dari 8 tahun pengalaman mengajar menjadi panduan ringkas, lalu memberikanmu instruksi dan mesin penggerak khusus agar kamu bisa mengendalikan AI (seperti Gemini) untuk melatih pelafalanmu secara instan hingga mencapai hasil tahunan hanya dalam hitungan minggu."
+          &ldquo;Saya melihat tren AI bukan sebagai pengganti guru, tapi sebagai Exoskeleton. Di sini, saya menyaring teori terbaik dari 8 tahun pengalaman mengajar menjadi panduan ringkas, lalu memberikanmu instruksi dan mesin penggerak khusus agar kamu bisa mengendalikan AI (seperti Gemini) untuk melatih pelafalanmu secara instan hingga mencapai hasil tahunan hanya dalam hitungan minggu.&rdquo;
         </blockquote>
 
         <div className="founder-pricing-summary" aria-label="Opsi langganan terjangkau">

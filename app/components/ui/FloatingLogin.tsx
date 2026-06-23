@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { trackCtaClick } from '@/lib/analytics'
 
 const MEMBER_LOGIN_URL = 'https://learningenglishgeuwat.vercel.app'
@@ -10,28 +10,6 @@ type UserCountPayload = {
   count: number | null
   trialCount?: number | null
   paidCount?: number | null
-}
-
-function LightningIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        fill="currentColor"
-        d="M13 2L3 14h7l-1 8 12-14h-7l1-6Z"
-      />
-    </svg>
-  )
-}
-
-function DiamondIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        fill="currentColor"
-        d="M12 2l7 7-7 13L5 9l7-7Zm0 3.2L7.9 9h8.2L12 5.2Z"
-      />
-    </svg>
-  )
 }
 
 function ChevronIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -50,69 +28,9 @@ function ChevronIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function FloatingLogin() {
-  const [userCount, setUserCount] = useState<number | null>(null)
-  const [trialCount, setTrialCount] = useState<number | null>(null)
-  const [paidCount, setPaidCount] = useState<number | null>(null)
-  const [breakdownOpen, setBreakdownOpen] = useState(false)
   const [collapsed, setCollapsed] = useState(true)
-  const breakdownCloseTimerRef = useRef<number | null>(null)
   const touchStartYRef = useRef<number | null>(null)
 
-  useEffect(() => {
-    const controller = new AbortController()
-
-    ;(async () => {
-      try {
-        const res = await fetch('/api/user-count', { signal: controller.signal })
-        if (!res.ok) return
-        const data = (await res.json()) as UserCountPayload
-        setUserCount(typeof data.count === 'number' ? data.count : null)
-        setTrialCount(typeof data.trialCount === 'number' ? data.trialCount : null)
-        setPaidCount(typeof data.paidCount === 'number' ? data.paidCount : null)
-      } catch (error) {
-        if ((error as { name?: string }).name === 'AbortError') return
-        setUserCount(null)
-        setTrialCount(null)
-        setPaidCount(null)
-      }
-    })()
-
-    return () => controller.abort()
-  }, [])
-
-  const formattedCount = useMemo(() => {
-    if (userCount == null) return null
-    return new Intl.NumberFormat('id-ID').format(userCount)
-  }, [userCount])
-
-  const formattedTrialCount = useMemo(() => {
-    if (trialCount == null) return null
-    return new Intl.NumberFormat('id-ID').format(trialCount)
-  }, [trialCount])
-
-  const formattedPaidCount = useMemo(() => {
-    if (paidCount == null) return null
-    return new Intl.NumberFormat('id-ID').format(paidCount)
-  }, [paidCount])
-
-  const openBreakdown = () => {
-    if (breakdownCloseTimerRef.current !== null) {
-      window.clearTimeout(breakdownCloseTimerRef.current)
-      breakdownCloseTimerRef.current = null
-    }
-    setBreakdownOpen(true)
-  }
-
-  const scheduleCloseBreakdown = () => {
-    if (breakdownCloseTimerRef.current !== null) {
-      window.clearTimeout(breakdownCloseTimerRef.current)
-      breakdownCloseTimerRef.current = null
-    }
-    breakdownCloseTimerRef.current = window.setTimeout(() => {
-      breakdownCloseTimerRef.current = null
-      setBreakdownOpen(false)
-    }, 160)
-  }
 
   const onTouchStart = (event: React.TouchEvent) => {
     touchStartYRef.current = event.touches[0]?.clientY ?? null

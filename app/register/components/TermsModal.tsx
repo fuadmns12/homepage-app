@@ -187,7 +187,7 @@ export default function TermsModal({ isOpen, onClose, onAcknowledge }: TermsModa
               <strong>Batasan Tanggung Jawab:</strong> Kami tidak bertanggung jawab atas kegagalan, gangguan, kehilangan data, atau ketidaktersediaan layanan yang disebabkan oleh kegagalan sistem, pemeliharaan, atau penghentian operasional oleh penyedia infrastruktur pihak ketiga.
             </p>
             <p className="text-sm">
-              <strong>Akses Seumur Hidup:</strong> Dalam konteks 'Akses Seumur Hidup', pengguna memahami bahwa akses tersebut berlaku selama layanan ini masih dapat dioperasikan secara teknis dan finansial. Jika terjadi penghentian layanan yang disebabkan oleh kegagalan pihak ketiga yang berada di luar kendali kami, tanggung jawab kami terbatas pada upaya pemulihan layanan tersebut, dan tidak mencakup ganti rugi atas hilangnya akses tersebut.
+              <strong>Akses Seumur Hidup:</strong> Dalam konteks &apos;Akses Seumur Hidup&apos;, pengguna memahami bahwa akses tersebut berlaku selama layanan ini masih dapat dioperasikan secara teknis dan finansial. Jika terjadi penghentian layanan yang disebabkan oleh kegagalan pihak ketiga yang berada di luar kendali kami, tanggung jawab kami terbatas pada upaya pemulihan layanan tersebut, dan tidak mencakup ganti rugi atas hilangnya akses tersebut.
             </p>
           </div>
         </div>

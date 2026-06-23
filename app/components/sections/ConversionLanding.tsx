@@ -7,7 +7,6 @@ import SocialMedia from './SocialMedia'
 import FeaturePreviewCarousel from './FeaturePreviewCarousel'
 import { FAQ_ITEMS } from './faq-items'
 import { trackCtaClick } from '@/lib/analytics'
-import Link from 'next/link'
 
 interface ConversionLandingProps {
   onOpenFeatureHub: () => void
@@ -222,6 +221,36 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
 
       <HomeTrustProof />
       <OriginEvolutionSynergy />
+      <section className="conversion-map-section glass-card conversion-map-target" aria-label="Peta lokasi GEUWAT">
+        <div className="conversion-map-copy">
+          <h2 className="conversion-map-title">Temukan Lokasi Kami</h2>
+          <p className="conversion-map-subtitle">
+            Ikuti update dan konten terbaru dari GEUWAT. Lihat lokasi kami dan arahkan perjalananmu melalui peta.
+          </p>
+          <div className="conversion-map-frame conversion-video-border">
+            <div className="conversion-video-inner">
+              <iframe
+                title="Peta Lokasi GEUWAT"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d253738.11083192806!2d106.71481300000002!3d-6.437953!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f57f45477a60b%3A0x22821d6a0b620788!2sEnglish%20GEUWAT%20Tasikmalaya!5e0!3m2!1sid!2sus!4v1782205757441!5m2!1sid!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+          <a
+            href="https://maps.app.goo.gl/uLuuKgE83R7CpJ9z9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="conversion-map-link"
+          >
+            Buka di Google Maps
+          </a>
+        </div>
+      </section>
       <SocialMedia />
     </section>
   )
