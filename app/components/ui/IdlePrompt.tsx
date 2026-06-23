@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const REGISTER_URL = 'https://learningenglishgeuwat-ten.vercel.app/register'
-const IDLE_TIMEOUT_MS = 3000
+const IDLE_TIMEOUT_MS = 2000
 
 const activityEvents: Array<keyof WindowEventMap> = [
   'mousemove',
