@@ -98,7 +98,7 @@ export default function GeuwatEvent({ backToMenu, isActive }: GeuwatEventProps) 
             }}
           >
             <img
-              src="/GEUWAT-TOWER-BUILD.jpeg"
+              src="/GEUWAT-TOWER-BUILD.webp"
               alt="Login ke Geuwat Tower"
               style={{
                 width: '100%',

@@ -24,8 +24,8 @@ export default function HomeTrustProof() {
   const timeoutsRef = React.useRef<number[]>([])
   const { prepareStepSound, queueStepFilledSound, clearStepSounds } = useWorkflowStepSound()
 
-  const fastSteps = ['User', 'English', 'Level 1', 'Level 2', 'Level 3']
-  const slowSteps = ['User', 'English', 'Level 1', 'Level 2', 'Level 3']
+  const fastSteps = React.useMemo(() => ['User', 'English', 'Level 1', 'Level 2', 'Level 3'], [])
+  const slowSteps = React.useMemo(() => ['User', 'English', 'Level 1', 'Level 2', 'Level 3'], [])
 
   const clearTimers = React.useCallback(() => {
     timeoutsRef.current.forEach((id) => window.clearTimeout(id))

@@ -7,7 +7,6 @@ import SocialMedia from './SocialMedia'
 import FeaturePreviewCarousel from './FeaturePreviewCarousel'
 import { FAQ_ITEMS } from './faq-items'
 import { trackCtaClick } from '@/lib/analytics'
-import Link from 'next/link'
 
 interface ConversionLandingProps {
   onOpenFeatureHub: () => void
@@ -85,6 +84,21 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
           Materi grammar &amp; kosakata? Tenang, itu bonus buat bantu progresmu
         </p>
 
+        <div className="conversion-video-wrapper">
+          <div className="conversion-video-border">
+            <div className="conversion-video-inner">
+              <iframe
+                src="https://www.youtube.com/embed/tVR6EhKQruE"
+                title="Belajar Bahasa Inggris - GEUWAT Versi 1.7.1"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+
         <div className="conversion-pricing-wrap">
           <p className="conversion-price-main conversion-price-stack">
             <span className="conversion-price-label">Akun Belajar GEUWAT</span>
@@ -118,7 +132,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
             target="_blank"
             rel="noopener noreferrer"
             className="conversion-secondary-link"
-            style={{ textAlign: 'center' }}
+            style={{ textAlign: 'center', textDecoration: 'none' }}
             onClick={() =>
               trackCtaClick('hero_whatsapp_group', {
                 location: 'conversion_landing',
@@ -126,7 +140,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
               })
             }
           >
-            Dapatkan Rekomendasi dari GEUWAT Ambassador untuk mendapatkan diskon{' '}
+            Dapatkan lebih banyak BONUS termasuk diskon{' '}
             <span className="conversion-inline-accent">5-10%</span>
           </a>
         </div>
@@ -207,6 +221,36 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
 
       <HomeTrustProof />
       <OriginEvolutionSynergy />
+      <section className="conversion-map-section glass-card conversion-map-target" aria-label="Peta lokasi GEUWAT">
+        <div className="conversion-map-copy">
+          <h2 className="conversion-map-title">Temukan Lokasi Kami</h2>
+          <p className="conversion-map-subtitle">
+            Ikuti update dan konten terbaru dari GEUWAT. Lihat lokasi kami dan arahkan perjalananmu melalui peta.
+          </p>
+          <div className="conversion-map-frame conversion-video-border">
+            <div className="conversion-video-inner">
+              <iframe
+                title="Peta Lokasi GEUWAT"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d253738.11083192806!2d106.71481300000002!3d-6.437953!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f57f45477a60b%3A0x22821d6a0b620788!2sEnglish%20GEUWAT%20Tasikmalaya!5e0!3m2!1sid!2sus!4v1782205757441!5m2!1sid!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+          <a
+            href="https://maps.app.goo.gl/uLuuKgE83R7CpJ9z9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="conversion-map-link"
+          >
+            Buka di Google Maps
+          </a>
+        </div>
+      </section>
       <SocialMedia />
     </section>
   )

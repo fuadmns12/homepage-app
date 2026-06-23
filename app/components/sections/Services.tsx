@@ -54,9 +54,33 @@ export default function Services({ backToMenu, isActive = true, standalone = fal
     akses: new Set(['Bisa diakses di HP?']),
   }
 
+  type UpdateCategory = 'BARU' | 'PENINGKATAN' | 'PERBAIKAN'
+  type UpdateItem = {
+    title: string
+    description: string
+  }
+  type VersionUpdate = {
+    version: string
+    releaseDate: string
+    categories: Array<{
+      category: UpdateCategory
+      title: string
+      description: string
+      youtubeId: string
+      items: UpdateItem[]
+    }>
+  }
+
+  const CATEGORY_COLORS: Record<UpdateCategory, string> = {
+    BARU: '#4CAF50',
+    PENINGKATAN: '#2196F3',
+    PERBAIKAN: '#FF9800',
+  }
+
   const [activeTab, setActiveTab] = React.useState<'modul' | 'desain' | 'konsultasi' | 'dukungan' | 'update'>('modul')
   const [showPronunciationTopics, setShowPronunciationTopics] = React.useState(false)
   const [activeSupportFaqCategory, setActiveSupportFaqCategory] = React.useState<SupportFaqCategory>('all')
+  const [selectedUpdateVersion, setSelectedUpdateVersion] = React.useState(0)
   const coreLearningModules = [
     'Pengucapan',
     'Kosakata',
@@ -105,6 +129,133 @@ export default function Services({ backToMenu, isActive = true, standalone = fal
     { title: 'American /t/', shortDesc: 'Tujuan belajarnya adalah membedakan pola bunyi /t/ Amerika sesuai posisi kata dalam kalimat.', locked: false },
     { title: 'Connected Speech', shortDesc: 'Tujuan belajarnya adalah memahami sambungan bunyi antarkata saat berbicara cepat.', locked: true },
   ]
+
+  const LATEST_UPDATES: VersionUpdate[] = [
+    {
+      version: 'Versi 1.71',
+      releaseDate: '22 Juni 2026',
+      categories: [
+        {
+          category: 'BARU',
+          title: 'Hand Tracking',
+          description: 'Hand Tracking (Kontrol Gerakan Tangan) dan audio berkualitas tinggi dengan dukungan aksen Amerika & Inggris membuat sesi latihan terasa lebih nyata.',
+          youtubeId: 'tVR6EhKQruE',
+          items: [
+            {
+              title: 'Hand Tracking aktif',
+              description: 'Berinteraksi dengan aplikasi menggunakan gerakan tangan melalui kamera untuk navigasi dan kontrol materi.',
+            },
+          ],
+        },
+        {
+          category: 'PENINGKATAN',
+          title: 'Peningkatan Performa',
+          description: '',
+          youtubeId: '',
+          items: [],
+        },
+        {
+          category: 'PERBAIKAN',
+          title: 'Perbaikan Bug',
+          description: '',
+          youtubeId: '',
+          items: [],
+        },
+      ],
+    },
+  ]
+
+  const VersionUpdateCard = ({ versionUpdate }: { versionUpdate: VersionUpdate }) => {
+    const [selectedCategory, setSelectedCategory] = React.useState<UpdateCategory>(versionUpdate.categories[0]?.category ?? 'BARU')
+    const currentUpdate = versionUpdate.categories.find((entry) => entry.category === selectedCategory)
+
+    return (
+      <div className="glass-card" style={{ padding: 24, overflow: 'hidden' }}>
+        <div style={{ marginBottom: 16 }}>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 12, flexWrap: 'wrap' }}>
+            <h4 style={{ margin: 0, fontSize: 16, fontWeight: 600, color: '#ffffff' }}>
+              {versionUpdate.version}
+            </h4>
+            <span style={{
+              fontSize: 12,
+              color: 'rgba(255, 255, 255, 0.6)',
+              marginLeft: 'auto',
+            }}>
+              {versionUpdate.releaseDate}
+            </span>
+          </div>
+
+          <div className="tab-buttons" style={{ marginBottom: 16, justifyContent: 'center', textAlign: 'center' }}>
+            {versionUpdate.categories.map((categoryItem) => (
+              <button
+                key={categoryItem.category}
+                type="button"
+                className={`tab-btn ${selectedCategory === categoryItem.category ? 'active' : ''}`}
+                style={{
+                  borderColor: CATEGORY_COLORS[categoryItem.category],
+                  color: selectedCategory === categoryItem.category ? CATEGORY_COLORS[categoryItem.category] : 'rgba(255, 255, 255, 0.75)',
+                }}
+                onClick={() => setSelectedCategory(categoryItem.category)}
+              >
+                {categoryItem.category}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {currentUpdate && (
+          <>
+            {currentUpdate.youtubeId && (
+              <div className="conversion-video-wrapper" style={{ marginBottom: 20 }}>
+                <div className="conversion-video-border">
+                  <div className="conversion-video-inner">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${currentUpdate.youtubeId}`}
+                      title={`${versionUpdate.version} - ${currentUpdate.title}`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {currentUpdate.description && (
+              <div style={{ marginBottom: 18 }}>
+                <h5 style={{ margin: '0 0 8px 0', fontSize: 16, color: '#ffffff', fontWeight: 600 }}>
+                  {currentUpdate.title}
+                </h5>
+                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.75)', lineHeight: 1.7 }}>
+                  {currentUpdate.description}
+                </p>
+              </div>
+            )}
+
+            <div style={{ display: 'grid', gap: 14 }}>
+              {currentUpdate.items.length ? (
+                currentUpdate.items.map((item) => (
+                  <div key={item.title}>
+                    <h6 style={{ margin: '0 0 6px 0', fontSize: 15, fontWeight: 600, color: '#ffffff' }}>
+                      {item.title}
+                    </h6>
+                    <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.78)', lineHeight: 1.7 }}>
+                      {item.description}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <div style={{ padding: '18px 0', color: 'rgba(255, 255, 255, 0.65)', fontSize: 14 }}>
+                  Tidak ada pembaruan di kategori ini untuk versi ini.
+                </div>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    )
+  }
 
   React.useEffect(() => {
     if (!isActive) {
@@ -395,6 +546,49 @@ export default function Services({ backToMenu, isActive = true, standalone = fal
 
         {activeTab === 'update' && (
           <div className="tab-pane active">
+            {/* Latest Updates Section */}
+            <div className="section-header" style={{ marginBottom: 30 }}>
+              <h3 className="section-title">Update Terbaru</h3>
+              <p className="section-subtitle">Fitur dan peningkatan terbaru dari GEUWAT</p>
+            </div>
+
+            <div style={{ marginBottom: 24, textAlign: 'center' }}>
+              <label style={{ display: 'block', marginBottom: 8, fontSize: 14, color: 'rgba(255, 255, 255, 0.75)', fontWeight: 500 }}>
+                Pilih Versi
+              </label>
+              <select
+                value={selectedUpdateVersion}
+                onChange={(e) => setSelectedUpdateVersion(Number(e.target.value))}
+                style={{
+                  width: '100%',
+                  maxWidth: 300,
+                  padding: '10px 12px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  borderRadius: 8,
+                  color: '#ffffff',
+                  fontSize: 14,
+                  fontFamily: 'Outfit, sans-serif',
+                  cursor: 'pointer',
+                  margin: '0 auto',
+                  display: 'block',
+                }}
+              >
+                {LATEST_UPDATES.map((update, index) => (
+                  <option key={update.version} value={index}>
+                    {update.version} - {update.releaseDate}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div style={{ display: 'grid', gap: 24, marginBottom: 40 }}>
+              {LATEST_UPDATES[selectedUpdateVersion] && (
+                <VersionUpdateCard key={LATEST_UPDATES[selectedUpdateVersion].version} versionUpdate={LATEST_UPDATES[selectedUpdateVersion]} />
+              )}
+            </div>
+
+            {/* Social Media Section */}
             <SocialMedia trackLocation="services_update" />
           </div>
         )}
