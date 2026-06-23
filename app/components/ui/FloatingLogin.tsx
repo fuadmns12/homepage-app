@@ -54,7 +54,7 @@ export default function FloatingLogin() {
   const [trialCount, setTrialCount] = useState<number | null>(null)
   const [paidCount, setPaidCount] = useState<number | null>(null)
   const [breakdownOpen, setBreakdownOpen] = useState(false)
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(true)
   const breakdownCloseTimerRef = useRef<number | null>(null)
   const touchStartYRef = useRef<number | null>(null)
 

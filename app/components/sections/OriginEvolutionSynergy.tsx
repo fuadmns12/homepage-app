@@ -2,13 +2,6 @@ import React from 'react'
 import { Brain, Cpu } from 'lucide-react'
 import Image from 'next/image'
 
-const TRACK_RECORD_LOGOS = [
-  { src: '/Logo-riwayat-kursus/Logo-Access.png', alt: 'Logo Access' },
-  { src: '/Logo-riwayat-kursus/Logo-Central-Course.png', alt: 'Logo Central Course' },
-  { src: '/Logo-riwayat-kursus/Logo-English-Versity.png', alt: 'Logo English Versity' },
-  { src: '/Logo-riwayat-kursus/Logo-Language-Center.png', alt: 'Logo Language Center' }
-] as const
-
 export default function OriginEvolutionSynergy() {
   return (
     <section className="glass-card founder-section" aria-label="Origin, Evolution, dan Synergy GEUWAT">
@@ -16,8 +9,7 @@ export default function OriginEvolutionSynergy() {
         <p className="founder-kicker">The Origin</p>
         <h2 className="founder-headline">SYSTEM ARCHITECT: 10,000+ LINGUISTIC SAMPLES</h2>
         <p className="founder-subheadline">
-          Bukan dibangun oleh AI semata, tapi oleh pengajar nyata yang telah menguji logika ini pada lebih dari 10.000
-          lidah manusia sejak 2018.
+          Bukan dibangun oleh AI semata, tapi oleh pengajar nyata yang telah menguji logika ini pada lebih dari 10.000 lidah manusia sejak 2018.
         </p>
 
         <div className="founder-origin-visual" aria-hidden="true">
@@ -117,24 +109,6 @@ export default function OriginEvolutionSynergy() {
             <a href="#pricing-options" className="founder-pricing-link">
               Kembali ke pilihan harga
             </a>
-          </div>
-        </div>
-
-        <div className="founder-track-record" aria-label="Track record kursus">
-          <h3 className="founder-title founder-track-title">Track Record</h3>
-          <div className="founder-track-logos" role="list" aria-label="Logo riwayat kursus">
-            {TRACK_RECORD_LOGOS.map((logo) => (
-              <div key={logo.src} className="founder-track-logo" role="listitem">
-                <Image
-                  className="founder-track-logo-image"
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={180}
-                  height={64}
-                  sizes="(max-width: 640px) 120px, 180px"
-                />
-              </div>
-            ))}
           </div>
         </div>
       </div>

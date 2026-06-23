@@ -33,6 +33,8 @@ const FEATURE_SECTIONS = [
   'contact',
 ] as const
 
+const ENABLE_NOTIFICATION_PROMPT = false
+
 type FeatureSection = (typeof FEATURE_SECTIONS)[number]
 
 const isFeatureSection = (value: string): value is FeatureSection =>
@@ -56,7 +58,7 @@ function ChevronIcon(props: SVGProps<SVGSVGElement>) {
 export default function HomeClient() {
   const [activeSection, setActiveSection] = useState('')
   const [showFeatureHub, setShowFeatureHub] = useState(false)
-  const [sideNavOpen, setSideNavOpen] = useState(true)
+  const [sideNavOpen, setSideNavOpen] = useState(false)
   const [sectionSource, setSectionSource] = useState<'feature-hub' | 'conversion'>('conversion')
   const [isTransitioning, setIsTransitioning] = useState(false)
   const showSectionTimerRef = useRef<number | null>(null)
@@ -221,7 +223,7 @@ export default function HomeClient() {
       <LoadingScreen />
       <AmbientBg />
       <GridOverlay />
-      <NotificationPrompt />
+      {ENABLE_NOTIFICATION_PROMPT && <NotificationPrompt />}
       <ScrollTracker />
       <FloatingWhatsApp />
 

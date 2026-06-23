@@ -2,9 +2,11 @@ import type { Metadata, Viewport } from 'next'
 import { Outfit, Syne } from 'next/font/google'
 import './globals.css'
 import './styles/GEUWAT.css'
+import './styles/idle-prompt.css'
 import AnalyticsScripts from './components/ui/AnalyticsScripts'
 import CookieConsent from './components/ui/CookieConsent'
 import FloatingLogin from './components/ui/FloatingLogin'
+import IdlePrompt from './components/ui/IdlePrompt'
 import GlobalSideNav from './components/layout/GlobalSideNav'
 
 const outfit = Outfit({ 
@@ -19,6 +21,7 @@ const syne = Syne({
   weight: ['400', '500', '600', '700']
 })
 
+const ENABLE_COOKIE_CONSENT = false
 const GA_MEASUREMENT_ID = 'G-SPZJEWNXSR'
 
 export const viewport: Viewport = {
@@ -34,7 +37,7 @@ export const metadata: Metadata = {
     template: '%s | GEUWAT',
   },
   description:
-    'Belajar English terarah dengan jalur Pronunciation, Vocabulary, Grammar, dan Speaking. Akses setahun Rp169.000 dengan Pembayaran Sekali.',
+    'Belajar bahasa Inggris dengan memperkuat fondasi pelafalan. Langkah awal mempermudah kamu ke level selanjutnya. Bonus Vocabulary, Grammar dan Speaking.',
   applicationName: 'GEUWAT',
   generator: 'Next.js',
   keywords: [
@@ -72,7 +75,7 @@ export const metadata: Metadata = {
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://learningenglishgeuwat-ten.vercel.app',
     title: 'GEUWAT - Website Belajar Bahasa Inggris',
     description:
-      'Belajar English terarah dengan jalur Pronunciation, Vocabulary, Grammar, dan Speaking. Akses setahun Rp169.000 dengan Pembayaran Sekali.',
+      'Belajar bahasa Inggris dengan memperkuat fondasi pelafalan. Langkah awal mempermudah kamu ke level selanjutnya. Bonus Vocabulary, Grammar dan Speaking.',
     siteName: 'GEUWAT',
     images: [
       {
@@ -87,7 +90,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'GEUWAT - Website Belajar Bahasa Inggris',
     description:
-      'Belajar English terarah dengan jalur Pronunciation, Vocabulary, Grammar, dan Speaking. Akses setahun Rp169.000 dengan Pembayaran Sekali.',
+      'Belajar bahasa Inggris dengan memperkuat fondasi pelafalan. Langkah awal mempermudah kamu ke level selanjutnya. Bonus Vocabulary, Grammar dan Speaking.',
     images: ['/images/view.webp'],
   },
   icons: {
@@ -106,7 +109,8 @@ export default function RootLayout({
       <body className={`${outfit.variable} ${syne.variable}`}>
         <AnalyticsScripts measurementId={GA_MEASUREMENT_ID} />
         {children}
-        <CookieConsent />
+        <IdlePrompt />
+        {ENABLE_COOKIE_CONSENT && <CookieConsent />}
         <FloatingLogin />
         <GlobalSideNav />
       </body>

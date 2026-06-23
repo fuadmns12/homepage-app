@@ -5,7 +5,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://learningenglishgeu
 export const metadata: Metadata = {
   title: 'Register GEUWAT - Website Belajar Bahasa Inggris',
   description:
-    'Daftar member GEUWAT untuk akses setahun materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp169.000.',
+    'Belajar bahasa Inggris dengan memperkuat fondasi pelafalan. Langkah awal mempermudah kamu ke level selanjutnya. Bonus Vocabulary, Grammar dan Speaking.',
   alternates: {
     canonical: '/register',
   },
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: `${BASE_URL}/register`,
     title: 'Register GEUWAT - Website Belajar Bahasa Inggris',
     description:
-      'Daftar member GEUWAT untuk akses setahun materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp169.000.',
+      'Belajar bahasa Inggris dengan memperkuat fondasi pelafalan. Langkah awal mempermudah kamu ke level selanjutnya. Bonus Vocabulary, Grammar dan Speaking.',
     siteName: 'GEUWAT',
     images: [
       {
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Register GEUWAT - Website Belajar Bahasa Inggris',
     description:
-      'Daftar member GEUWAT untuk akses setahun materi Pronunciation, Vocabulary, Grammar, dan Speaking dengan Pembayaran Sekali Rp169.000.',
+      'Belajar bahasa Inggris dengan memperkuat fondasi pelafalan. Langkah awal mempermudah kamu ke level selanjutnya. Bonus Vocabulary, Grammar dan Speaking.',
     images: ['/images/view.webp'],
   },
 }

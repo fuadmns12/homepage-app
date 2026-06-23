@@ -85,6 +85,21 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
           Materi grammar &amp; kosakata? Tenang, itu bonus buat bantu progresmu
         </p>
 
+        <div className="conversion-video-wrapper">
+          <div className="conversion-video-border">
+            <div className="conversion-video-inner">
+              <iframe
+                src="https://www.youtube.com/embed/tVR6EhKQruE"
+                title="Belajar Bahasa Inggris - GEUWAT Versi 1.7.1"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+
         <div className="conversion-pricing-wrap">
           <p className="conversion-price-main conversion-price-stack">
             <span className="conversion-price-label">Akun Belajar GEUWAT</span>
@@ -118,7 +133,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
             target="_blank"
             rel="noopener noreferrer"
             className="conversion-secondary-link"
-            style={{ textAlign: 'center' }}
+            style={{ textAlign: 'center', textDecoration: 'none' }}
             onClick={() =>
               trackCtaClick('hero_whatsapp_group', {
                 location: 'conversion_landing',
@@ -126,7 +141,7 @@ export default function ConversionLanding({ onOpenFeatureHub }: ConversionLandin
               })
             }
           >
-            Dapatkan Rekomendasi dari GEUWAT Ambassador untuk mendapatkan diskon{' '}
+            Dapatkan lebih banyak BONUS termasuk diskon{' '}
             <span className="conversion-inline-accent">5-10%</span>
           </a>
         </div>
